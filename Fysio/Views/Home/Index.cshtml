@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<Fysio.Models.PatientModel>
+
+<link rel="stylesheet" href="~/css/Home/HomeStyle.css" />
+
+<body>
+    <div>
+        <h2>FysX Fysiotherapie</h2>
+        <a asp-action="PatientForm"><button class="btn btn-primary text-center">Voeg een patient toe</button></a>
+    </div>
+    <div>
+        <h3>Patienten:</h3>
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr><th>Id</th><th>Naam</th><th>Email</th><th>Telefoonnummer</th><th>Leraar/Student</th><th>Nummer</th><th>Geboortedatum</th><th>Geslacht</th><th>Meer info</th></tr>
+            </thead>
+            <tbody>
+                @foreach (Fysio.Models.PatientModel p in Model)
+                {
+                    <tr>
+                        <td>@p.Id</td>
+                        <td>@p.Name</td>
+                        <td>@p.Email</td>
+                        <td>@p.PhoneNumber</td>
+                        <td>@p.Teacher</td>
+                        <td>@p.RegistrationNumber</td>
+                        <td>@p.Birthdate.ToShortDateString()</td>
+                        <td>@p.Gender</td>
+                        <td>@Html.ActionLink("Meer info", "Patient", p)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>

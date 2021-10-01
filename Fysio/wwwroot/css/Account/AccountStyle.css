@@ -1,0 +1,49 @@
+﻿.login_box {
+    width: 25%;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 0 10px grey;
+}
+
+.login-box-item {
+    margin: 20px;
+    width: 100%;
+}
+
+.login-box-item-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-field {
+    margin-bottom: 10px;
+}
+
+.logo {
+    max-width: 100px;
+    margin: 0;
+}
+
+.login-box-item-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-image: linear-gradient(225deg, #FFFFFF 20%, #9ECAF9 100%);
+}
+
+

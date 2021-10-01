@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Fysio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Layout/LayoutStyle.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 sidebar d-flex align-items-start">
+                <div class="sidebar-item flex-column">
+                    <a asp-action="Index" asp-controller="Home" class="center-image"><img src="~/images/logo fysx.png" alt="Logo FysX" class="logo img-fluid img-thumbnail" /></a>
+                    <a asp-action="Index" asp-controller="Home" class="link-styled link-styled-active">Dashboard</a>
+                    <a asp-action="Index" asp-controller="Home" class="link-styled">Patienten</a>
+                    <a asp-action="Index" asp-controller="Home" class="link-styled">Afspraken</a>
+                </div>
+                <div class="sidebar-item mt-auto flex-column">
+                    <a  asp-action="LogOut" asp-controller="Account" class="link-styled link-styled-dark">
+                        Uitloggen
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+
+                    @await Component.InvokeAsync("PatientCount")
+                </main>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
