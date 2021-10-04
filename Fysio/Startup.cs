@@ -4,11 +4,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fysio.Controllers;
 using DomainServices.Interfaces;
 using EFInfrastructure;
 using Domain;
@@ -47,6 +42,15 @@ namespace Fysio
 
             services.AddScoped<IPatientRepository, DBPatientRepository>();
 
+            services.AddScoped<ITreatorRepository, DBTreatorRepository>();
+
+            services.AddScoped<IPatientFileRepository, DBPatientFileRepository>();
+
+            services.AddScoped<ITreatmentRepository, DBTreatmentRepository>();
+
+            services.AddScoped<ITreatorRepository, DBTreatorRepository>();
+
+            services.AddScoped<IAppointmentRepository, DBAppointmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,7 +86,7 @@ namespace Fysio
                 endpoints.MapControllerRoute(
                     name: "patiensList",
                     pattern: "patient",
-                    defaults: new { controller = "Home", action = "Index" });
+                    defaults: new { controller = "Patient", action = "Index" });
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model PatientModel
+
+<link rel="stylesheet" href="~/css/Patient/PatientDetailStyle.css" />
+<script src="~/js/MenuItems.js"></script>
+
+<body>
+    <div class="patient-detail">
+        <div class="patient-info">
+            @await Component.InvokeAsync("PatientInfo", new { patient = Model }) 
+        </div>
+        <div class="patient-treatment">
+            <div class="patient-treatment-container">
+                @await Component.InvokeAsync("PatientTreatmentInfo", new { patient = Model}) 
+            </div>
+        </div>
+        <div class="patient-appointments">
+            @await Component.InvokeAsync("PatientAppointments", new { patient = Model }) 
+        </div>
+    </div>
+</body>
+
+
+<script>
+    activeMenu2();
+</script>

@@ -47,6 +47,9 @@ namespace Fysio.Migrations
                     b.Property<DateTime>("AppointmentDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("EndDateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("PatientId")
                         .HasColumnType("int");
 

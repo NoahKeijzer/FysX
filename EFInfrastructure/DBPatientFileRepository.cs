@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Domain;
 using DomainServices.Interfaces;
 using EFInfrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFInfrastructure
 {
-    class DBPatientFileRepository : IPatientFileRepository
+    public class DBPatientFileRepository : IPatientFileRepository
     {
         private readonly FysioDbContext _context;
         public DBPatientFileRepository(FysioDbContext context)
@@ -28,11 +29,15 @@ namespace EFInfrastructure
             return _context.PatientFiles.Where(p => p.Patient == patient).ToList();
         }
 
-        public void UpdatePatientFile(int id, PatientFile updatePatientFile)
+        public PatientFile GetCurrentPatientFileForPatient(Patient patient)
         {
-            PatientFile old = _context.PatientFiles.Where(p => p.Id == id).FirstOrDefault();
-            old = updatePatientFile;
-            _context.SaveChanges();            
+            return _context.PatientFiles.Include(p => p.Treatments).Include(p => p.Intaker).Include(p => p.Patient).Where(p => p.Patient == patient && p.EndDate == DateTime.MinValue).FirstOrDefault();
         }
+
+        public async void UpdatePatientFile(int id, PatientFile updatePatientFile)
+        {
+            _context.SaveChanges();
+        }
+
     }
 }

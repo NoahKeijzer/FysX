@@ -19,9 +19,8 @@ namespace Domain
         public Patient Patient { get; set; }
         public DateTime TreatmentDateTime { get; set; }
 
-        public Treatment(int id, string type, string description, string location, string particularities, Treator treator, Patient patient, DateTime treatmentDateTime)
+        public Treatment(string type, string description, string location, string particularities, Treator treator, Patient patient, DateTime treatmentDateTime)
         {
-            Id = id;
             Type = type;
             Description = description;
             Location = location;

@@ -1,0 +1,76 @@
+﻿.form-add-patient{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: white;
+    border-radius: 15px;
+    margin: 30px;
+    padding: 15px;
+}
+
+
+.title {
+    width: 100%;
+    text-align: center;
+    color: #1B84F4;
+}
+
+.form{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form-personal{
+    width: 45%;
+    margin-right: 2%;
+}
+
+.form-contact{
+    width: 45%;
+    margin-left: 2%;
+}
+.form-submit{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2vh;
+}
+
+.form-submit div {
+    width: 100%;
+}
+
+.form-submit button{
+    width:50%;
+}
+
+.form-input-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+
+.input-field-form {
+    border: 1px #0B3E74 solid;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+    text-align: center;
+    color: #0B3E74;
+    font-style: italic;
+    width: 100%;
+}
+
+.form-input-label{
+    width: 100%;
+    text-align: center;
+}
+
+label {
+    color: #0B3E74;
+    font-weight: bolder;
+}

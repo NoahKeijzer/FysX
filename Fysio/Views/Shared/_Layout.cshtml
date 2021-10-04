@@ -9,35 +9,35 @@
     <link rel="stylesheet" href="~/css/Layout/LayoutStyle.css" />
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 sidebar d-flex align-items-start">
+            <div class="col-sm-2 sidebar d-flex align-items-start">
                 <div class="sidebar-item flex-column">
                     <a asp-action="Index" asp-controller="Home" class="center-image"><img src="~/images/logo fysx.png" alt="Logo FysX" class="logo img-fluid img-thumbnail" /></a>
-                    <a asp-action="Index" asp-controller="Home" class="link-styled link-styled-active">Dashboard</a>
-                    <a asp-action="Index" asp-controller="Home" class="link-styled">Patienten</a>
-                    <a asp-action="Index" asp-controller="Home" class="link-styled">Afspraken</a>
+                    <a runat="server" id="menuButton1" asp-action="Index" asp-controller="Home" class="link-styled link-styled-active">Dashboard</a>
+                    <a runat="server" id="menuButton2" asp-action="Index" asp-controller="Patient" class="link-styled">Patienten</a>
+                    <a runat="server" id="menuButton3" asp-action="Index" asp-controller="Home" class="link-styled">Afspraken</a>
                 </div>
                 <div class="sidebar-item mt-auto flex-column">
-                    <a  asp-action="LogOut" asp-controller="Account" class="link-styled link-styled-dark">
+                    <a asp-action="LogOut" asp-controller="Account" class="link-styled link-styled-dark">
                         Uitloggen
                     </a>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-10 fill-body">
                 <main role="main" class="pb-3">
                     @RenderBody()
-
-                    @await Component.InvokeAsync("PatientCount")
                 </main>
             </div>
         </div>
-        
+
     </div>
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @*@await Component.InvokeAsync("PatientCount")*@
 </body>
 </html>

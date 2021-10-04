@@ -1,0 +1,90 @@
+﻿
+.treatment-info-last{
+    display: flex;
+    flex-wrap: wrap;
+    width: 55%;
+    max-width: 30vw;
+}
+
+.treatment-info-last-title {
+    width: 100%;
+    color: #1B84F4;
+}
+
+.treatment-info-last-head {
+    width: 40%;
+}
+
+.treatment-info-last-content {
+    width: 50ch;
+    font-weight: bolder;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 60%;
+}
+
+
+.treatment-info-title {
+    text-align: center;
+    width: 100%;
+    color: #1B84F4;
+    margin-bottom: 15px;
+}
+
+.treatment-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #0B3E74;
+}
+
+.treatment-info-path {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    align-content: baseline;
+}
+
+.treatment-info-path-title {
+    width: 100%;
+    color: #1B84F4;
+}
+
+.treatment-info-path-head {
+    width: 60%;
+}
+
+.treatment-info-path-content {
+    font-weight: bolder;
+    width: 50ch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 40%;
+}
+
+
+.subtitle {
+    color: #0B3E74;
+}
+
+.treatment-info-buttons-create{
+    width: 40%;
+}
+
+.treatment-info-buttons-tofile {
+    width: 40%;
+}
+
+.treatment-info-buttons{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+span{
+    margin-bottom: 20px;
+}

@@ -15,11 +15,14 @@ namespace Domain
         public Patient Patient { get; set; }
         public DateTime AppointmentDateTime { get; set; }
 
-        public Appointment(Treator treator, Patient patient, DateTime appointmentDateTime)
+        public DateTime EndDateTime { get; set; }
+
+        public Appointment(Treator treator, Patient patient, DateTime appointmentDateTime, DateTime endDateTime)
         {
             Treator = treator;
             Patient = patient;
             AppointmentDateTime = appointmentDateTime;
+            EndDateTime = endDateTime;
         }
 
         public Appointment()

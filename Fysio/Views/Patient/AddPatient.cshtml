@@ -1,0 +1,74 @@
+﻿@{
+}
+
+@model Fysio.Models.PatientModel
+
+<script src="~/js/MenuItems.js"></script>
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+
+<body>
+
+    <div class="form-add-patient">
+        <div class="title">
+            <h2>Patient toevoegen</h2>
+        </div>
+        <form asp-action="AddPatient" method="post" class="form">
+            
+            <div class="form-personal">
+                <div class="form-input-group">
+                    <label asp-for="Name">Naam</label>
+                    <input asp-for="Name" class="input-field-form" type="text" />
+                </div>
+
+                <div class="form-input-group">
+                    <label asp-for="Birthdate">Geboortedatum</label>
+                    <input asp-for="Birthdate" class="input-field-form" type="date" />
+                </div>
+
+                <div class="form-input-group">
+                    <label class="form-input-label" asp-for="Gender">Geslacht</label>
+                    <select asp-for="Gender" class="input-field-form">
+                        <option value="">Kies er een...</option>
+                        <option value="true">Man</option>
+                        <option value="false">Vrouw</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-contact">
+                <div class="form-input-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="input-field-form" type="email" />
+                </div>
+
+                <div class="form-input-group">
+                    <label asp-for="PhoneNumber">Telefoonnummer</label>
+                    <input asp-for="PhoneNumber" class="input-field-form" type="tel" />
+                </div>
+
+                <div class="form-student-teacher">
+                    <div class="form-input-group">
+                        <label class="form-input-label" asp-for="Teacher">Leraar</label>
+                        <select asp-for="Teacher" class="input-field-form">
+                            <option value="">Kies er een...</option>
+                            <option value="true">Leraar</option>
+                            <option value="false">Student</option>
+                        </select>
+                    </div>
+
+                    <div class="form-input-group">
+                        <label asp-for="RegistrationNumber">Studentnummer/Leraarnummer</label>
+                        <input asp-for="RegistrationNumber" class="input-field-form" type="number" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-submit">
+                <button class="btn-active-menu" type="submit">Voeg patient toe</button>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    activeMenu2();
+</script>

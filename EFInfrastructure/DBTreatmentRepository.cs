@@ -9,7 +9,7 @@ using EFInfrastructure;
 
 namespace EFInfrastructure
 {
-    class DBTreatmentRepository : ITreatmentRepository
+    public class DBTreatmentRepository : ITreatmentRepository
     {
         private readonly FysioDbContext _context;
         public DBTreatmentRepository(FysioDbContext context)
@@ -19,7 +19,8 @@ namespace EFInfrastructure
 
         public void AddTreatment(Treatment treatment)
         {
-            _context.Add(treatment);
+            //_context.Add(treatment);
+            _context.Treatments.Add(treatment);
             _context.SaveChanges();
         }
 

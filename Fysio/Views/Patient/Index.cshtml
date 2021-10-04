@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Fysio.Models.PatientModel>
+
+<link rel="stylesheet" href="~/css/Layout/LayoutStyle.css" />
+<link rel="stylesheet" href="~/css/Patient/PatientStyle.css" />
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="~/js/MenuItems.js"></script>
+<body>
+    <div class="patient">
+        <div class="search-bar">
+            <input class="" type="text" placeholder="Zoeken..." />
+            <img src="~/icons/search.svg" alt="search icon" class="icon-search" />
+        </div>
+        <div class="patient-list">
+            @foreach (PatientModel p in Model)
+            {
+                
+                <div class="patient-item">
+                    @{
+                        var url = "/Patient/PatientDetail/" + p.Id;
+                    }
+                    <div class="patient-item-icon">
+                        <img src="~/icons/user.svg" alt="User icon" class="icon" />
+                    </div>
+                    <div class="patient-item-textbox">
+                        <a href="@url">
+                            <p class="patient-item-text"><strong>@p.Name</strong></p>
+                            <p class="patient-item-text">@p.Birthdate.ToShortDateString()</p>
+                        </a>
+                    </div>
+                    <div class="patient-item-icon">
+
+
+                        <a href="@url">
+                            <img src="~/icons/chevron-right.svg" alt="Chevron right icon" class="icon" />
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="fab">
+        <a asp-action="AddPatient" asp-controller="Patient">
+            <i data-feather="plus-circle" class="fab-icon"></i>
+        </a>
+    </div>
+</body>
+
+<script>
+    feather.replace();
+    activeMenu2();
+</script>

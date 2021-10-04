@@ -1,0 +1,22 @@
+﻿.add-patientfile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: white;
+    border-radius: 15px;
+    margin: 30px;
+    padding: 15px;
+}
+
+form {
+    width: 100%;
+}
+.add-patientfile-title {
+    width: 75%;
+    text-align: center;
+    color: #1B84F4;
+}
+
+body {
+    color: #0B3E74;
+}

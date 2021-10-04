@@ -1,0 +1,56 @@
+﻿@model PatientFileModel
+
+<link rel="stylesheet" href="~/css/Patient/AddPatientFileStyle.css" />
+<script src="~/js/MenuItems.js"></script>
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+
+<body>
+    <div class="add-patientfile">
+        <div class="add-patientfile-title">
+            <h4>Patientdossier toevoegen</h4>
+        </div>
+        <form asp-action="AddPatientFile" method="post" class="form">
+            <div class="form-personal">
+                <div class="form-input-group">
+                    <label asp-for="Complaints">Klachten:</label>
+                    <textarea asp-for="Complaints" class="input-field-form"></textarea>
+                </div>
+                <div class="form-input-group">
+                    <label asp-for="DiagnosisCode">Diagnose code:</label>
+                    <select asp-for="DiagnosisCode" class="input-field-form">
+                        <option value="Dood">Dood</option>
+                        <option value="Dbts">Diabetes</option>
+                        <option value="psgs">Pees gescheurd</option>
+                    </select>
+                </div>
+                <div class="form-input-group">
+                    <label asp-for="DiagnosisDescription">Diagnose omschrijving:</label>
+                    <textarea asp-for="DiagnosisDescription" class="input-field-form"></textarea>
+                </div>
+            </div>
+            <div class="form-contact">
+                <div class="form-input-group">
+                    <label asp-for="TreatorEmail">Behandelaar:</label>
+                    <select asp-for="TreatorEmail" class="input-field-form" asp-items="@ViewBag.Treators">
+                    </select>
+                </div>
+                <div class="form-input-group">
+                    <label asp-for="TreatmentsPerWeek">Behandelingen per week:</label>
+                    <input type="number" class="input-field-form" asp-for="TreatmentsPerWeek" />
+                </div>
+                <div class="form-input-group">
+                    <label asp-for="MinutesPerSession">Minuten per behandeling:</label>
+                    <input type="number" class="input-field-form" asp-for="MinutesPerSession" />
+                </div>
+            </div>
+            <div class="form-submit">
+                <button class="btn-active-menu" type="submit">Maak patientdossier aan</button>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    activeMenu2();
+</script>

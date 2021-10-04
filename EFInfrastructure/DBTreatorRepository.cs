@@ -9,7 +9,7 @@ using EFInfrastructure;
 
 namespace EFInfrastructure
 {
-    class DBTreatorRepository : ITreatorRepository
+    public class DBTreatorRepository : ITreatorRepository
     {
         private readonly FysioDbContext _context;
         public DBTreatorRepository(FysioDbContext context)
@@ -29,16 +29,15 @@ namespace EFInfrastructure
             _context.SaveChanges();
         }
 
-        public List<Treator> GetAllFysios()
+        public List<FysioTherapist> GetAllFysios()
         {
             List<Treator> AllTreators = _context.Treators.ToList();
-            List<Treator> FysioTherapists = new List<Treator>();
+            List<FysioTherapist> FysioTherapists = new List<FysioTherapist>();
             foreach(Treator t in AllTreators)
             {
                 try
                 {
-                    FysioTherapist f = (FysioTherapist) t;
-                    FysioTherapists.Add(f);
+                    FysioTherapists.Add((FysioTherapist)t);
                     continue;
                 }
                 catch
@@ -49,16 +48,15 @@ namespace EFInfrastructure
             return FysioTherapists;
         }
 
-        public List<Treator> GetAllStudents()
+        public List<Student> GetAllStudents()
         {
             List<Treator> AllTreators = _context.Treators.ToList();
-            List<Treator> Students = new List<Treator>();
+            List<Student> Students = new List<Student>();
             foreach (Treator t in AllTreators)
             {
                 try
                 {
-                    Student f = (Student)t;
-                    Students.Add(f);
+                    Students.Add((Student) t);
                     continue;
                 }
                 catch

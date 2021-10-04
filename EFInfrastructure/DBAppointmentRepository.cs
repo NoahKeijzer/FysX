@@ -9,7 +9,7 @@ using EFInfrastructure;
 
 namespace EFInfrastructure
 {
-    class DBAppointmentRepository : IAppointmentRepository
+    public class DBAppointmentRepository : IAppointmentRepository
     {
         private readonly FysioDbContext _context;
         public DBAppointmentRepository(FysioDbContext context)
@@ -67,7 +67,7 @@ namespace EFInfrastructure
 
         public List<Appointment> GetUpcomingAppointmentsForPatient(Patient patient)
         {
-            return _context.Appointments.Where(p => p.Patient == patient && p.AppointmentDateTime.Date > DateTime.Now).ToList();
+            return _context.Appointments.Where(p => p.Patient == patient && p.AppointmentDateTime.Date > DateTime.Now).OrderBy(p => p.AppointmentDateTime).ToList();
         }
 
         public List<Appointment> GetUpcomingAppointmentsForTreator(Treator treator)

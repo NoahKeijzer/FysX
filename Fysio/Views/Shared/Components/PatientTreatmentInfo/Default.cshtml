@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Domain.PatientFile
+@using Domain; 
+<link rel="stylesheet" href="~/css/Patient/PatientLastTreatmentStyle.css"/>
+
+<body>
+    <div class="treatment-info">
+        <div class="treatment-info-title">
+            <h4>Behandelingsinformatie</h4>
+        </div>
+        <div class="treatment-info-last">
+            @{
+                int id = Model.Treatments.Max(p => p.Id);
+                var lastTreatment = Model.Treatments.Where(p => p.Id == id).FirstOrDefault();
+                }
+            <div class="treatment-info-last-title">
+                <h6>Laatste behandeling</h6>
+            </div>
+            <div class="treatment-info-last-head">
+                <span>Type:</span>
+                <br />  
+                <span>Omschrijving:</span>
+                <br />
+                <span>Bijzonderheden:</span>
+                <br />
+                <span>Datum:</span>
+                <br />
+                <span>Behandelaar:</span>
+                <br />
+            </div>
+            <div class="treatment-info-last-content">
+                <span>@lastTreatment.Type</span>
+                <br />
+                <span>@lastTreatment.Description</span>
+                <br />
+                <span>@lastTreatment.Particularities</span>
+                <br />
+                <span>@lastTreatment.TreatmentDateTime.ToShortDateString()</span>
+                <br />
+                <span>@lastTreatment.Treator.Name</span>
+                <br />
+            </div>
+        </div>
+        <div class="treatment-info-path">
+            <div class="treatment-info-path-title">
+                <h6>Traject</h6>
+            </div>
+            <div class="treatment-info-path-head">
+                <span>Begindatum:</span>
+                <br />
+                <span>Hoofdbehandelaar:</span>
+                <br />
+                <span>Ontslagdatum:</span>
+            </div>
+            <div class="treatment-info-path-content">
+                <span>@Model.StartDate.ToShortDateString()</span>
+                <br />
+                <span>@Model.MainTreator.Name</span>
+                <br />
+                @if (Model.EndDate == DateTime.MinValue)
+                {
+                    <span>Nog in traject</span>
+                }
+                else
+                {
+                    <span>@Model.EndDate.ToShortDateString()</span>
+                }
+            </div>
+        </div>
+        <div class="treatment-info-buttons">
+            <a asp-action="test" asp-controller="home" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
+            <a asp-action="test" asp-controller="home" class="link-styled treatment-info-buttons-tofile">Naar dossier</a>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model PatientModel
+
+<link rel="stylesheet" href="~/css/Patient/PatientInfoStyle.css" />
+
+<body>
+    <div class="detail-info">
+        <div class="detail-info-title">
+            <h4 class="detail-info-title-text">Algemene informatie</h4>
+        </div>
+        <div class="detail-info-icon">
+            <img src="~/icons/user.svg" alt="User icon" class="user-icon" />
+        </div>
+        <div class="detail-info-content">
+            <div class="detail-info-content-item">
+                <div class="detail-info-content-item-head">
+                    Naam:
+                    <br />
+                    Patientnummer:
+                    <br />
+                    Geboortedatum:
+                </div>
+                <div class="detail-info-content-item-text">
+                    @Model.Name
+                    <br />
+                    @Model.Id
+                    <br />
+                    @Model.Birthdate.ToShortDateString()
+                </div>
+            </div>
+            <div class="detail-info-content-item">
+                <div class="detail-info-content-item-head">
+                    Geslacht:
+                    <br />
+                    Telefoonnummer:
+                    <br />
+                    Email:
+                </div>
+                <div class="detail-info-content-item-text">
+                    @if (Model.Gender)
+                    {
+                        <p>Man <br /> @Model.PhoneNumber <br /> @Model.Email</p>
+                    }
+                    else
+                    {
+                        <p>Vrouw <br /> @Model.PhoneNumber <br /> @Model.Email</p>
+                    }
+
+                </div>
+            </div>
+            <div class="detail-info-content-item">
+                <div class="detail-info-content-item-head">
+                    Functie:
+                    <br />
+                    Schoolnummer:
+
+                </div>
+                <div class="detail-info-content-item-text">
+                    @if (Model.Teacher)
+                    {
+                        <p>Leraar <br /> @Model.RegistrationNumber</p>
+                    } else
+                    {
+                        <p>Student <br /> @Model.RegistrationNumber</p>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
