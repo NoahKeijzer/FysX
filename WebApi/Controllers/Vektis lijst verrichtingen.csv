@@ -1,0 +1,305 @@
+Waarde,Omschrijving,Toelichting verplicht
+1000,Individuele zitting reguliere fysiotherapie,Ja
+1001,Individuele zitting reguliere fysiotherapie met toeslag voor behandeling aan huis,Ja
+1002,Individuele zitting reguliere fysiotherapie met toeslag voor behandeling in een instelling,Ja
+1003,Toeslag fysiotherapie buiten reguliere werktijden,Ja
+1004,Individuele zitting reguliere fysiotherapie met toeslag voor behandeling op de werkplek (eenmalig),Ja
+1100,Individuele zitting kinderfysiotherapie,Nee
+1101,Individuele zitting kinderfysiotherapie met toeslag voor behandeling aan huis,Nee
+1102,Individuele zitting kinderfysiotherapie met toeslag voor behandeling in een instelling,Nee
+1103,Instructie/overleg ouders/verzorgers van de patiënt bij kinderfysiotherapie,Nee
+1104,Toeslag kinderfysiotherapie buiten reguliere werktijden,Nee
+1105,Eenmalig kinderfysiotherapeutisch rapport,Ja
+1200,Individuele zitting manuele therapie,Ja
+1201,Individuele zitting manuele therapie met toeslag voor behandeling aan huis,Ja
+1202,Individuele zitting manuele therapie met toeslag voor behandeling in een instelling,Ja
+1203,Toeslag manuele therapie buiten reguliere werktijden,Ja
+1204,Individuele zitting manuele therapie met toeslag voor behandeling op de werkplek (eenmalig),Ja
+1310,Toeslag fysiotherapie van meer dan 10 personen buiten reguliere werktijden,Ja
+1316,Groepszitting voor behandeling fysiotherapie van twee personen,Ja
+1317,Groepszitting voor behandeling fysiotherapie van drie personen,Ja
+1318,Groepszitting voor behandeling fysiotherapie van vier personen,Ja
+1319,Groepszitting voor behandeling fysiotherapie van vijf tot en met tien personen,Ja
+1320,Groepszitting voor behandeling fysiotherapie van meer dan tien personen,Ja
+1400,Eenmalig fysiotherapeutisch onderzoek,Ja
+1401,Eenmalig fysiotherapeutisch onderzoek met toeslag voor behandeling aan huis,Ja
+1402,Eenmalig fysiotherapeutisch onderzoek met toeslag voor behandeling in een instelling,Ja
+1403,Toeslag eenmalig fysiotherapeutisch onderzoek buiten reguliere werktijden,Ja
+1500,Individuele zitting oedeemtherapie,Nee
+1501,Individuele zitting oedeemtherapie met toeslag voor behandeling aan huis,Nee
+1502,Individuele zitting oedeemtherapie met toeslag voor behandeling in een instelling,Nee
+1503,Toeslag oedeemtherapie buiten reguliere werktijden,Ja
+1600,Individuele zitting bekkenfysiotherapie,Nee
+1601,Individuele zitting bekkenfysiotherapie met toeslag voor behandeling aan huis,Ja
+1602,Individuele zitting bekkenfysiotherapie met toeslag voor behandeling in een instelling,Ja
+1603,Toeslag bekkenfysiotherapie buiten reguliere werktijden,Ja
+1604,Individuele zitting bekkenfysiotherapie met toeslag voor behandeling op de werkplek (eenmalig),Ja
+1700,Lange zitting fysiotherapie voor een aantal specifieke aandoeningen,Ja
+1701,Lange zitting fysiotherapie voor een aantal specifieke aandoeningen met toeslag voor behandeling aan huis,Ja
+1702,Lange zitting fysiotherapie voor een aantal specifieke aandoeningen met toeslag voor behandeling in een instelling,Ja
+1703,Toeslag lange zitting fysiotherapie voor een aantal specifieke aandoeningen buiten reguliere werktijden,Ja
+1704,Lange zitting fysiotherapie voor een aantal specifieke aandoeningen met toeslag voor behandeling op de werkplek (eenmalig),Ja
+1750,Individuele zitting psychosomatische fysiotherapie,Ja
+1751,Individuele zitting psychosomatische fysiotherapie met toeslag voor behandeling aan huis,Ja
+1752,Individuele zitting psychosomatische fysiotherapie met toeslag voor behandeling in een instelling,Ja
+1753,Toeslag psychosomatische fysiotherapie buiten reguliere werktijden,Ja
+1754,Individuele zitting psychosomatische fysiotherapie met toeslag voor behandeling op de werkplek (eenmalig),Ja
+1775,Individuele zitting geriatrie fysiotherapie,Nee
+1776,Individuele zitting geriatrie fysiotherapie met toeslag voor behandeling aan huis,Nee
+1777,Individuele zitting geriatrie fysiotherapie met toeslag voor behandeling in een instelling,Nee
+1778,Toeslag geriatrie fysiotherapie buiten reguliere werktijden,Nee
+1779,Individuele zitting geriatrie fysiotherapie met toeslag voor behandeling op de werkplek (eenmalig),Nee
+1800,Ballontherapie,Nee
+1850,Screening fysiotherapie,Ja
+1851,Screening fysiotherapie met toeslag voor behandeling aan huis,Ja
+1852,Screening fysiotherapie met toeslag voor behandeling in een instelling,Ja
+1853,Toeslag screening fysiotherapie  buiten reguliere werktijden,Ja
+1860,Intake en onderzoek fysiotherapie na screening,Ja
+1861,Intake en onderzoek fysiotherapie na screening met toeslag voor behandeling aan huis,Ja
+1862,Intake en onderzoek fysiotherapie na screening met toeslag voor behandeling in een instelling,Ja
+1863,Toeslag intake en onderzoek fysiotherapie na screening buiten reguliere werktijden,Ja
+1864,Screening en intake en onderzoek fysiotherapie,Ja
+1865,Screening en intake en onderzoek fysiotherapie met toeslag voor behandeling aan huis,Ja
+1866,Screening en intake en onderzoek fysiotherapie met toeslag voor behandeling in een instelling,Ja
+1870,Intake en onderzoek fysiotherapie na verwijzing,Ja
+1871,Intake en onderzoek fysiotherapie na verwijzing met toeslag voor behandeling aan huis,Ja
+1872,Intake en onderzoek fysiotherapie na verwijzing met toeslag voor behandeling in een instelling,Ja
+1873,Toeslag intake en onderzoek fysiotherapie na verwijzing buiten reguliere werktijden,Ja
+1902,Verslaglegging fysiotherapie aan derden,Ja
+1920,Telefonische zitting fysiotherapie,Nee
+1921,Toeslag telefonische zitting fysiotherapie buiten reguliere werktijden,Ja
+1960,Niet nagekomen afspraak fysiotherapie,Ja
+1970,Module regionale ondersteuning eerstelijnszorg voor fysiotherapie,Ja
+1971,Module kwaliteitsontwikkeling voor fysiotherapie,Nee
+F1000,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Menisectomie type 1, zonder aanspraak",Nee
+F1001,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Menisectomie type 2, zonder aanspraak",Nee
+F1002,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Menisectomie type 3, aanspraak Zvw",Nee
+F1003,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Voorste kruisband reconstructie (VKB), aanspraak Zvw",Ja
+F1004,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Totale knieprothese (TKP), aanspraak Zvw",Ja
+F1005,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Totale heupprothese (THP), aanspraak Zvw",Ja
+F1006,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Decompressie schouder, aanspraak Zvw",Ja
+F1007,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Menisectomie type 3, zonder aanspraak",Ja
+F1008,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Voorste kruisband reconstructie (VKB), zonder aanspraak",Ja
+F1009,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Totale knieprothese (TKP), zonder aanspraak ",Ja
+F1010,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Totale heupprothese (THP), zonder aanspraak ",Ja
+F1011,"Fysiotherapeutisch traject aansluitend op operatieve ingreep Decompressie schouder, zonder aanspraak ",Ja
+F1012,Kinderfysiotherapeutisch ketenzorgtraject vroeg-interventie prematuren: het Topprogramma (Transmurale Ontwikkelingsondersteuning prematuur geboren kinderen en hun ouders).,Nee
+F1013,"Fysiotherapeutisch traject ten behoeve van aspecifieke (lage) rugklachten, zorgprofiel 1 (normaal verloop van het herstel)",Ja
+F1014,"Fysiotherapeutisch traject ten behoeve van aspecifieke (lage) rugklachten, zorgprofiel 2 (afwijkend verloop van het herstel, zonder dominante aanwezigheid van psychosociale herstel belemmerende factoren)",Ja
+F1015,"Fysiotherapeutisch traject ten behoeve van aspecifieke (lage) rugklachten, zorgprofiel 3 (afwijkend verloop van het herstel, met dominante aanwezigheid van psychosociale herstel belemmerende factoren)  ",Ja
+2000,Individuele zitting reguliere oefentherapie Cesar/Mensendieck,Nee
+2001,Individuele zitting reguliere oefentherapie Cesar/Mensendieck met toeslag voor behandeling aan huis,Ja
+2002,Individuele zitting reguliere oefentherapie Cesar/Mensendieck met toeslag voor behandeling in een instelling,Ja
+2003,Individuele zitting reguliere oefentherapie Cesar/Mensendieck met toeslag buiten reguliere werktijden,Ja
+2004,Individuele zitting reguliere oefentherapie Cesar/Mensendieck met toeslag voor behandeling op de werkplek (eenmalig),Ja
+2120,Groepszitting oefentherapie Cesar/Mensendieck voor specifieke behandeling van twee personen met  toeslag buiten reguliere werktijden,Ja
+2121,Groepszitting oefentherapie Cesar/Mensendieck voor specifieke behandeling van drie personen met  toeslag buiten reguliere werktijden,Ja
+2122,Groepszitting oefentherapie Cesar/Mensendieck voor specifieke behandeling van vier personen met toeslag buiten reguliere werktijden,Ja
+2123,Groepszitting oefentherapie Cesar/Mensendieck voor specifieke behandeling van vijf tot en met tien personen met  toeslag buiten reguliere werktijden,Ja
+2124,Groepszitting oefentherapie Cesar/Mensendieck van meer dan 10 personen met  toeslag buiten reguliere werktijden,Ja
+2125,Groepszitting voor behandeling oefentherapie Cesar/Mensendieck van twee personen,Nee
+2126,Groepszitting voor behandeling oefentherapie Cesar/Mensendieck van drie personen,Nee
+2127,Groepszitting voor behandeling oefentherapie Cesar/Mensendieck van vier personen,Nee
+2128,Groepszitting voor behandeling oefentherapie Cesar/Mensendieck van vijf tot en met tien personen,Nee
+2129,Groepszitting voor behandeling oefentherapie Cesar/Mensendieck van meer dan 10 personen,Nee
+2200,Eenmalig oefentherapeutisch onderzoek Cesar/Mensendieck ,Ja
+2201,Eenmalig oefentherapeutisch onderzoek Cesar/Mensendieck met toeslag buiten reguliere werktijden,Ja
+2202,Eenmalig oefentherapeutisch onderzoek Cesar/Mensendieck met toeslag voor behandeling aan huis,Ja
+2203,Eenmalig oefentherapeutisch onderzoek Cesar/Mensendieck met toeslag voor behandeling in een instelling,Ja
+2300,Individuele zitting kinderoefentherapie Cesar/Mensendieck ,Nee
+2301,Individuele zitting kinderoefentherapie Cesar/Mensendieck met toeslag voor behandeling aan huis,Ja
+2302,Individuele zitting kinderoefentherapie Cesar/Mensendieck met toeslag voor behandeling in een instelling,Ja
+2303,Individuele zitting kinderoefentherapie Cesar/Mensendieck met toeslag buiten reguliere werkijden,Ja
+2400,Screening bij directe toegang oefentherapie Cesar/Mensendieck ,Nee
+2401,Intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck na screening,Nee
+2402,Screening bij directe toegang oefentherapie Cesar/Mensendieck met toeslag voor behandeling aan huis,Nee
+2403,Intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck na screening met toeslag voor behandeling aan huis,Ja
+2404,Screening bij directe toegang oefentherapie Cesar/Mensendieck met toeslag voor behandeling in een instelling,Ja
+2405,Intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck na screening met toeslag voor behandeling in een instelling,Ja
+2406,Screening bij directe toegang oefentherapie Cesar/Mensendieck met toeslag buiten reguliere werktijden,Ja
+2407,Intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck na screening met toeslag buiten reguliere werktijden,Ja
+2408,Intake en onderzoek oefentherapie Cesar/Mensendieck na verwijzing ,Nee
+2409,Intake en onderzoek oefentherapie Cesar/Mensendieck na verwijzing met toeslag voor behandeling aan huis,Nee
+2410,Intake en onderzoek oefentherapie Cesar/Mensendieck na verwijzing met toeslag voor behandeling in een instelling,Nee
+2411,Intake en onderzoek oefentherapie Cesar/Mensendieck na verwijzing met toeslag buiten reguliere werktijden,Nee
+2412,Screening en intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck ,Nee
+2413,Screening en intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck met toeslag voor behandeling aan huis,Nee
+2414,Screening en intake en onderzoek bij directe toegang oefentherapie Cesar/Mensendieck met toeslag voor behandeling in een instelling,Nee
+2500,Instructie/overleg oefentherapie Cesar/Mensendieck ouders/verzorgers van de patiënt (kinderoefentherapie),Nee
+2501,Instructie/overleg oefentherapie Cesar/Mensendieck ouders/verzorgers van de patiënt (kinderoefentherapie) met toeslag buiten reguliere werktijden,Nee
+2510,Eenmalig kinderoefentherapeutisch rapport Cesar/Mensendieck ,Nee
+2513,Verslaglegging oefentherapie Cesar/Mensendieck aan derden,Ja
+2600,Individuele zitting psychosomatische oefentherapie Cesar/Mensendieck ,Nee
+2601,Individuele zitting psychosomatische oefentherapie Cesar/Mensendieck met toeslag voor behandeling aan huis,Nee
+2602,Individuele zitting psychosomatische oefentherapie Cesar/Mensendieck met toeslag voor behandeling in een instelling,Nee
+2603,Individuele zitting psychosomatische oefentherapie Cesar/Mensendieck met toeslag buiten reguliere werktijden,Nee
+2604,Individuele zitting psychosomatische oefentherapie Cesar/Mensendieck met toeslag voor behandeling op de werkplek (eenmalig),Nee
+2700,Telefonische zitting oefentherapie Cesar/Mensendieck ,Nee
+2701,Telefonische zitting oefentherapie Cesar/Mensendieck met toeslag buiten reguliere werktijden,Nee
+2800,Lange zitting oefentherapie Cesar/Mensendieck voor een aantal specifieke aandoeningen,Ja
+2801,Lange zitting oefentherapie Cesar/Mensendieck voor een aantal specifieke aandoeningen met toeslag voor behandeling aan huis,Ja
+2802,Lange zitting oefentherapie Cesar/Mensendieck voor een aantal specifieke aandoeningen met toeslag voor behandeling in een instelling,Ja
+2803,Lange zitting oefentherapie Cesar/Mensendieck voor een aantal specifieke aandoeningen met toeslag buiten reguliere werktijden,Ja
+2804,Lange zitting oefentherapie Cesar/Mensendieck voor een aantal specifieke aandoeningen met toeslag voor behandeling op de werkplek (eenmalig),Ja
+4000,Individuele zitting reguliere logopedie,Nee
+4001,Individuele zitting reguliere logopedie met toeslag voor behandeling aan huis,Nee
+4002,Individuele zitting reguliere telelogopedie,Nee
+4003,Individuele zitting reguliere logopedie met toeslag voor behandeling in een instelling,Nee
+4010,Telefonische zitting logopedie,Nee
+4011,Instructie/overleg ouders/verzorgers van de patiënt bij logopedie,Nee
+4050,Screening bij directe toegang logopedie,Nee
+4051,Screening bij directe toegang logopedie met toeslag voor behandeling aan huis,Nee
+4052,Screening bij directe toegang logopedie met toeslag voor behandeling in een instelling,Nee
+4053,Screening bij directe toegang logopedie met toeslag voor behandeling buiten reguliere werkijden,Nee
+4054,Anamnese (intake) en onderzoek logopedie na screening,Nee
+4055,Anamnese (intake) en onderzoek logopedie na screening met toeslag voor behandeling aan huis,Nee
+4056,Anamnese (intake) en onderzoek logopedie na screening met toeslag voor behandeling in een instelling,Nee
+4057,"Screening, anamnese (intake) en onderzoek logopedie",Nee
+4058,"Screening, anamnese (intake) en onderzoek logopedie met toeslag voor behandeling aan huis",Nee
+4059,"Screening, anamnese (intake) en onderzoek logopedie met toeslag voor behandeling in een instelling",Nee
+4060,"Screening, anamnese (intake) en onderzoek logopedie met toeslag voor behandeling buiten reguliere werktijden",Nee
+4061,Anamnese (intake) en onderzoek logopedie na verwijzing,Nee
+4062,Anamnese (intake) en onderzoek logopedie na verwijzing met toeslag voor behandeling aan huis,Nee
+4063,Anamnese (intake) en onderzoek logopedie na verwijzing met toeslag voor behandeling in een instelling,Nee
+4102,Eenmalig logopedisch onderzoek,Nee
+4103,Eenmalig logopedisch onderzoek met toeslag voor behandeling aan huis,Nee
+4104,Eenmalig logopedisch onderzoek met toeslag voor behandeling in een instelling,Nee
+4201,"Groepsbehandeling integrale Zorg Stotteren (IZS), per dagdeel",Nee
+4214,Groepszitting voor behandeling logopedie van twee personen,Nee
+4215,Groepszitting voor behandeling logopedie van drie personen,Nee
+4216,Groepszitting voor behandeling logopedie van vier personen,Nee
+4217,Groepszitting voor behandeling logopedie van vijf tot tien personen,Nee
+4301,Individuele zitting logopedie stotteren,Nee
+4302,Individuele zitting logopedie stotteren met toeslag voor behandeling aan huis,Nee
+4303,Individuele zitting preverbale logopedie,Nee
+4304,Individuele zitting preverbale logopedie met toeslag voor behandeling aan huis,Nee
+4305,Individuele zitting logopedie afasie,Ja
+4306,Individuele zitting logopedie afasie met toeslag voor behandeling aan huis,Ja
+4307,Specifieke behandeling volgens het Hanen-ouderprogramma PDMT (Praten Doe je Met z'n Tweeën),Ja
+4308,Individuele zitting logopedie stotteren met toeslag voor behandeling in een instelling,Ja
+4309,Individuele zitting telelogopedie stotteren,Nee
+4310,Individuele zitting preverbale logopedie met toeslag voor behandeling in een instelling,Nee
+4311,Individuele zitting logopedie afasie met toeslag voor behandeling in een instelling,Nee
+4312,Individuele zitting telelogopedie afasie,Nee
+4313,Overleg logopedie met derden,Ja
+4314,Verslaglegging logopedie aan derden,Ja
+4315,Lange zitting logopedie voor een aantal specifieke aandoeningen,Ja
+4316,Lange zitting logopedie voor een aantal specifieke aandoeningen met toeslag voor behandeling aan huis,Ja
+4317,Lange zitting logopedie voor een aantal specifieke aandoeningen met toeslag voor behandeling in een instelling,Ja
+4318,Specifieke behandeling volgens het Hanen-ouderprogramma MDW (Meer Dan Woorden),Ja
+4470,Module regionale ondersteuning eerstelijnszorg voor logopedie,Ja
+4471,Module kwaliteitsontwikkeling voor logopedie,Ja
+5000,Individuele zitting ergotherapie,Nee
+5001,Toeslag voor behandeling ergotherapie aan huis,Nee
+5002,Screening Directe Toegang Ergotherapie,Nee
+5003,Intake en onderzoek ergotherapie na screening ,Nee
+5004,Intake en onderzoek ergotherapie na verwijzing,Nee
+5005,Screening en intake en onderzoek ergotherapie,Nee
+5006,Eenmalig ergotherapeutisch onderzoek,Nee
+5007,Toeslag voor behandeling ergotherapie in een instelling,Nee
+5008,Individuele zitting kinderergotherapie ,Nee
+5009,Individuele zitting handergotherapie,Nee
+5010,Telefonische zitting ergotherapie,Nee
+5011,Instructie/overleg ouders/ verzorgers van de patiënt bij ergotherapie,Nee
+5012,Groepszitting voor behandeling ergotherapie van twee personen,Nee
+5013,Groepszitting voor behandeling ergotherapie van drie personen,Nee
+5014,Groepszitting voor behandeling ergotherapie van vier personen,Nee
+5015,Groepszitting voor behandeling ergotherapie van vijf tot en met tien personen,Nee
+5016,Groepszitting voor behandeling ergotherapie van meer dan tien personen,Nee
+5017,Toeslag voor behandeling ergotherapie op de werkplek (eenmalig),Ja
+5018,Verslaglegging ergotherapie aan derden,Ja
+6000,Individuele zitting reguliere diëtetiek,Nee
+6001,Toeslag voor behandeling reguliere diëtetiek aan huis,Nee
+6004,Toeslag voor behandeling reguliere diëtetiek in een instelling,Nee
+6050,Screening Directe Toegang diëtetiek ,Nee
+6051,Intake en onderzoek diëtetiek na screening ,Nee
+6052,Intake en onderzoek diëtetiek na verwijzing,Nee
+6053,Screening en intake en onderzoek diëtetiek ,Nee
+6102,Groepszitting voor behandeling reguliere diëtetiek van twee personen,Nee
+6103,Groepszitting voor behandeling reguliere diëtetiek van drie personen,Nee
+6104,Groepszitting voor behandeling reguliere diëtetiek van vier personen,Nee
+6105,Groepszitting voor behandeling reguliere diëtetiek van vijf tot en met tien personen,Nee
+6106,Groepszitting voor behandeling reguliere diëtetiek van meer dan tien personen,Nee
+6200,Niet nagekomen afspraak,Ja
+6300,"Individuele zitting diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM.",Ja
+6301,"Toeslag voor behandeling bij diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM aan huis.",Ja
+6303,"Toeslag voor behandeling bij diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM in een instelling.",Ja
+6304,"Intake en onderzoek diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM na verwijzing",Ja
+6305,"Groepszitting voor behandeling diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM van twee personen",Ja
+6306,"Groepszitting voor behandeling diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM van drie personen",Ja
+6307,"Groepszitting voor behandeling diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM van vier personen",Ja
+6308,"Groepszitting voor behandeling diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM van vijf tot en met tien personen",Ja
+6309,"Groepszitting voor behandeling diëtetiek als onderdeel van gecoördineerde multidisciplinaire zorgverlening aan patiënten met DM, COPD en VRM van meer dan tien personen",Ja
+7000,Huidtherapie,Nee
+7002,Zitting oedeemtherapie,Nee
+7004,Zitting littekentherapie,Nee
+7006,Overbeharing gelaat,Nee
+7008,Elektrische epilatie,Nee
+7010,Acnetherapie,Nee
+7012,Camouflagetherapie,Nee
+7014,Dermatografie,Nee
+7016,Huidoneffenheden,Nee
+7018,Verwijderen tatoeage,Ja
+7020,Iontoforese,Nee
+7022,Wondzorg,Nee
+7024,Behandeling dermale vaatafwijkingen,Ja
+7100,screening bij directe toegang oedeem-/littekentherapie,Nee
+7101,intake en onderzoek na screening oedeem-/littekentherapie,Nee
+7102,intake en onderzoek na verwijzing oedeem-/littekentherapie,Nee
+7103,screening bij directe toegang oedeem-/littekentherapie met toeslag voor behandeling aan huis,Nee
+7104,intake en onderzoek na screening bij directe toegang oedeem-/littekentherapie met toeslag voor behandeling aan huis,Nee
+7105,intake en onderzoek na verwijzing oedeem-/littekentherapie met toeslag voor behandeling aan huis,Nee
+7106,screening bij directe toegang oedeem-/littekentherapie met toeslag voor behandeling in een instelling,Nee
+7107,intake en onderzoek na screening bij directe toegang oedeem-/littekentherapie met toeslag voor behandeling in een instelling,Nee
+7108,intake en onderzoek na verwijzing oedeem-/littekentherapie met toeslag voor behandeling in een instelling,Nee
+7109,"Screening bij directe toegang huidbehandelingen (ontharing, acnebehandeling en camouflagetherapie)",Nee
+7110,"Intake en onderzoek na screening bij directe toegang huidbehandelingen (ontharing, acnebehandeling en camouflagetherapie)",Nee
+7111,"Intake en onderzoek na verwijzing huidbehandelingen (ontharing, acnebehandeling en camouflagetherapie)",Nee
+7112,Screening en intake en onderzoek oedeem-/littekentherapie,Nee
+7113,Screening en intake en onderzoek oedeem-/littekentherapie met toeslag voor behandeling aan huis,Nee
+7114,Screening en intake en onderzoek oedeem-/littekentherapie met toeslag voor behandeling in een instelling,Nee
+7301,Huidtherapie met toeslag voor behandeling aan huis,Ja
+7302,Huidtherapie met toeslag voor behandeling in een instelling,Ja
+7305,Zitting oedeemtherapie met toeslag voor behandeling aan huis,Ja
+7306,Zitting oedeemtherapie met toeslag voor behandeling in een instelling,Ja
+7309,Zitting littekentherapie met toeslag voor behandeling aan huis,Ja
+7310,Zitting littekentherapie met toeslag voor behandeling in een instelling,Ja
+7313,Overbeharing gelaat met toeslag voor behandeling aan huis,Ja
+7314,Overbeharing gelaat met toeslag voor behandeling in een instelling,Ja
+7317,Elektrische epilatie met toeslag voor behandeling aan huis,Ja
+7318,Elektrische epilatie met toeslag voor behandeling in een instelling,Ja
+7321,Acnetherapie met toeslag voor behandeling aan huis,Ja
+7322,Acnetherapie met toeslag voor behandeling in een instelling,Ja
+7325,Camouflagetherapie met toeslag voor behandeling aan huis,Ja
+7326,Camouflagetherapie met toeslag voor behandeling in een instelling,Ja
+7329,Dermatografie met toeslag voor behandeling aan huis,Ja
+7330,Dermatografie met toeslag voor behandeling in een instelling,Ja
+7333,Huidoneffenheden met toeslag voor behandeling aan huis,Ja
+7334,Huidoneffenheden met toeslag voor behandeling in een instelling,Ja
+7337,Verwijderen tatoeage met toeslag voor behandeling aan huis,Ja
+7338,Verwijderen tatoeage met toeslag voor behandeling in een instelling,Ja
+7341,Iontoforese met toeslag voor behandeling aan huis,Ja
+7342,Iontoforese met toeslag voor behandeling in een instelling,Ja
+7345,Wondzorg met toeslag voor behandeling aan huis,Ja
+7346,Wondzorg met toeslag voor behandeling in een instelling,Ja
+7349,Behandeling dermale vaatafwijkingen met toeslag voor behandeling aan huis,Ja
+7350,Behandeling dermale vaatafwijkingen met toeslag voor behandeling in een instelling,Ja
+7353,Epilatie in het gelaat bij transgender,Nee
+7354,"Epilatie in het gelaat bij transgender, met toeslag uitbehandeling",Nee
+7355,"Epilatie in het gelaat bij transgender, met instellingstoeslag",Nee
+9000,Onderzoek/consult podologie,Ja
+9001,Podologische zolen,Nee
+9002,Orthesen bij podoloog,Nee
+9003,Reparatie podologische hulpmiddelen,Ja
+9100,Onderzoek / consult / therapie podotherapie m.u.v. reuma,Ja
+9101,Podotherapeutische zolen ,Ja
+9102,Orthesen bij podotherapeut ,Ja
+9103,Reparatie / correctie podotherapeutische zool / orthese ,Ja
+9104,Instrumentele (wond) behandeling ,Ja
+9105,Voetzorg vallende onder zorgprofiel 0,Nee
+9106,Voetzorg vallende onder zorgprofiel 1,Nee
+9107,Behandeling podotherapie bij reuma,Nee
+9200,Jaarlijks gericht voetonderzoek bij zorgprofiel 1,Nee
+9201,Voetzorg vallend onder zorgprofiel 2,Nee
+9202,Voetzorg vallend onder zorgprofiel 3,Nee
+9203,Voetzorg vallend onder zorgprofiel 4,Nee

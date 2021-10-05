@@ -15,6 +15,12 @@ namespace WebApi.Infra
             this.context = context;
         }
 
+        public void AddTreatment(TreatmentType t)
+        {
+            context.Add(t);
+            context.SaveChanges();
+        }
+
         public IEnumerable<TreatmentType> GetAllTreatments()
         {
             return context.TreatmentTypes.ToList();

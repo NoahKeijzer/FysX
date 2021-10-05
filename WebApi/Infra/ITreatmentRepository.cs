@@ -10,5 +10,6 @@ namespace WebApi.Infra
     {
         public TreatmentType GetTreatmentById(int value);
         public IEnumerable<TreatmentType> GetAllTreatments();
+        public void AddTreatment(TreatmentType t);
     }
 }
