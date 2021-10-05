@@ -1,0 +1,45 @@
+﻿@model TreatmentModel
+
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+<script src="~/js/MenuItems.js"></script>
+
+<body>
+    <div class="form-add-patient">
+        <div class="title">
+            <h2>Behandeling aanmaken</h2>
+        </div>
+        <form asp-action="AddTreatment" method="post" class="form">
+            <input asp-for="PatientEmail" value="@Model.PatientEmail" class="hidden" />
+            <div class="form-personal">
+                <div class="form-input-group">
+                    <label asp-for="Type">Type behandeling</label>
+                    <input asp-for="Type" class="input-field-form" type="text" />
+                </div>
+
+                <div class="form-input-group">
+                    <label asp-for="Description">Omschrijving</label>
+                    <textarea asp-for="Description" class="input-field-form" ></textarea>
+                </div>
+            </div>
+            <div class="form-contact">
+                <div class="form-input-group">
+                    <label class="form-input-label" asp-for="Location">Locatie</label>
+                    <input asp-for="Location" class="input-field-form" type="text" />
+                </div>
+
+                <div class="form-input-group">
+                    <label asp-for="Particularities">Bijzonderheden</label>
+                    <textarea asp-for="Particularities" class="input-field-form" > </textarea>
+                </div>
+            </div>
+            <div class="form-submit">
+                <button class="btn-active-menu" type="submit">Voeg patient toe</button>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    activeMenu2();
+</script>

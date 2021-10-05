@@ -7,20 +7,25 @@
         <div class="appointments-title">
             <h4>Geplande afspraken</h4>
         </div>
-        <div class="appointments-list">
-            @foreach(Domain.Appointment a in Model)
+        @if (ViewBag.HasAppointments) { 
+            <div class="appointments-list">
+                @foreach(Domain.Appointment a in Model)
+                {
+                    <div class="appointments-list-item">
+                        <strong>
+                            @a.Patient.Name
+                        </strong>
+                        <br />
+                        @a.AppointmentDateTime.ToLongDateString()
+                        <br />
+                        @a.AppointmentDateTime.ToShortTimeString() - @a.EndDateTime.ToShortTimeString()
+                    </div>
+                }
+            </div>
+        } else
             {
-                <div class="appointments-list-item">
-                    <strong>
-                        @a.Patient.Name
-                    </strong>
-                    <br />
-                    @a.AppointmentDateTime.ToLongDateString()
-                    <br />
-                    @a.AppointmentDateTime.ToShortTimeString() - @a.EndDateTime.ToShortTimeString()
-                </div>
+                <h6>Nog geen afspraken ingepland</h6>
             }
-        </div>
         <div class="appointments-btn">
             <a asp-action="test" asp-controller="home" class="link-styled create-appointment">Maak een afspraak</a>
         </div>

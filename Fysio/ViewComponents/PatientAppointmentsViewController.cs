@@ -22,7 +22,17 @@ namespace Fysio.ViewComponents
 
         public IViewComponentResult Invoke(PatientModel patient)
         {
-            return View(appointmentRepository.GetUpcomingAppointmentsForPatient(patientRepository.GetPatientById(patient.Id)));
+            List<Appointment> appointments = appointmentRepository.GetUpcomingAppointmentsForPatient(patientRepository.GetPatientById(patient.Id));
+            if(appointments.Count > 0)
+            {
+                ViewBag.HasAppointments = true;
+                return View(appointments);
+
+            }else
+            {
+                ViewBag.HasAppointments = false;
+                return View(appointments);
+            }
         }
     }
 }

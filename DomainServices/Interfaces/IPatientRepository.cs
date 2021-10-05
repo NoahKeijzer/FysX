@@ -12,6 +12,8 @@ namespace DomainServices.Interfaces
 
         public Patient GetPatientById(int id);
 
+        public Patient GetPatientByEmail(string email);
+
         public void AddPatient(Patient p);
 
         public void DeletePatient(Patient p);

@@ -9,6 +9,8 @@ using Fysio.Models;
 using Domain;
 using EFInfrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Fysio.Controllers
 {
@@ -18,11 +20,17 @@ namespace Fysio.Controllers
 
         private readonly IPatientRepository patientRepository;
         private readonly ITreatorRepository treatorRepository;
+        private readonly IPatientFileRepository patientFileRepository;
+        private readonly ITreatmentPlanRepository treatmentPlanRepository;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public PatientController(IPatientRepository patientRepository, ITreatorRepository treatorRepository)
+        public PatientController(IPatientRepository patientRepository, ITreatorRepository treatorRepository, IPatientFileRepository patientFileRepository, ITreatmentPlanRepository treatmentPlanRepository, UserManager<IdentityUser> userManager)
         {
             this.patientRepository = patientRepository;
             this.treatorRepository = treatorRepository;
+            this.patientFileRepository = patientFileRepository;
+            this.treatmentPlanRepository = treatmentPlanRepository;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
@@ -44,8 +52,10 @@ namespace Fysio.Controllers
         {
             if (ModelState.IsValid)
             {
-                patientRepository.AddPatient(patient.ConvertPatientModelToPatient());
-                return View("Index", ConvertPatientToPatientModelList());
+                Patient p = patient.ConvertPatientModelToPatient();
+                patientRepository.AddPatient(p);
+                AddTreatorsToViewBag();
+                return View("AddPatientFile", new PatientFileModel() { PatientEmail = p.Email });
             }
             else
             {
@@ -73,14 +83,7 @@ namespace Fysio.Controllers
 
         public IActionResult AddPatientfile()
         {
-            List<SelectListItem> treators = new List<SelectListItem>();
-            List<FysioTherapist> allTreators = treatorRepository.GetAllFysios();
-            foreach(FysioTherapist t in allTreators)
-            {
-                treators.Add(new SelectListItem() { Value = t.Email, Text = t.Name + " (Fysio)" });
-            }
-
-            ViewBag.Treators = treators;
+            AddTreatorsToViewBag();
             return View();
         }
 
@@ -90,6 +93,17 @@ namespace Fysio.Controllers
             if (ModelState.IsValid)
             {
                 //TODO: Patientfile aanmaken in de db en koppelen aan patient etc
+                TreatmentPlan treatmentPlan = new TreatmentPlan(patientFileModel.TreatmentsPerWeek, patientFileModel.MinutesPerSession);
+                treatmentPlanRepository.AddTreatmentPlan(treatmentPlan);
+
+                ClaimsPrincipal currentUser = this.User;
+                string email = currentUser.FindFirst(ClaimTypes.Email).Value;
+                Treator intaker = treatorRepository.GetTreatorByEmail(email);
+
+                Patient p = patientRepository.GetPatientByEmail(patientFileModel.PatientEmail);
+
+                PatientFile patientFile = new PatientFile(patientFileModel.Complaints, patientFileModel.DiagnosisCode, patientFileModel.DiagnosisDescription, intaker, null, treatorRepository.GetTreatorByEmail(patientFileModel.TreatorEmail), DateTime.Now, DateTime.MinValue, treatmentPlan, new List<Treatment>(), new List<Comment>(), CalculateAge(p), p);
+                patientFileRepository.AddPatientFile(patientFile);
                 return View("Index", ConvertPatientToPatientModelList());
             } else
             {
@@ -115,6 +129,24 @@ namespace Fysio.Controllers
             return patientModels;
         }
 
+        private void AddTreatorsToViewBag()
+        {
+            List<SelectListItem> treators = new List<SelectListItem>();
+            List<FysioTherapist> allTreators = treatorRepository.GetAllFysios();
+            foreach (FysioTherapist t in allTreators)
+            {
+                treators.Add(new SelectListItem() { Value = t.Email, Text = t.Name + " (Fysio)" });
+            }
+
+            ViewBag.Treators = treators;
+        }
+
+        private int CalculateAge(Patient patient)
+        {
+            int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+            int dob = int.Parse(patient.BirthDate.ToString("yyyyMMdd"));
+            return (now - dob) / 10000;
+        }
 
     }
 }

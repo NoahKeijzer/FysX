@@ -14,7 +14,6 @@ namespace Domain
         public Treator Treator { get; set; }
         public Patient Patient { get; set; }
         public DateTime AppointmentDateTime { get; set; }
-
         public DateTime EndDateTime { get; set; }
 
         public Appointment(Treator treator, Patient patient, DateTime appointmentDateTime, DateTime endDateTime)

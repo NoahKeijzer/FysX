@@ -11,6 +11,7 @@
         </div>
         <form asp-action="AddPatientFile" method="post" class="form">
             <div class="form-personal">
+                <input type="email" asp-for="PatientEmail" value="@Model.PatientEmail" class="hidden"/>
                 <div class="form-input-group">
                     <label asp-for="Complaints">Klachten:</label>
                     <textarea asp-for="Complaints" class="input-field-form"></textarea>

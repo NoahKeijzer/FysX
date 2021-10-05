@@ -48,7 +48,7 @@ namespace Fysio
 
             services.AddScoped<ITreatmentRepository, DBTreatmentRepository>();
 
-            services.AddScoped<ITreatorRepository, DBTreatorRepository>();
+            services.AddScoped<ITreatmentPlanRepository, DBTreatmentPlanRepository>();
 
             services.AddScoped<IAppointmentRepository, DBAppointmentRepository>();
         }

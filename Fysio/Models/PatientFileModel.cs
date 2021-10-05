@@ -21,5 +21,7 @@ namespace Fysio.Models
         public int TreatmentsPerWeek { get; set; }
         [Required]
         public int MinutesPerSession { get; set; }
+
+        public string PatientEmail { get; set; }
     }
 }

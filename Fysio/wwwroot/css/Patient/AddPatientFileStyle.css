@@ -20,3 +20,7 @@ form {
 body {
     color: #0B3E74;
 }
+
+.hidden{
+    display: none;
+}

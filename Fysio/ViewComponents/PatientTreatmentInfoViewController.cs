@@ -33,11 +33,19 @@ namespace Fysio.ViewComponents
                 //treatmentRepository.AddTreatment(t);
                 //file.Treatments.Add(t);
                 //patientFileRepository.UpdatePatientFile(file.Id, file);
+                if(file.Treatments.Count > 0)
+                {
+                    ViewBag.HasTreatments = true;
+
+                } else
+                {
+                    ViewBag.HasTreatments = false;
+                }
                 return View(file);
             }
             else
             {
-                return View();
+                return View(file);
             }
         }
     }

@@ -9,7 +9,7 @@ using EFInfrastructure;
 
 namespace EFInfrastructure
 {
-    class DBTreatmentPlanRepository : ITreatmentPlanRepository
+    public class DBTreatmentPlanRepository : ITreatmentPlanRepository
     {
         private readonly FysioDbContext _context;
         public DBTreatmentPlanRepository(FysioDbContext context)

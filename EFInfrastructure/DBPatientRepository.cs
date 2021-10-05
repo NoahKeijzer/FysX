@@ -37,6 +37,11 @@ namespace EFInfrastructure
             return _context.Patients.ToList();
         }
 
+        public Patient GetPatientByEmail(string email)
+        {
+            return _context.Patients.Where(p => p.Email == email).FirstOrDefault();
+        }
+
         public Patient GetPatientById(int id)
         {
             return _context.Patients.Where(p => p.Id == id).FirstOrDefault();

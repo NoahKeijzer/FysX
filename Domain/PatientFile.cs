@@ -15,7 +15,7 @@ namespace Domain
         public string DiagnosisCode { get; set; }
         public string DiagnosisDescription { get; set; }
         public Treator Intaker { get; set; }
-        public Treator? SupervisingTreator { get; set; }
+        public Treator SupervisingTreator { get; set; }
         public Treator MainTreator { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -25,10 +25,9 @@ namespace Domain
         public int Age { get; set; }
         public Patient Patient { get; set; }
 
-        public PatientFile(int id, string complaints, string diagnosisCode, string diagnosisDescription, Treator intaker, Treator supervisingTreator, Treator mainTreator, DateTime startDate, DateTime endDate, TreatmentPlan treatmentPlan, ICollection<Treatment> treatments, ICollection<Comment> comments, int age, Patient patient)
+        public PatientFile(string complaints, string diagnosisCode, string diagnosisDescription, Treator intaker, Treator supervisingTreator, Treator mainTreator, DateTime startDate, DateTime endDate, TreatmentPlan treatmentPlan, ICollection<Treatment> treatments, ICollection<Comment> comments, int age, Patient patient)
         {
-            Id = id;
-            this.Complaints = complaints;
+            Complaints = complaints;
             DiagnosisCode = diagnosisCode;
             DiagnosisDescription = diagnosisDescription;
             Intaker = intaker;

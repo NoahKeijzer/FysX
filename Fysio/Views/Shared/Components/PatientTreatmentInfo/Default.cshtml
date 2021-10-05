@@ -15,8 +15,13 @@
         </div>
         <div class="treatment-info-last">
             @{
-                int id = Model.Treatments.Max(p => p.Id);
-                var lastTreatment = Model.Treatments.Where(p => p.Id == id).FirstOrDefault();
+                int id;
+                Treatment lastTreatment = null;
+                if (ViewBag.HasTreatments)
+                {
+                    id = Model.Treatments.Max(p => p.Id);
+                    lastTreatment = Model.Treatments.Where(p => p.Id == id).FirstOrDefault();
+                }
                 }
             <div class="treatment-info-last-title">
                 <h6>Laatste behandeling</h6>
@@ -34,16 +39,28 @@
                 <br />
             </div>
             <div class="treatment-info-last-content">
-                <span>@lastTreatment.Type</span>
-                <br />
-                <span>@lastTreatment.Description</span>
-                <br />
-                <span>@lastTreatment.Particularities</span>
-                <br />
-                <span>@lastTreatment.TreatmentDateTime.ToShortDateString()</span>
-                <br />
-                <span>@lastTreatment.Treator.Name</span>
-                <br />
+                @if (lastTreatment == null)
+                {
+                    @for(int i = 0; i < 5; i++)
+                    {
+                        <span>Nog geen behandelingen</span>
+                        <br />
+                    }
+                }
+                else
+                {
+                    <span>@lastTreatment.Type</span>
+                    <br />
+                    <span>@lastTreatment.Description</span>
+                    <br />
+                    <span>@lastTreatment.Particularities</span>
+                    <br />
+                    <span>@lastTreatment.TreatmentDateTime.ToShortDateString()</span>
+                    <br />
+                    <span>@lastTreatment.Treator.Name</span>
+                    <br />
+                }
+
             </div>
         </div>
         <div class="treatment-info-path">
@@ -73,7 +90,8 @@
             </div>
         </div>
         <div class="treatment-info-buttons">
-            <a asp-action="test" asp-controller="home" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
+            @{ var url = "/Treatment/AddTreatment/" + Model.Patient.Email; }  
+            <a href="@url" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
             <a asp-action="test" asp-controller="home" class="link-styled treatment-info-buttons-tofile">Naar dossier</a>
         </div>
     </div>
