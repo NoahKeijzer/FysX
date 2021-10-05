@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fysio", "Fysio\Fysio.csproj", "{AB3CF6B1-39A8-4129-BC64-9FBA1D6B0D4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainServices", "DomainServices\DomainServices.csproj", "{7DE2E5A6-33B5-41FC-958A-D0422373A043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainServices", "DomainServices\DomainServices.csproj", "{7DE2E5A6-33B5-41FC-958A-D0422373A043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{46AC4279-C4F7-4208-9EC3-0A0EC50A4A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{46AC4279-C4F7-4208-9EC3-0A0EC50A4A83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFInfrastructure", "EFInfrastructure\EFInfrastructure.csproj", "{96BFEFD3-7FF4-4BDC-BA95-5DA6BFCFBC1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFInfrastructure", "EFInfrastructure\EFInfrastructure.csproj", "{96BFEFD3-7FF4-4BDC-BA95-5DA6BFCFBC1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{48C77EDB-60B3-401D-A938-A6612FDB7502}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{96BFEFD3-7FF4-4BDC-BA95-5DA6BFCFBC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96BFEFD3-7FF4-4BDC-BA95-5DA6BFCFBC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96BFEFD3-7FF4-4BDC-BA95-5DA6BFCFBC1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C77EDB-60B3-401D-A938-A6612FDB7502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C77EDB-60B3-401D-A938-A6612FDB7502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C77EDB-60B3-401D-A938-A6612FDB7502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C77EDB-60B3-401D-A938-A6612FDB7502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
