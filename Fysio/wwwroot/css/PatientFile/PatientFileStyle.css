@@ -1,0 +1,107 @@
+﻿.patientfile {
+    display: flex;
+    flex-wrap: wrap;
+    color: #0B3E74;
+}
+
+
+
+
+.patient-link{
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: white;
+    border-radius: 15px;
+    margin: 2%;
+    padding: 20px;
+}
+
+.patient-link-title{
+    width: 100%;
+    text-align: center;
+}
+
+.patient-link-information{
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.patient-link-information-head{
+    width: 40%;
+}
+
+.patient-link-information-content{
+    width: 50ch;
+    max-width: 60%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+.patient-link-icon{
+    width: 25%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+
+
+
+
+.treatmentplan{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 2%;
+}
+
+.treatmentplan-title{
+    width: 100%;
+    text-align: center;
+}
+
+.treatmentplan-info{
+    display: flex;
+    justify-content: start;
+    width: 35%;
+}
+
+.treatmentplan-info-head{
+    width: 70%;
+}
+
+.treatmentplan-info-content{
+    width: 30%;
+    font-weight: bolder;
+}
+
+.treatmentplan-diagnosis{
+    display: flex;
+    justify-content: start;
+    width: 65%;
+}
+
+.treatmentplan-diagnosis-head{
+    width: 40%;
+}
+
+.treatmentplan-diagnosis-content{
+    width: 60%;
+    font-weight: bolder;
+}
+
+
+
+
+h4 {
+    color: #1B84F4;
+}

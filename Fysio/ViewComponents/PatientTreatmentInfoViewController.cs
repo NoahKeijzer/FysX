@@ -45,6 +45,7 @@ namespace Fysio.ViewComponents
             }
             else
             {
+                ViewBag.HasTreatments = false;
                 return View(file);
             }
         }

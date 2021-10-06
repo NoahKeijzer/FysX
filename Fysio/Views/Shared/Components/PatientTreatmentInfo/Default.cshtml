@@ -90,9 +90,10 @@
             </div>
         </div>
         <div class="treatment-info-buttons">
-            @{ var url = "/Treatment/AddTreatment/" + Model.Patient.Email; }  
+            @{ var url = "/Treatment/AddTreatment/" + Model.Patient.Email;
+                var urlPatientFile = "/Patientfile/" + Model.Patient.Id;}  
             <a href="@url" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
-            <a asp-action="test" asp-controller="home" class="link-styled treatment-info-buttons-tofile">Naar dossier</a>
+            <a href="@urlPatientFile" class="link-styled treatment-info-buttons-tofile">Naar dossier</a>
         </div>
     </div>
 </body>

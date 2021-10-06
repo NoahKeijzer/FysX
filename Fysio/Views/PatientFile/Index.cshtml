@@ -1,0 +1,86 @@
+﻿@model Domain.PatientFile
+
+<link rel="stylesheet" href="~/css/PatientFile/PatientFileStyle.css"/>
+
+<script src="~/js/MenuItems.js"></script>
+
+<body>
+    <div class="patientfile">
+        <div class="patient-link">
+            <div class="patient-link-title">
+                <h4>Patient</h4>
+            </div>
+            <div class="patient-link-information">
+                <div class="patient-link-information-head">
+                    <span>Naam:</span>
+                    <br />
+                    <span>Leeftijd:</span>
+                </div>
+                <div class="patient-link-information-content">
+                    <span>@Model.Patient.Name</span>
+                    <br />
+                    <span>@Model.Age</span>
+                </div>
+            </div>
+            <div class="patient-link-icon">
+                @{ string url = "/Patient/PatientDetail/" + Model.Patient.Id;}
+                <a href="@url">
+                    <img src="~/icons/chevron-right.svg" alt="arrow to the right" />
+                </a>
+            </div>
+        </div>
+        <div class="treatmentplan">
+            <div class="treatmentplan-title">
+                <h4>Behandelplan</h4>
+            </div>
+            <div class="treatmentplan-info">
+                <div class="treatmentplan-info-head">
+                    <span>Behandelingen p/w:</span>
+                    <br />
+                    <span>Duur per sessie:</span>
+                </div>
+                <div class="treatmentplan-info-content">
+                    <span>
+                        @Model.TreatmentPlan.TreatmentsPerWeek
+                    </span>
+                    <br />
+                    <span>
+                        @Model.TreatmentPlan.MinutesPerSession
+                    </span>
+                </div>
+            </div>
+            <div class="treatmentplan-diagnosis">
+                <div class="treatmentplan-diagnosis-head">
+                    <span>Diagnose code:</span>
+                    <br />
+                    <span>Diagnose omschrijving:</span>
+                </div>
+                <div class="treatmentplan-diagnosis-content">
+                    <span>
+                        @Model.DiagnosisCode
+                    </span>
+                    <br />
+                    <span>
+                        @Model.DiagnosisDescription
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="intake">
+            <div class="intake-title">
+
+            </div>
+        </div>
+        <div class="comments">
+
+        </div>
+        <div class="treatments">
+
+        </div>
+    </div>
+</body>
+
+
+<script>
+    activeMenu2();
+</script>

@@ -31,7 +31,7 @@ namespace EFInfrastructure
 
         public PatientFile GetCurrentPatientFileForPatient(Patient patient)
         {
-            return _context.PatientFiles.Include(p => p.Treatments).Include(p => p.Intaker).Include(p => p.Patient).Include(p => p.MainTreator).Where(p => p.Patient == patient && p.EndDate == DateTime.MinValue).FirstOrDefault();
+            return _context.PatientFiles.Include(p => p.Treatments).Include(p => p.Intaker).Include(p => p.Patient).Include(p => p.MainTreator).Include(p => p.TreatmentPlan).Where(p => p.Patient == patient && p.EndDate == DateTime.MinValue).FirstOrDefault();
         }
 
         public async void UpdatePatientFile(int id, PatientFile updatePatientFile)
