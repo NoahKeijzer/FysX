@@ -2,19 +2,22 @@
     display: flex;
     flex-wrap: wrap;
     color: #0B3E74;
+    padding: 1%;
+    overflow-y: scroll;
+    max-height: 100vh;
 }
 
 
 
 
 .patient-link{
-    width: 30%;
+    width: 25%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background: white;
     border-radius: 15px;
-    margin: 2%;
+    margin: 30px;
     padding: 20px;
 }
 
@@ -55,13 +58,14 @@
 
 
 .treatmentplan{
-    width: 60%;
+    width: 63%;
     display: flex;
     flex-wrap: wrap;
     background: white;
     border-radius: 15px;
     padding: 20px;
-    margin: 2%;
+    margin: 30px;
+    margin-left: 0;
 }
 
 .treatmentplan-title{
@@ -97,6 +101,242 @@
 .treatmentplan-diagnosis-content{
     width: 60%;
     font-weight: bolder;
+}
+
+
+
+
+
+
+.intake{
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    margin: 30px;
+    margin-top: 0;
+    width: 91%;
+    padding: 20px;
+}
+
+.intake-title{
+    width: 100%;
+    text-align: center;
+}
+
+.intake-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.intake-info-dates{
+    width: 20%;
+    display: flex;
+    justify-content: start;
+}
+
+.intake-info-dates-head{
+    width: 50%;
+}
+
+.intake-info-dates-content{
+    width: 50%;
+    font-weight: bolder;
+}
+
+.intake-info-treators {
+    width: 30%;
+    display: flex;
+    justify-content: start;
+}
+
+.intake-info-treators-head{
+    width: 45%;
+}
+
+.intake-info-treators-content{
+    width: 55%;
+    font-weight: bolder;
+}
+
+.intake-info-complaints {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+}
+
+.intake-info-complaints-head{
+    width: 20%;
+}
+
+.intake-info-complaints-content{
+    width: 80%;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+.comments{
+    width: 44%;
+    margin: 30px;
+    margin-top: 0;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.comments-title{
+    width: 100%;
+    text-align: center;
+}
+
+.comments-list{
+    height: 20vh;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.comments-list-item {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px #1B84F4 solid;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.comments-list-item-title{
+    width: 100%;
+    text-align: center;
+}
+
+.comments-list-item-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.comments-list-item-info-head{
+    width: 30%;
+}
+
+.comments-list-item-info-content{
+    width: fit-content;
+    max-width: 70%;
+    font-weight: bolder;
+}
+
+.comments-btn{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.comments-btn a {
+    width: 50%;
+    color: #1B84F4 !important;
+}
+
+.comment{
+    overflow: visible;
+}
+
+
+
+
+
+
+
+
+
+.treatments{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 44%;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.treatments-title{
+    width: 100%;
+    text-align: center;
+}
+
+.treatments-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 20vh;
+    overflow-y: auto;
+}
+
+.treatments-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px #1B84F4 solid;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
+    width: 47%;
+}
+
+.treatments-list-item-title{
+    width: 100%;
+    text-align: center;
+}
+
+.treatments-list-item-info{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.treatments-list-item-info-head{
+    width: 50%;
+}
+
+.treatments-list-item-info-content {
+    width: 50%;
+    font-weight: bolder;
+}
+
+.treatments-list-item-info-content span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50ch;
+    max-width: 100%;
+}
+
+.treatments-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.treatments-btn a {
+    width: 50%;
+    color: #1B84F4 !important;
 }
 
 

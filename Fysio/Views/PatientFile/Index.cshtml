@@ -4,7 +4,7 @@
 
 <script src="~/js/MenuItems.js"></script>
 
-<body>
+<body class="patientfile-body">
     <div class="patientfile">
         <div class="patient-link">
             <div class="patient-link-title">
@@ -37,7 +37,7 @@
                 <div class="treatmentplan-info-head">
                     <span>Behandelingen p/w:</span>
                     <br />
-                    <span>Duur per sessie:</span>
+                    <span>Minuten per sessie:</span>
                 </div>
                 <div class="treatmentplan-info-content">
                     <span>
@@ -68,14 +68,147 @@
         </div>
         <div class="intake">
             <div class="intake-title">
+                <h4>Intake</h4>
+            </div>
+            <div class="intake-info">
+                <div class="intake-info-dates">
+                    <div class="intake-info-dates-head">
+                        <span>Startdatum:</span>
+                        <br />
+                        <span>Einddatum:</span>
+                    </div>
+                    <div class="intake-info-dates-content">
+                        <span>@Model.StartDate.ToShortDateString()</span>
+                        <br />
+                        @if (Model.EndDate == DateTime.MinValue)
+                        {
+                            <span>Nog in traject</span>
+                        }
+                        else
+                        {
+                            <span>@Model.EndDate.ToShortDateString()</span>
+                        }
 
+                    </div>
+                </div>
+                <div class="intake-info-treators">
+                    <div class="intake-info-treators-head">
+                        <span>Intaker:</span>
+                        <br />
+                        @if (Model.SupervisingTreator != null)
+                        {
+                            <span>Supervisor:</span>
+                            <br/>
+                        }
+                        <span>Hoofdbehandelaar:</span>
+                    </div>
+                    <div class="intake-info-treators-content">
+                        <span>@Model.Intaker.Name</span>
+                        <br />
+                        @if (Model.SupervisingTreator != null)
+                        {
+                            <span>@Model.SupervisingTreator.Name</span>
+                            <br/>
+                        }
+                        <span>@Model.MainTreator.Name</span>
+                    </div>
+                </div>
+                <div class="intake-info-complaints">
+                    <div class="intake-info-complaints-head">
+                        <span>Klachten:</span>
+                    </div>
+                    <div class="intake-info-complaints-content">
+                        <span>@Model.Complaints</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="comments">
+            <div class="comments-title">
+                <h4>Opmerkingen</h4>
+            </div>
+            <div class="comments-list">
+                @if (Model.Comments.Count > 0)
+                {
+                    @foreach (Domain.Comment comment in Model.Comments.OrderBy(p => p.CreationDateTime))
+                    {
+                        <div class="comments-list-item">
+                            <div class="comments-list-item-title">
+                                <h6>@comment.CreationDateTime.ToShortDateString()</h6>
+                            </div>
+                            <div class="comments-list-item-info">
+                                <div class="comments-list-item-info-head">
+                                    <span>Maker:</span>
+                                    <br />
+                                    <span>Zichtbaarheid:</span>
+                                    <br />
+                                    <span class="comment">Opmerking:</span>
+                                </div>
+                                <div class="comments-list-item-info-content">
+                                    <span>@comment.Creator.Name</span>
+                                    <br />
+                                    @if (comment.VisibleForPatient)
+                                    {
+                                        <span>Iedereen</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Alleen collega's</span>
+                                    }
+                                    <br />
+                                    <span>@comment.Description</span>
+                                </div>
+                            </div>
 
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h6>Er zijn geen comments</h6>
+                }
+            </div>
+            <div class="comments-btn">
+                <a class="link-styled">Opmerking maken</a>
+            </div>
         </div>
         <div class="treatments">
-
+            <div class="treatments-title">
+                <h4>Behandelingen</h4>
+            </div>
+            <div class="treatments-list">
+                @if (Model.Treatments.Count > 0)
+                {
+                    @foreach (Domain.Treatment treatment in Model.Treatments)
+                    {
+                        <div class="treatments-list-item">
+                            <div class="treatments-list-item-title">
+                                @treatment.TreatmentDateTime.ToShortDateString()
+                            </div>
+                            <div class="treatments-list-item-info">
+                                <div class="treatments-list-item-info-head">
+                                    <span>Type:</span>
+                                    <br />
+                                    <span>Behandelaar:</span>
+                                </div>
+                                <div class="treatments-list-item-info-content">
+                                    <span>@treatment.Type</span>
+                                    <br />
+                                    <span>@treatment.Treator.Name</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h6>Er zijn nog geen behandelingen</h6>
+                }
+            </div>
+            <div class="treatments-btn">
+                @{ var treatmentUrl = "/Treatment/AddTreatment/" + Model.Patient.Email;}
+                    <a class="link-styled" href="@treatmentUrl">Behandeling maken</a>
+                </div>
         </div>
     </div>
 </body>

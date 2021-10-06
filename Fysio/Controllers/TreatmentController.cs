@@ -56,7 +56,7 @@ namespace Fysio.Controllers
 
                 PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
                 pf.Treatments.Add(t);
-                patientFileRepository.UpdatePatientFile(pf.Id, pf);
+                patientFileRepository.UpdatePatientFile(pf);
                 return (ActionResult)ToPatientList();
             } else
             {

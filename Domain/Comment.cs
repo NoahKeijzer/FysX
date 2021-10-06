@@ -16,9 +16,8 @@ namespace Domain
         public Treator Creator { get; set; }
         public bool VisibleForPatient { get; set; }
 
-        public Comment(int id, string description, DateTime creationDateTime, Treator creator, bool visibleForPatient)
+        public Comment(string description, DateTime creationDateTime, Treator creator, bool visibleForPatient)
         {
-            Id = id;
             Description = description;
             CreationDateTime = creationDateTime;
             Creator = creator;

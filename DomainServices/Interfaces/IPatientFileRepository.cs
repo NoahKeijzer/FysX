@@ -10,7 +10,7 @@ namespace DomainServices.Interfaces
     public interface IPatientFileRepository
     {
         public void AddPatientFile(PatientFile patientFile);
-        public void UpdatePatientFile(int id, PatientFile updatePatientFile);
+        public void UpdatePatientFile(PatientFile updatePatientFile);
         public PatientFile GetCurrentPatientFileForPatient(Patient patient);
         public List<PatientFile> GetPatientFilesForPatient(Patient patient);
     }

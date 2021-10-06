@@ -13,11 +13,15 @@ namespace Fysio.Controllers
     {
         private readonly IPatientFileRepository patientFileRepository;
         private readonly IPatientRepository patientRepository;
+        private readonly ITreatorRepository treatorRepository;
+        private readonly ICommentRepository commentRepository;
 
-        public PatientFileController(IPatientFileRepository repository, IPatientRepository patientRepository)
+        public PatientFileController(IPatientFileRepository repository, IPatientRepository patientRepository, ITreatorRepository treatorRepository, ICommentRepository commentRepository)
         {
             patientFileRepository = repository;
             this.patientRepository = patientRepository;
+            this.treatorRepository = treatorRepository;
+            this.commentRepository = commentRepository;
         }
 
         [Route("PatientFile/{id}")]
@@ -30,6 +34,13 @@ namespace Fysio.Controllers
             } else
             {
                 PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patientRepository.GetPatientById(id));
+                Treator t = treatorRepository.GetTreatorByEmail("bbuijsen@gmail.com");
+                Comment c = new Comment("blablbalbjalba", DateTime.Now, t, false);
+                commentRepository.AddComment(c);
+
+                pf.Comments.Add(c);
+                patientFileRepository.UpdatePatientFile(pf);
+
                 return View(pf);
             }
         }
