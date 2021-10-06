@@ -34,12 +34,12 @@ namespace Fysio.Controllers
             } else
             {
                 PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patientRepository.GetPatientById(id));
-                Treator t = treatorRepository.GetTreatorByEmail("bbuijsen@gmail.com");
-                Comment c = new Comment("blablbalbjalba", DateTime.Now, t, false);
-                commentRepository.AddComment(c);
+                //Treator t = treatorRepository.GetTreatorByEmail("bbuijsen@gmail.com");
+                //Comment c = new Comment("blablbalbjalba", DateTime.Now, t, false);
+                //commentRepository.AddComment(c);
 
-                pf.Comments.Add(c);
-                patientFileRepository.UpdatePatientFile(pf);
+                //pf.Comments.Add(c);
+                //patientFileRepository.UpdatePatientFile(pf);
 
                 return View(pf);
             }
