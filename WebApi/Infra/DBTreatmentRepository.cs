@@ -26,9 +26,9 @@ namespace WebApi.Infra
             return context.TreatmentTypes.ToList();
         }
 
-        public TreatmentType GetTreatmentById(int value)
+        public TreatmentType GetTreatmentById(string value)
         {
-            return context.TreatmentTypes.Where(p => p.Value == value).FirstOrDefault();
+            return context.TreatmentTypes.Where(p => p.Value.Equals(value)).FirstOrDefault();
         }
     }
 }

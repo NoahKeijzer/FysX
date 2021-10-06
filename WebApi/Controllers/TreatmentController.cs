@@ -26,13 +26,13 @@ namespace WebApi.Controllers
         [HttpGet]
         public IEnumerable<TreatmentType> Get()
         {
-            AddAllTreatments();
+            //AddAllTreatments();
             return treatmentRepository.GetAllTreatments();
         }
 
         // GET api/<TreatmentController>/5
         [HttpGet("{id}")]
-        public TreatmentType Get(int id)
+        public TreatmentType Get(string id)
         {
             return treatmentRepository.GetTreatmentById(id);
         }
@@ -48,7 +48,12 @@ namespace WebApi.Controllers
                     if (i != 0)
                     {
                         string[] values = line.Split(',');
-                        TreatmentType t = new TreatmentType(int.Parse(values[0]), values[1], values[2].Equals("ja") ? true : false);
+                        if (values[1].StartsWith("\"") && !values[1].EndsWith("\"") && values.Count() == 4)
+                        {
+                            values[1] = values[1] + "," + values[2];
+                            values[2] = values[3];
+                        }
+                        TreatmentType t = new TreatmentType(values[0], values[1], values[2].Equals("Ja") ? true : false);
                         treatmentRepository.AddTreatment(t);
                     }
                     i++;

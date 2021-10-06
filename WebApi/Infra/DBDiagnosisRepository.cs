@@ -28,7 +28,7 @@ namespace WebApi.Infra
 
         public Diagnosis GetDiagnosisById(int value)
         {
-            return context.Diagnoses.Where(p => p.Value == value).FirstOrDefault();
+            return context.Diagnoses.Where(p => p.Value.Equals(value)).FirstOrDefault();
         }
 
         public void AddDiagnosis(Diagnosis diagnosis)

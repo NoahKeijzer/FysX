@@ -8,7 +8,7 @@ namespace WebApi.Infra
 {
     public interface ITreatmentRepository
     {
-        public TreatmentType GetTreatmentById(int value);
+        public TreatmentType GetTreatmentById(string value);
         public IEnumerable<TreatmentType> GetAllTreatments();
         public void AddTreatment(TreatmentType t);
     }

@@ -37,6 +37,8 @@ namespace WebApi
             });
 
             services.AddScoped<IDiagnosisRepository, DBDiagnosisRepository>();
+
+            services.AddScoped<ITreatmentRepository, DBTreatmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

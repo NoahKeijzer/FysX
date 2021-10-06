@@ -10,11 +10,11 @@ namespace WebApi.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Value { get; set; }
+        public string Value { get; set; }
         public string Description { get; set; }
         public bool RequireExplanation { get; set; }
 
-        public TreatmentType(int value, string description, bool requireExplanation)
+        public TreatmentType(string value, string description, bool requireExplanation)
         {
             Value = value;
             Description = description;
