@@ -24,9 +24,13 @@ namespace Fysio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<FysioDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"), b => b.MigrationsAssembly("Fysio")));
+            string fysioDbString = Configuration.GetConnectionString("Default");
+            string identityDbString = Configuration.GetConnectionString("Security");
 
-            services.AddDbContext<SecurityDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Security")));
+
+            services.AddDbContext<FysioDbContext>(options => options.UseSqlServer(fysioDbString, b => b.MigrationsAssembly("Fysio")));
+
+            services.AddDbContext<SecurityDbContext>(options => options.UseSqlServer(identityDbString));
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<SecurityDbContext>().AddDefaultTokenProviders();
 
