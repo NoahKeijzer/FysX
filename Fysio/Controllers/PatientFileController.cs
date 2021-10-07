@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Domain;
 using DomainServices.Interfaces;
 using Fysio.Models;
+using System.Security.Claims;
 
 namespace Fysio.Controllers
 {
@@ -27,21 +28,56 @@ namespace Fysio.Controllers
         [Route("PatientFile/{id}")]
         public IActionResult Index(int id, PatientFile patientFile)
         {
-            
-            if(patientFile.StartDate != DateTime.MinValue)
+            if(patientFile != null)
             {
-                return View(patientFile);
+                if(patientFile.StartDate != DateTime.MinValue && patientFile.Patient != null)
+                {
+                    return View(patientFile);
+                } else
+                {
+                    if (patientFile.Age != 0)
+                    {
+                        PatientFile pf = patientFileRepository.GetPatientFileById(patientFile.Id);
+                        return View(pf);
+                    } else
+                    {
+                        PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patientRepository.GetPatientById(id));
+                        return View(pf);
+                    }
+                }
             } else
             {
-                PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patientRepository.GetPatientById(id));
-                //Treator t = treatorRepository.GetTreatorByEmail("bbuijsen@gmail.com");
-                //Comment c = new Comment("blablbalbjalba", DateTime.Now, t, false);
-                //commentRepository.AddComment(c);
+                return View(patientFile);
+            }
+        }
 
-                //pf.Comments.Add(c);
-                //patientFileRepository.UpdatePatientFile(pf);
+        [HttpGet]
+        [Route("/PatientFile/AddComment/{id}")]
+        public IActionResult AddComment(int id)
+        {
+            return View(new CommentModel() { PatientFileId = id});
+        }
 
-                return View(pf);
+        [HttpPost]
+        public ActionResult AddComment(CommentModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ClaimsPrincipal currentUser = this.User;
+                string email = currentUser.FindFirst(ClaimTypes.Email).Value;
+                Treator creator = treatorRepository.GetTreatorByEmail(email);
+
+                Comment c = new Comment(model.Description, DateTime.Now, creator, model.VisibleForPatient);
+                commentRepository.AddComment(c);
+
+                PatientFile pf = patientFileRepository.GetPatientFileById(model.PatientFileId);
+                pf.Comments.Add(c);
+                patientFileRepository.UpdatePatientFile(pf);
+
+                return RedirectToAction("Index", "PatientFile", pf);
+            } else
+            {
+                return View(new CommentModel() { PatientFileId = model.PatientFileId });
             }
         }
     }

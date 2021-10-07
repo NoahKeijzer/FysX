@@ -1,0 +1,39 @@
+﻿@model CommentModel
+
+<script src="~/js/MenuItems.js"></script>
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+
+<body>
+
+    <div class="form-add-patient">
+        <div class="title">
+            <h2>Opmerking toevoegen</h2>
+        </div>
+        <form asp-action="AddComment" method="post" class="form">
+            <input asp-for="PatientFileId" value="@Model.PatientFileId" class="hidden" />
+            <div class="form-personal">
+                <div class="form-input-group">
+                    <label asp-for="Description">Opmerking</label>
+                    <textarea asp-for="Description" class="input-field-form" ></textarea>
+                </div>
+
+                <div class="form-input-group">
+                    <label class="form-input-label" asp-for="VisibleForPatient">Zichtbaar voor</label>
+                    <select asp-for="VisibleForPatient" class="input-field-form">
+                        <option value="">Kies er een...</option>
+                        <option value="true">Iedereen</option>
+                        <option value="false">Alleen collega's</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-submit">
+                <button class="btn-active-menu" type="submit">Voeg opmerking toe</button>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    activeMenu2();
+</script>

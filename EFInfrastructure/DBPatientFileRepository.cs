@@ -39,5 +39,9 @@ namespace EFInfrastructure
             _context.SaveChanges();
         }
 
+        public PatientFile GetPatientFileById(int id)
+        {
+            return _context.PatientFiles.Include(p => p.Treatments).Include(p => p.Intaker).Include(p => p.Patient).Include(p => p.MainTreator).Include(p => p.Comments).Include(p => p.TreatmentPlan).Where(p => p.Id == id).FirstOrDefault();
+        }
     }
 }

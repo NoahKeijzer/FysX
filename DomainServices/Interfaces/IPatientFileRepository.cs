@@ -13,5 +13,6 @@ namespace DomainServices.Interfaces
         public void UpdatePatientFile(PatientFile updatePatientFile);
         public PatientFile GetCurrentPatientFileForPatient(Patient patient);
         public List<PatientFile> GetPatientFilesForPatient(Patient patient);
+        public PatientFile GetPatientFileById(int id);
     }
 }

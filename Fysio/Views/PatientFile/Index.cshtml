@@ -169,7 +169,8 @@
                 }
             </div>
             <div class="comments-btn">
-                <a class="link-styled">Opmerking maken</a>
+                @{ string commentUrl = "/PatientFile/AddComment/" + Model.Id;}
+                <a href="@commentUrl" class="link-styled">Opmerking maken</a>
             </div>
         </div>
         <div class="treatments">
