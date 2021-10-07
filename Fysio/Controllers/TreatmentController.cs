@@ -28,9 +28,11 @@ namespace Fysio.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult Index()
+        [Route("/Treatment/{id}")]
+        public IActionResult Index(int id)
         {
-            return View();
+            Treatment t = treatmentRepository.GetTreatmentById(id);
+            return View(t);
         }
         
         [HttpGet]

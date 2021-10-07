@@ -1,0 +1,177 @@
+﻿.treatment {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
+    max-height: 100vh;
+    height: 100%;
+    color: #0B3E74;
+}
+
+
+
+
+
+
+
+.treatment-patient{
+    width: 46%;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    margin: 30px;
+    padding: 20px;
+}
+
+.treatment-patient-title{
+    width: 100%;
+    text-align: center;
+}
+
+.treatment-patient-info{
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.treatment-patient-info-head{
+    width: 30%;
+}
+
+.treatment-patient-info-content{
+    width: 70%;
+    font-weight: bolder;
+}
+
+.treatment-patient-link{
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+.treatment-treator{
+    display: flex;
+    flex-wrap: wrap;
+    width: 46%;
+    background: white;
+    border-radius: 15px;
+    margin: 30px;
+    margin-left: 0;
+    padding: 20px;
+}
+
+.treatment-treator-title{
+    width: 100%;
+    text-align: center;
+}
+
+.treatment-treator-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.treatment-treator-info-head{
+    width: 30%;
+}
+
+.treatment-treator-info-content{
+    width: 70%;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+.treatment-details{
+    width: 46%;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    margin: 30px;
+    margin-top: 0;
+    padding: 20px;
+}
+
+.treatment-details-title{
+    width: 100%;
+    text-align: center;
+}
+
+.treatment-details-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.treatment-details-info-head{
+    width: 30%;
+}
+
+.treatment-details-info-content{
+    width: 70%;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+.treatment-particularities{
+    width: 46%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    background: white;
+    margin: 30px;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 20px;
+    align-content:baseline;
+}
+
+.treatment-particularities-title {
+    width: 100%;
+    text-align: center;
+}
+
+.treatment-particularities-content{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+h4 {
+    color: #1B84F4;
+}
+
+h6 {
+    color: #1B84F4;
+}

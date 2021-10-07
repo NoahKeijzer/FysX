@@ -299,6 +299,11 @@
     width: 47%;
 }
 
+.treatments-list-item a {
+    text-decoration: none;
+    color: #0B3E74 !important;
+}
+
 .treatments-list-item-title {
     width: 100%;
     text-align: center;
@@ -310,6 +315,7 @@
     width: 100%;
     justify-content: space-around;
 }
+
 
 .treatments-list-item-info-head{
     width: 50%;
@@ -353,3 +359,4 @@ h4 {
 h6 {
     color: #1B84F4;
 }
+

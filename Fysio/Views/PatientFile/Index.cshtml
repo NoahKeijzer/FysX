@@ -183,28 +183,31 @@
                     @foreach (Domain.Treatment treatment in Model.Treatments)
                     {
                         <div class="treatments-list-item">
-                            <div class="treatments-list-item-title">
-                                <h6>@treatment.TreatmentDateTime.ToShortDateString()</h6>
-                            </div>
-                            <div class="treatments-list-item-info">
-                                <div class="treatments-list-item-info-head">
-                                    <span>Type:</span>
-                                    <br />
-                                    <span>Behandelaar:</span>
+                            @{ string treatmentDetailUrl = "/treatment/" + treatment.Id;}
+                            <a href="@treatmentDetailUrl">
+                                <div class="treatments-list-item-title">
+                                    <h6>@treatment.TreatmentDateTime.ToShortDateString()</h6>
                                 </div>
-                                <div class="treatments-list-item-info-content">
-                                    <span>@treatment.Type</span>
-                                    <br />
-                                    <span>@treatment.Treator.Name</span>
+                                <div class="treatments-list-item-info">
+                                    <div class="treatments-list-item-info-head">
+                                        <span>Type:</span>
+                                        <br />
+                                        <span>Behandelaar:</span>
+                                    </div>
+                                    <div class="treatments-list-item-info-content">
+                                        <span>@treatment.Type</span>
+                                        <br />
+                                        <span>@treatment.Treator.Name</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     }
-                }
-                else
-                {
-                    <h6>Er zijn nog geen behandelingen</h6>
-                }
+                    }
+                    else
+                    {
+                        <h6>Er zijn nog geen behandelingen</h6>
+                    }
             </div>
             <div class="treatments-btn">
                 @{ var treatmentUrl = "/Treatment/AddTreatment/" + Model.Patient.Email;}
