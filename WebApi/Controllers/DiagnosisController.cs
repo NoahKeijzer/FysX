@@ -38,7 +38,7 @@ namespace WebApi.Controllers
         }
         public void AddAllDiagnosis()
         {
-            using (var reader = new StreamReader(@"D:\Bas Buijsen\School\Jaar 2\2.1\sswf\opdracht\Fysio\WebApi\Controllers\Vektis lijst diagnoses 3.csv"))
+            using (var reader = new StreamReader("Vektis lijst diagnoses 3.csv"))
             {
                 int i = 0;
                 while (!reader.EndOfStream)
