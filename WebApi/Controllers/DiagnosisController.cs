@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IEnumerable<Diagnosis> Get()
         {
-            //AddAllDiagnosis();
+            AddAllDiagnosis();
             return diagnosisRepository.GetAllDiagnoses();
         }
         // GET api/<DiagnosisController>/5
