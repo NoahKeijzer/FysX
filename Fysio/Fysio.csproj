@@ -21,6 +21,7 @@
     <ProjectReference Include="..\DomainServices\DomainServices.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\EFInfrastructure\EFInfrastructure.csproj" />
+    <ProjectReference Include="..\WebApi\WebApi.csproj" />
   </ItemGroup>
 
 </Project>
