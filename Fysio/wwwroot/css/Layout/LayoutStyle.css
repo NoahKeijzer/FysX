@@ -1,7 +1,7 @@
 ﻿body {
     overflow-y: hidden;
     overflow-x: hidden;
-    background-color: #FAF8F8;
+    background-color: #E9ECFF;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -149,7 +149,7 @@ main{
 }
 
 *::-webkit-scrollbar-track {
-    background: #FAF8F8;
+    background: #E9ECFF;
 }
 
 *::-webkit-scrollbar-thumb {
