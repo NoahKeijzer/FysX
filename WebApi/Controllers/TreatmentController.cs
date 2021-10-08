@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IEnumerable<TreatmentType> Get()
         {
-            AddAllTreatments();
+            //AddAllTreatments();
             return treatmentRepository.GetAllTreatments();
         }
 
