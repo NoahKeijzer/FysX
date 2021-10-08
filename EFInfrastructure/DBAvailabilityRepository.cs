@@ -9,7 +9,7 @@ using EFInfrastructure;
 
 namespace EFInfrastructure
 {
-    class DBAvailabilityRepository : IAvailabilityRepository
+    public class DBAvailabilityRepository : IAvailabilityRepository
     {
         private readonly FysioDbContext _context;
         public DBAvailabilityRepository(FysioDbContext context)

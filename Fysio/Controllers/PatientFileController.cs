@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using DomainServices.Interfaces;
+using DomainServices.Services;
 using Fysio.Models;
 using System.Security.Claims;
 
@@ -16,13 +17,15 @@ namespace Fysio.Controllers
         private readonly IPatientRepository patientRepository;
         private readonly ITreatorRepository treatorRepository;
         private readonly ICommentRepository commentRepository;
+        private readonly AddAppointmentService addAppointmentService;
 
-        public PatientFileController(IPatientFileRepository repository, IPatientRepository patientRepository, ITreatorRepository treatorRepository, ICommentRepository commentRepository)
+        public PatientFileController(IPatientFileRepository repository, IPatientRepository patientRepository, ITreatorRepository treatorRepository, ICommentRepository commentRepository, AddAppointmentService addAppointmentService)
         {
             patientFileRepository = repository;
             this.patientRepository = patientRepository;
             this.treatorRepository = treatorRepository;
             this.commentRepository = commentRepository;
+            this.addAppointmentService = addAppointmentService;
         }
 
         [Route("PatientFile/{id}")]
@@ -42,6 +45,8 @@ namespace Fysio.Controllers
                     } else
                     {
                         PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patientRepository.GetPatientById(id));
+                        addAppointmentService.AddAppointment(new Appointment(pf.MainTreator, pf.Patient, DateTime.Now, DateTime.Now.AddMinutes(60)), pf);
+                        addAppointmentService.AddAppointment(new Appointment(pf.MainTreator, pf.Patient, DateTime.Now.AddHours(-3), DateTime.Now.AddHours(-3).AddMinutes(60)), pf);
                         return View(pf);
                     }
                 }
@@ -59,6 +64,7 @@ namespace Fysio.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddComment(CommentModel model)
         {
             if (ModelState.IsValid)

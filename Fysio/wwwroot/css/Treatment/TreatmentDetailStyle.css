@@ -15,7 +15,7 @@
 
 
 .treatment-patient{
-    width: 46%;
+    width: 45%;
     display: flex;
     flex-wrap: wrap;
     background: white;
@@ -62,7 +62,7 @@
 .treatment-treator{
     display: flex;
     flex-wrap: wrap;
-    width: 46%;
+    width: 45%;
     background: white;
     border-radius: 15px;
     margin: 30px;
@@ -99,7 +99,7 @@
 
 
 .treatment-details{
-    width: 46%;
+    width: 45%;
     display: flex;
     flex-wrap: wrap;
     background: white;
@@ -138,7 +138,7 @@
 
 
 .treatment-particularities{
-    width: 46%;
+    width: 45%;
     display: flex;
     flex-wrap: wrap;
     border-radius: 15px;

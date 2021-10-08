@@ -48,6 +48,7 @@ namespace Fysio.Controllers
 
         [Authorize(Policy = "RequireFysio")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ViewResult AddPatient(PatientModel patient)
         {
             if (ModelState.IsValid)
@@ -88,6 +89,7 @@ namespace Fysio.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ViewResult AddPatientFile(PatientFileModel patientFileModel)
         {
             if (ModelState.IsValid)

@@ -55,6 +55,16 @@ namespace EFInfrastructure
             return _context.Appointments.Where(p => p.Id == id).FirstOrDefault();
         }
 
+        public List<Appointment> GetAppointmentsForDateForPatient(Patient patient, DateTime date)
+        {
+            return _context.Appointments.Where(p => p.Patient == patient && p.AppointmentDateTime.Date == date.Date).ToList();
+        }
+
+        public List<Appointment> GetAppointmentsForDateForTreator(Treator treator, DateTime date)
+        {
+            return _context.Appointments.Where(p => p.Treator == treator && p.AppointmentDateTime.Date == date.Date).ToList();
+        }
+
         public List<Appointment> GetAppointmentsForPatient(Patient patient)
         {
             return _context.Appointments.Where(p => p.Patient == patient).ToList();

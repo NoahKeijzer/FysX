@@ -43,6 +43,7 @@ namespace Fysio.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddTreatment(TreatmentModel model)
         {
             if (ModelState.IsValid)

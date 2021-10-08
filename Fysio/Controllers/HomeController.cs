@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
 using DomainServices.Interfaces;
+using DomainServices.Services;
 using Domain;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
@@ -19,14 +20,16 @@ namespace Fysio.Controllers
         private readonly IPatientRepository patientRepository;
         private readonly ITreatorRepository treatorRepository;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly AddAppointmentService addAppointmentService;
 
 
-        public HomeController(ILogger<HomeController> logger, IPatientRepository patientRepository, ITreatorRepository treatorRepository, UserManager<IdentityUser> userManager)
+        public HomeController(ILogger<HomeController> logger, IPatientRepository patientRepository, ITreatorRepository treatorRepository, UserManager<IdentityUser> userManager, AddAppointmentService addAppointmentService)
         {
             _logger = logger;
             this.patientRepository = patientRepository;
             this.treatorRepository = treatorRepository;
             this.userManager = userManager;
+            this.addAppointmentService = addAppointmentService;
         }
 
         [Authorize(Policy = "RequireTreator")]

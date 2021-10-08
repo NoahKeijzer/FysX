@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DomainServices.Interfaces;
+using DomainServices.Services;
 using EFInfrastructure;
 using Domain;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,10 @@ namespace Fysio
             services.AddScoped<IAppointmentRepository, DBAppointmentRepository>();
 
             services.AddScoped<ICommentRepository, DBCommentRepository>();
+
+            services.AddScoped<IAvailabilityRepository, DBAvailabilityRepository>();
+
+            services.AddScoped<AddAppointmentService, DBAddAppointmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

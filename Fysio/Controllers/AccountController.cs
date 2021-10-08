@@ -27,6 +27,7 @@ namespace Fysio.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginAsync(LoginModel loginModel)
         {
             if (ModelState.IsValid)
@@ -69,6 +70,7 @@ namespace Fysio.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult GoToRegister()
         {
             return Register();
@@ -81,6 +83,7 @@ namespace Fysio.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterAsync(RegisterModel registerModel)
         {
             if (ModelState.IsValid)
