@@ -47,6 +47,15 @@ namespace WebApi.Controllers
                     if (i != 0)
                     {
                         string[] values = line.Split(',');
+                        if (values[2].StartsWith("\"") && !values[2].EndsWith("\"") && values.Count() > 3)
+                        {
+                            for(int j = 3; j < values.Count(); j++)
+                            {
+                                values[2] = values[2] + "," + values[j];
+                            }
+                        }
+                        
+                        values[2] = values[2].Replace("\"", "");
                         Diagnosis d = new Diagnosis(int.Parse(values[0]), values[1], values[2]);
                         diagnosisRepository.AddDiagnosis(d);
                     }
