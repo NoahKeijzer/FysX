@@ -1,0 +1,15 @@
+﻿body {
+}
+
+.hidden-select{
+    display: none;
+}
+
+.possible-date{
+    display: none;
+}
+
+.visible-select{
+    display: block !important;
+
+}

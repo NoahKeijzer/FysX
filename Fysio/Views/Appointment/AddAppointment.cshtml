@@ -1,0 +1,14 @@
+﻿@model AppointmentModel
+
+<link href="~/css/Appointment/AddAppointmentStyle.css" rel="stylesheet" />
+<script src="~/js/AddAppointmentScript.js"></script>
+
+<body>
+    <div>
+        
+        <input id="datepicker" type="date"/>
+        <input id="timepicker" type="time"/>
+        <select asp-for="AppointmentDateTime" asp-items="@ViewBag.possibleAppointments">
+        </select>
+    </div>
+</body>

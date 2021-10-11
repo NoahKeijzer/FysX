@@ -99,6 +99,111 @@ namespace EFInfrastructure
             return false;
         }
 
+        public IEnumerable<DateTime> GetPossibleTimesOnDate(Treator treator, PatientFile patientFile, DateTime dateTime)
+        {
+            List<DateTime> possibleTimes = new List<DateTime>();
+            Availability availabilityTreator = availabilityRepository.GetAvailabilityForTreator(treator);
+            DateTime startTime = DateTime.MinValue;
+            DateTime endTime = DateTime.MinValue;
+            switch (dateTime.DayOfWeek)
+            {
+                case System.DayOfWeek.Monday:
+                    startTime = availabilityTreator.MOStartTime;
+                    endTime = availabilityTreator.MOEndTime;
+                    break;
+                case System.DayOfWeek.Tuesday:
+                    startTime = availabilityTreator.TUStartTime;
+                    endTime = availabilityTreator.TUEndTime;
+                    break;
+                case System.DayOfWeek.Wednesday:
+                    startTime = availabilityTreator.WEStartTime;
+                    endTime = availabilityTreator.WEEndTime;
+                    break;
+                case System.DayOfWeek.Thursday:
+                    startTime = availabilityTreator.THStartTime;
+                    endTime = availabilityTreator.THEndTime;
+                    break;
+                case System.DayOfWeek.Friday:
+                    startTime = availabilityTreator.FRStartTime;
+                    endTime = availabilityTreator.FREndTime;
+                    break;
+                case System.DayOfWeek.Saturday:
+                    return possibleTimes;
+                case System.DayOfWeek.Sunday:
+                    return possibleTimes;
+            }
+
+            DateTime currentDateTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, startTime.Hour, startTime.Minute, 0);
+            endTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, endTime.Hour, endTime.Minute, 0);
+            
+            while(currentDateTime < endTime)
+            {
+                if(IsPossibleTime(treator, currentDateTime, patientFile.TreatmentPlan.MinutesPerSession))
+                {
+                    possibleTimes.Add(currentDateTime);
+                }
+                currentDateTime = currentDateTime.AddMinutes(15);
+            }
+
+            return possibleTimes;
+        }
+
+
+        private bool IsPossibleTime(Treator treator, DateTime date, int duration)
+        {
+            Availability availabilityTreator = availabilityRepository.GetAvailabilityForTreator(treator);
+            List<Appointment> appointmentsOnDay = appointmentRepository.GetAppointmentsForDateForTreator(treator, date);
+            bool IsAvailable = true;
+            foreach (Appointment a in appointmentsOnDay)
+            {
+                if (!(a.AppointmentDateTime.TimeOfDay > date.AddMinutes(duration).TimeOfDay || a.EndDateTime.TimeOfDay < date.TimeOfDay))
+                {
+                    IsAvailable = false;
+                }
+            }
+            if (IsAvailable)
+            {
+                switch (date.DayOfWeek)
+                {
+                    case System.DayOfWeek.Monday:
+                        if (date.TimeOfDay >= availabilityTreator.MOStartTime.TimeOfDay && date.AddMinutes(duration).TimeOfDay <= availabilityTreator.MOEndTime.TimeOfDay)
+                        {
+                            return true;
+                        }
+                        break;
+                    case System.DayOfWeek.Tuesday:
+                        if (date.TimeOfDay >= availabilityTreator.TUStartTime.TimeOfDay && date.AddMinutes(duration).TimeOfDay <= availabilityTreator.TUEndTime.TimeOfDay)
+                        {
+                            return true;
+                        }
+                        break;
+                    case System.DayOfWeek.Wednesday:
+                        if (date.TimeOfDay >= availabilityTreator.WEStartTime.TimeOfDay && date.AddMinutes(duration).TimeOfDay <= availabilityTreator.WEEndTime.TimeOfDay)
+                        {
+                            return true;
+                        }
+                        break;
+                    case System.DayOfWeek.Thursday:
+                        if (date.TimeOfDay >= availabilityTreator.THStartTime.TimeOfDay && date.AddMinutes(duration).TimeOfDay <= availabilityTreator.THEndTime.TimeOfDay)
+                        {
+                            return true;
+                        }
+                        break;
+                    case System.DayOfWeek.Friday:
+                        if (date.TimeOfDay >= availabilityTreator.FRStartTime.TimeOfDay && date.AddMinutes(duration).TimeOfDay <= availabilityTreator.FREndTime.TimeOfDay)
+                        {
+                            return true;
+                        }
+                        break;
+                    case System.DayOfWeek.Saturday:
+                        return false;
+                    case System.DayOfWeek.Sunday:
+                        return false;
+                }
+            }
+            return false;
+        }
+
         public bool UpdateAppointment(Appointment appointment, int id)
         {
             if (appointment.AppointmentDateTime < DateTime.Now.AddDays(-1))

@@ -12,5 +12,7 @@ namespace DomainServices.Services
         public bool AddAppointment(Appointment appointment, PatientFile patientFile);
         public bool UpdateAppointment(Appointment appointment, int id);
         public bool DeleteAppointment(Appointment appointment);
+
+        public IEnumerable<DateTime> GetPossibleTimesOnDate(Treator treator, PatientFile patientFile, DateTime dateTime);
     }
 }
