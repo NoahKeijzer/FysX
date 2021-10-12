@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Domain.Appointment>
+
+<link rel="stylesheet" href="~/css/Home/TreatorUpcomingAppointmentsStyle.css" />
+<script src="~/js/MenuItems.js"></script>
+
+<body>
+    <div class="upcoming-appointments">
+        <div class="upcoming-appointments-title">
+            <h4>Welkom terug @ViewBag.Name!</h4>
+            <h6>Je komende afspraken:</h6>
+        </div>
+        <div class="upcoming-appointments-list">
+            @foreach(Domain.Appointment a in Model)
+            {
+                <div class="upcoming-appointments-list-item">
+                    <strong>
+                        @a.Patient.Name
+                    </strong>
+                    <br />
+                    @a.AppointmentDateTime.ToLongDateString()
+                    <br />
+                    @a.AppointmentDateTime.ToShortTimeString() - @a.EndDateTime.ToShortTimeString()
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+<script>
+    activeMenu1();
+</script>

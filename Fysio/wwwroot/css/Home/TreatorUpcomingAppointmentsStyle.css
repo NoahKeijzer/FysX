@@ -1,0 +1,52 @@
+﻿.upcoming-appointments{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.upcoming-appointments-title{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.upcoming-appointments-title h6 {
+    color: #0B3E74; 
+}
+
+.upcoming-appointments-list{
+    width: 100%;
+    max-width: 75vw;
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+
+
+.upcoming-appointments-list-item {
+    border: 1px #1B84F4 solid;
+    padding: 5px;
+    padding-inline: 60px;
+    color: #0B3E74;
+    text-align: center;
+    border-radius: 15px;
+    margin: 10px;
+   min-width: 350px;
+}
+
+
+
+h4 {
+    color: #1B84F4;
+    width: 100%;
+}
+
+h6 {
+    color: #1B84F4;
+    width: 100%;
+}

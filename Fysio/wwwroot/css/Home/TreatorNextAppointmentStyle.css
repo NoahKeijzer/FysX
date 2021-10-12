@@ -1,0 +1,96 @@
+﻿.next-appointment{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.next-appointment-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.next-appointment-title h6 {
+    color: #0B3E74;
+}
+
+.next-appointment-last-treatment{
+    display: flex;
+    flex-wrap: wrap;
+    width: 55%;
+}
+
+.next-appointment-last-treatment-title{
+    width: 100%;
+}
+
+.next-appointment-last-treatment-head{
+    width: 50ch;
+    max-width: 40%;
+}
+
+.next-appointment-last-treatment-content{
+    width: 50ch;
+    max-width: 60%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+
+
+.next-appointment-info{
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+}
+
+.next-appointment-info-title{
+    width: 100%;
+}
+
+.next-appointment-info-head{
+    width: 50ch;
+    max-width: 55%;
+}
+
+.next-appointment-info-content{
+    width: 50ch;
+    max-width: 45%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+
+
+
+.next-appointment-buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.next-appointment-buttons-container {
+    width: 40%;
+    color: #1B84F4 !important;
+}
+
+
+
+h4 {
+    color: #1B84F4;
+    width: 100%;
+}
+
+h6 {
+    color: #1B84F4;
+    width: 100%;
+}

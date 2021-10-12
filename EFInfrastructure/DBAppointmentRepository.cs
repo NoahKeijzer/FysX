@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EFInfrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFInfrastructure
 {
@@ -82,7 +83,7 @@ namespace EFInfrastructure
 
         public List<Appointment> GetUpcomingAppointmentsForTreator(Treator treator)
         {
-            return _context.Appointments.Where(p => p.Treator == treator && p.AppointmentDateTime > DateTime.Now).ToList();
+            return _context.Appointments.Where(p => p.Treator == treator && p.AppointmentDateTime > DateTime.Now).Include(p => p.Patient).Include(p => p.Treator).ToList();
         }
 
         public void UpdateAppointment(int id, Appointment updatedAppointment)
