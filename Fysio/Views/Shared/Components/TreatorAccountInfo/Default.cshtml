@@ -1,0 +1,102 @@
+﻿@model Domain.Availability
+
+<link rel="stylesheet" href="~/css/Home/TreatorAccountStyle.css" />
+
+<body>
+    <div class="account">
+        <div class="account-title">
+            <h4>Jouw account</h4>
+            @if (ViewBag.IsFysio)
+            {
+                <h6>Fysiotherapeut</h6>
+            } else
+            {
+                <h6>Student</h6>
+            }
+        </div>
+        <div class="account-info">
+            <div class="account-info-title">
+                <h6>Informatie:</h6>
+            </div>
+            @if (ViewBag.IsFysio)
+            {
+                <div class="account-info-head">
+                    <span>Naam:</span>
+                    <br />
+                    <span>Email:</span>
+                    <br />
+                    <span>Telefoon:</span>
+                    <br />
+                    <span>Schoolnummer:</span>
+                    <br />
+                    <span>Bignummer:</span>
+                </div>
+                <div class="account-info-content">
+                    <span>@ViewBag.Treator.Name</span>
+                    <br />
+                    <span>@ViewBag.Treator.Email</span>
+                    <br />
+                    <span>@ViewBag.Treator.PhoneNumber</span>
+                    <br />
+                    <span>@ViewBag.Treator.TeacherNumber</span>
+                    <br />
+                    <span>@ViewBag.Treator.BIGNumber</span>
+                </div>
+            }
+            else
+            {
+                <div class="account-info-head">
+                    <span>Naam:</span>
+                    <br />
+                    <span>Email:</span>
+                    <br />
+                    <span>Schoolnummer:</span>
+                </div>
+                <div class="account-info-content">
+                    <span>@ViewBag.Treator.Name</span>
+                    <br />
+                    <span>@ViewBag.Treator.Email</span>
+                    <br />
+                    <span>@ViewBag.Treator.StudentNumber</span>
+                </div>
+            }
+        </div>
+        <div class="account-availability">
+            <div class="account-availability-title">
+                <h6>Beschikbaarheid:</h6>
+            </div>
+            @if(Model != null)
+            {
+                <div class="account-availability-head">
+                    <span>Ma:</span>
+                    <br />
+                    <span>Di:</span>
+                    <br />
+                    <span>Wo:</span>
+                    <br />
+                    <span>Do:</span>
+                    <br />
+                    <span>Vr:</span>
+                </div>
+                <div class="account-availability-content">
+                    <span>@Model.MOStartTime.ToShortTimeString() - @Model.MOEndTime.ToShortTimeString()</span>
+                    <br />
+                    <span>@Model.TUStartTime.ToShortTimeString() - @Model.TUEndTime.ToShortTimeString()</span>
+                    <br />
+                    <span>@Model.WEStartTime.ToShortTimeString() - @Model.WEEndTime.ToShortTimeString()</span>
+                    <br />
+                    <span>@Model.THStartTime.ToShortTimeString() - @Model.THEndTime.ToShortTimeString()</span>
+                    <br />
+                    <span>@Model.FRStartTime.ToShortTimeString() - @Model.FREndTime.ToShortTimeString()</span>
+                </div>
+            } else
+            {
+                <h6>Nog geen beschikbaarheid</h6>
+            }
+        </div>
+        <div class="account-buttons">
+            <a class="link-styled account-buttons-btn">Account wijzigen</a>
+            <a class="link-styled account-buttons-btn">Beschikbaarheid wijzigen</a>
+        </div>
+    </div>
+</body>

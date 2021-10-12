@@ -11,7 +11,7 @@
             @await Component.InvokeAsync("TreatorNextAppointment", new { treator = Model })
         </div>
         <div class="dashboard-account">
-            <h1>account</h1>
+            @await Component.InvokeAsync("TreatorAccountInfo", new { t = Model })
         </div>
     </div>
 </body>

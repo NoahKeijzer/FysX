@@ -4,6 +4,9 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 100vh;
 }
 
 .dashboard-welcome{
@@ -28,8 +31,5 @@
     margin: 30px;
     margin-top: 0;
     margin-left: 0;
-    padding: 20px;
-    background: white;
-    border-radius: 15px;
 }
 

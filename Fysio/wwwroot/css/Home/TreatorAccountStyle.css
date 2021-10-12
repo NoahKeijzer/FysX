@@ -1,0 +1,94 @@
+﻿.account {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: baseline;
+}
+
+.account-title{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.account-title h6 {
+    color: #0B3E74;
+}
+
+
+
+
+.account-info{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+}
+
+.account-info-title{
+    width: 100%;
+}
+
+.account-info-head{
+    width: 50ch;
+    max-width: 45%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.account-info-content {
+    width: 50ch;
+    max-width: 55%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+
+
+
+.account-availability{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.account-availability-title{
+    width: 100%;
+}
+
+.account-availability-head{
+    width: 5ch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.account-availability-content{
+    width: 50ch;
+    max-width: 70%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+
+
+
+.account-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.account-buttons-btn {
+    width: 40%;
+    color: #1B84F4 !important;
+}
