@@ -1,15 +1,3 @@
-﻿body {
-}
-
-.hidden-select{
-    display: none;
-}
-
-.possible-date{
-    display: none;
-}
-
-.visible-select{
-    display: block !important;
-
+﻿.form-input-group{
+    width: 40%;
 }

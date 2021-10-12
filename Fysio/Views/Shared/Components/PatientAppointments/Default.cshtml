@@ -27,7 +27,8 @@
                 <h6>Nog geen afspraken ingepland</h6>
             }
         <div class="appointments-btn">
-            <a asp-action="test" asp-controller="home" class="link-styled create-appointment">Maak een afspraak</a>
+
+            <a asp-action="AddAppointment" asp-controller="Appointment" asp-route-patientId="@ViewBag.patientId" class="link-styled create-appointment">Maak een afspraak</a>
         </div>
     </div>
 </body>

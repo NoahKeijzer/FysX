@@ -35,16 +35,12 @@ namespace Fysio.Controllers
         [Authorize(Policy = "RequireTreator")]
         public IActionResult Index()
         {
-            if (HttpContext.User.HasClaim(c => c.Type == "Claim.Treator"))
-            {
-                //ViewBag.Name = treatorRepository.GetTreatorByEmail(User.FindFirstValue(ClaimTypes.Email)).Name;
-                return View(ConvertPatientToPatientModelList());
-            }
-            else
-            {
-                return View(new List<PatientModel>());
-            }
-            //return RedirectToAction("Register", "Account");
+            IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
+            string email = usr.Email;
+            Treator t = treatorRepository.GetTreatorByEmail(email);
+
+            ViewBag.Name = t.Name;
+            return View(t);
         }
 
         public IActionResult Privacy()

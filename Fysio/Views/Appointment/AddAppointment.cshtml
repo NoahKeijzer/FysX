@@ -1,14 +1,49 @@
 ﻿@model AppointmentModel
 
+<link href="~/css/Patient/AddPatientStyle.css" rel="stylesheet" />
 <link href="~/css/Appointment/AddAppointmentStyle.css" rel="stylesheet" />
+<script src="~/js/MenuItems.js"></script>
+
+<script>
+    activeMenu3();
+</script>
+
 <script src="~/js/AddAppointmentScript.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
 
 <body>
-    <div>
-        
-        <input id="datepicker" type="date"/>
-        <input id="timepicker" type="time"/>
-        <select asp-for="AppointmentDateTime" asp-items="@ViewBag.possibleAppointments">
-        </select>
+    <div class="form-add-patient">
+        <form method="post" asp-action="AddAppointment" class="form">
+            <div class="form-input-group">
+                <label asp-for="TreatorEmail">Behandelaar:</label>
+                <select id="treator" asp-for="TreatorEmail" asp-items="@ViewBag.Treators" onchange="dateChangedScript()" class="input-field-form">
+                </select>
+            </div>
+
+            <div class="form-input-group">
+                <label asp-for="PatientId">Patient:</label>
+                <select id="patient" asp-for="PatientId" asp-items="@ViewBag.Patients" onchange="dateChangedScript()" class="input-field-form">
+                </select>
+            </div>
+
+            <div class="form-input-group">
+                <label asp-for="AppointmentDate">Datum:</label>
+                <input id="datepicker" asp-for="AppointmentDate" type="date" onchange="dateChangedScript()" class="input-field-form" />
+            </div>
+
+            <div class="form-input-group">
+                <label asp-for="AppointmentTime">Tijd:</label>
+                <select id="timelist" asp-for="AppointmentTime" class="input-field-form">
+                    <option value="null">Kies een datum...</option>
+                </select>
+            </div>
+
+            <div class="form-submit">
+                <button class="btn-active-menu" type="submit">Voeg afspraak toe</button>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+
     </div>
 </body>
+

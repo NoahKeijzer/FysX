@@ -101,6 +101,12 @@ namespace EFInfrastructure
 
         public IEnumerable<DateTime> GetPossibleTimesOnDate(Treator treator, PatientFile patientFile, DateTime dateTime)
         {
+
+            if(dateTime <= DateTime.Now)
+            {
+                return new List<DateTime>();
+            }
+
             List<DateTime> possibleTimes = new List<DateTime>();
             Availability availabilityTreator = availabilityRepository.GetAvailabilityForTreator(treator);
             DateTime startTime = DateTime.MinValue;

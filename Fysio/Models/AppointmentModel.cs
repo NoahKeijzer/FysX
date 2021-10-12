@@ -15,6 +15,9 @@ namespace Fysio.Models
         public int PatientId { get; set; }
 
         [Required]
-        public DateTime AppointmentDateTime { get; set; }
+        public string AppointmentDate { get; set; }
+
+        [Required]
+        public string AppointmentTime { get; set; }
     }
 }

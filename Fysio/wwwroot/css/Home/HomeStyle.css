@@ -1,3 +1,34 @@
-﻿body {
-    overflow-x: hidden;
+﻿.dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-welcome{
+    width: 100%;
+    margin: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+}
+
+.dashboard-next-appointment{
+    width: 45%;
+    margin: 30px;
+    margin-top: 0;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+}
+
+.dashboard-account{
+    width: 45%;
+    margin: 30px;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
 }

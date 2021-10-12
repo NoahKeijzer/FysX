@@ -1,38 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-@model IEnumerable<Fysio.Models.PatientModel>
+﻿@model Domain.Treator
 
 <link rel="stylesheet" href="~/css/Home/HomeStyle.css" />
 
 <body>
-    <div>
-        <h2>@ViewBag.Name</h2>
-        <a asp-action="PatientForm"><button class="btn btn-primary text-center">Voeg een patient toe</button></a>
+    <div class="dashboard">
+        <div class="dashboard-welcome">
+            <h4>Welkom terug @ViewBag.Name!</h4>
+            <h6>Je komende afspraken:</h6>
+        </div>
+        <div class="dashboard-next-appointment">
+            <h1>afspraak</h1>
+        </div>
+        <div class="dashboard-account">
+            <h1>account</h1>
+        </div>
     </div>
-    <div>
-        <h3>Patienten:</h3>
-        <table class="table table-bordered table-striped table-sm">
-            <thead>
-                <tr><th>Id</th><th>Naam</th><th>Email</th><th>Telefoonnummer</th><th>Leraar/Student</th><th>Nummer</th><th>Geboortedatum</th><th>Geslacht</th><th>Meer info</th></tr>
-            </thead>
-            <tbody>
-                @foreach (Fysio.Models.PatientModel p in Model)
-                {
-                    <tr>
-                        <td>@p.Id</td>
-                        <td>@p.Name</td>
-                        <td>@p.Email</td>
-                        <td>@p.PhoneNumber</td>
-                        <td>@p.Teacher</td>
-                        <td>@p.RegistrationNumber</td>
-                        <td>@p.Birthdate.ToShortDateString()</td>
-                        <td>@p.Gender</td>
-                        <td>@Html.ActionLink("Meer info", "Patient", p)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
 </body>

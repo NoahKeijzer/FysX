@@ -22,6 +22,7 @@ namespace Fysio.ViewComponents
 
         public IViewComponentResult Invoke(PatientModel patient)
         {
+            ViewBag.PatientId = patient.Id;
             List<Appointment> appointments = appointmentRepository.GetUpcomingAppointmentsForPatient(patientRepository.GetPatientById(patient.Id));
             if(appointments.Count > 0)
             {
