@@ -34,19 +34,18 @@ namespace Fysio.Controllers
             {
                 IdentityUser user = await userManager.FindByEmailAsync(loginModel.Email);
                 bool result = false;
+                bool isTreator = false;
                 if (user != null)
                 {
                     var temp = await signInManager.PasswordSignInAsync(user, loginModel.Password, false, false);
                     result = temp.Succeeded;
-                }
 
-                var claims = await userManager.GetClaimsAsync(user);
-                bool isTreator = false;
-                foreach (Claim claim in claims)
-                {
-                    if (claim.Value.Equals("Treator")) isTreator = true;
+                    var claims = await userManager.GetClaimsAsync(user);
+                    foreach (Claim claim in claims)
+                    {
+                        if (claim.Value.Equals("Treator")) isTreator = true;
+                    }
                 }
-
 
                 if (result)
                 {

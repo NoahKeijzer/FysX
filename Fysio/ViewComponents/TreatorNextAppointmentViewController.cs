@@ -25,9 +25,15 @@ namespace Fysio.ViewComponents
         {
             IEnumerable<Appointment> appointments = appointmentRepository.GetUpcomingAppointmentsForTreator(treator);
             Appointment a = appointments.FirstOrDefault();
-            Patient p = a.Patient;
-            PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
-            Treatment lastTreatment = treatmentRepository.GetTreatmentsForPatient(p).OrderByDescending(p => p.TreatmentDateTime).FirstOrDefault();
+            Patient p = null;
+            PatientFile pf = null;
+            Treatment lastTreatment = null;
+            if (a != null)
+            {
+                p = a.Patient;
+                pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                lastTreatment = treatmentRepository.GetTreatmentsForPatient(p).OrderByDescending(p => p.TreatmentDateTime).FirstOrDefault();
+            }
 
             ViewBag.LastTreatment = lastTreatment;
             ViewBag.Appointment = a;
