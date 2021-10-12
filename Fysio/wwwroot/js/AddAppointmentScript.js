@@ -1,4 +1,4 @@
-function dateChangedScript() {
+﻿function dateChangedScript() {
     var date = document.getElementById('datepicker')?.value;
     var patientId = document.getElementById('patient')?.value;
     var treatorId = document.getElementById('treator')?.value;
@@ -15,7 +15,7 @@ function dateChangedScript() {
                 }
                 $('#timelist').append(options);
 
-            } else{
+            } else {
                 $('#timelist').html('');
                 var options = '';
                 options += '<option value="Select">Geen moment beschikbaar...</option>';
