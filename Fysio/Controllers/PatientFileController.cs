@@ -45,8 +45,6 @@ namespace Fysio.Controllers
                     } else
                     {
                         PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patientRepository.GetPatientById(id));
-                       // addAppointmentService.AddAppointment(new Appointment(pf.MainTreator, pf.Patient, DateTime.Now, DateTime.Now.AddMinutes(60)), pf);
-                       // addAppointmentService.AddAppointment(new Appointment(pf.MainTreator, pf.Patient, DateTime.Now.AddHours(-3), DateTime.Now.AddHours(-3).AddMinutes(60)), pf);
                         return View(pf);
                     }
                 }

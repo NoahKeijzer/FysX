@@ -46,7 +46,7 @@ namespace EFInfrastructure
             {
                 if (appointment.AppointmentDateTime.DayOfWeek == System.DayOfWeek.Monday)
                 {
-                    if (appointment.AppointmentDateTime.TimeOfDay > availabilityTreator.MOStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay < availabilityTreator.MOEndTime.TimeOfDay)
+                    if (appointment.AppointmentDateTime.TimeOfDay >= availabilityTreator.MOStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay <= availabilityTreator.MOEndTime.TimeOfDay)
                     {
                         appointmentRepository.AddAppointment(appointment);
                         return true;
@@ -54,7 +54,7 @@ namespace EFInfrastructure
                 }
                 else if (appointment.AppointmentDateTime.DayOfWeek == System.DayOfWeek.Tuesday)
                 {
-                    if (appointment.AppointmentDateTime.TimeOfDay > availabilityTreator.TUStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay < availabilityTreator.TUEndTime.TimeOfDay)
+                    if (appointment.AppointmentDateTime.TimeOfDay >= availabilityTreator.TUStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay <= availabilityTreator.TUEndTime.TimeOfDay)
                     {
                         appointmentRepository.AddAppointment(appointment);
                         return true;
@@ -62,7 +62,7 @@ namespace EFInfrastructure
                 }
                 else if (appointment.AppointmentDateTime.DayOfWeek == System.DayOfWeek.Wednesday)
                 {
-                    if (appointment.AppointmentDateTime.TimeOfDay > availabilityTreator.WEStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay < availabilityTreator.WEEndTime.TimeOfDay)
+                    if (appointment.AppointmentDateTime.TimeOfDay >= availabilityTreator.WEStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay <= availabilityTreator.WEEndTime.TimeOfDay)
                     {
                         appointmentRepository.AddAppointment(appointment);
                         return true;
@@ -70,7 +70,7 @@ namespace EFInfrastructure
                 }
                 else if (appointment.AppointmentDateTime.DayOfWeek == System.DayOfWeek.Thursday)
                 {
-                    if (appointment.AppointmentDateTime.TimeOfDay > availabilityTreator.THStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay < availabilityTreator.THEndTime.TimeOfDay)
+                    if (appointment.AppointmentDateTime.TimeOfDay >= availabilityTreator.THStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay <= availabilityTreator.THEndTime.TimeOfDay)
                     {
                         appointmentRepository.AddAppointment(appointment);
                         return true;
@@ -78,7 +78,7 @@ namespace EFInfrastructure
                 }
                 else if (appointment.AppointmentDateTime.DayOfWeek == System.DayOfWeek.Friday)
                 {
-                    if (appointment.AppointmentDateTime.TimeOfDay > availabilityTreator.FRStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay < availabilityTreator.FREndTime.TimeOfDay)
+                    if (appointment.AppointmentDateTime.TimeOfDay >= availabilityTreator.FRStartTime.TimeOfDay && appointment.EndDateTime.TimeOfDay <= availabilityTreator.FREndTime.TimeOfDay)
                     {
                         appointmentRepository.AddAppointment(appointment);
                         return true;

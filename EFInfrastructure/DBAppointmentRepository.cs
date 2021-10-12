@@ -83,7 +83,7 @@ namespace EFInfrastructure
 
         public List<Appointment> GetUpcomingAppointmentsForTreator(Treator treator)
         {
-            return _context.Appointments.Where(p => p.Treator == treator && p.AppointmentDateTime > DateTime.Now).Include(p => p.Patient).Include(p => p.Treator).ToList();
+            return _context.Appointments.OrderBy(p => p.AppointmentDateTime).Where(p => p.Treator == treator && p.AppointmentDateTime > DateTime.Now).Include(p => p.Patient).Include(p => p.Treator).ToList();
         }
 
         public void UpdateAppointment(int id, Appointment updatedAppointment)
