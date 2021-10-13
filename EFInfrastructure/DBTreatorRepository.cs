@@ -77,10 +77,23 @@ namespace EFInfrastructure
             return _context.Treators.Where(p => p.Email == email).FirstOrDefault();
         }
 
-        public void UpdateTreator(int id, Treator updatedTreator)
+        public void UpdateTreator(Treator updatedTreator)
         {
-            Treator old = _context.Treators.Where(p => p.Email == updatedTreator.Email).FirstOrDefault();
-            old = updatedTreator;
+            if(updatedTreator is FysioTherapist)
+            {
+                FysioTherapist uf = (FysioTherapist)updatedTreator;
+                FysioTherapist f = (FysioTherapist)_context.Treators.Where(p => p.Email == updatedTreator.Email).FirstOrDefault();
+                f.Name = uf.Name;
+                f.PhoneNumber = uf.PhoneNumber;
+                f.BIGNumber = uf.BIGNumber;
+                f.TeacherNumber = uf.TeacherNumber;
+            } else
+            {
+                Student uf = (Student)updatedTreator;
+                Student f = (Student)_context.Treators.Where(p => p.Email == updatedTreator.Email).FirstOrDefault();
+                f.Name = uf.Name;
+                f.StudentNumber = uf.StudentNumber;
+            }
             _context.SaveChanges();
         }
     }

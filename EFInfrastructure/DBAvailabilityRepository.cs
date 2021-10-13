@@ -19,8 +19,14 @@ namespace EFInfrastructure
 
         public void AddAvailability(Availability availability)
         {
-            _context.Add(availability);
-            _context.SaveChanges();
+            if(_context.Availabilities.Where(p => p.Treator == availability.Treator).Count() == 0)
+            {
+                _context.Add(availability);
+                _context.SaveChanges();
+            } else
+            {
+                UpdateAvailability(availability.Treator, availability);
+            }
         }
 
         public void DeleteAvailability(Availability availability)
@@ -43,7 +49,16 @@ namespace EFInfrastructure
         public void UpdateAvailability(Treator treator, Availability updatedAvailability)
         {
             Availability availability = _context.Availabilities.Where(p => p.Treator == treator).FirstOrDefault();
-            availability = updatedAvailability;
+            availability.MOStartTime = updatedAvailability.MOStartTime;
+            availability.MOEndTime = updatedAvailability.MOEndTime;
+            availability.TUStartTime = updatedAvailability.TUStartTime;
+            availability.TUEndTime = updatedAvailability.TUEndTime;
+            availability.WEStartTime = updatedAvailability.WEStartTime;
+            availability.WEEndTime = updatedAvailability.WEEndTime;
+            availability.THStartTime = updatedAvailability.THStartTime;
+            availability.THEndTime = updatedAvailability.THEndTime;
+            availability.FRStartTime = updatedAvailability.FRStartTime;
+            availability.FREndTime = updatedAvailability.FREndTime;
             _context.SaveChanges();
         }
     }

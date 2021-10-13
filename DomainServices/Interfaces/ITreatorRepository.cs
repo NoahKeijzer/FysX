@@ -11,7 +11,7 @@ namespace DomainServices.Interfaces
     {
         public void AddTreator(Treator treator);
         public void DeleteTreator(Treator treator);
-        public void UpdateTreator(int id, Treator updatedTreator);
+        public void UpdateTreator(Treator updatedTreator);
         public Treator GetTreatorByEmail(string email);
         public List<Treator> GetAllTreators();
         public List<FysioTherapist> GetAllFysios();

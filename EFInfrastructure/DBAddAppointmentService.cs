@@ -24,6 +24,7 @@ namespace EFInfrastructure
 
         public bool AddAppointment(Appointment appointment, PatientFile patientFile)
         {
+            IsPossibleTime(appointment.Treator, appointment.AppointmentDateTime, patientFile.TreatmentPlan.MinutesPerSession);
             Availability availabilityTreator = availabilityRepository.GetAvailabilityForTreator(appointment.Treator);
             List<Appointment> appointmentsOnDay = appointmentRepository.GetAppointmentsForDateForTreator(appointment.Treator, appointment.AppointmentDateTime);
             List<Appointment> appointmentsForPatient = appointmentRepository.GetAppointmentsForDateForPatient(appointment.Patient, appointment.AppointmentDateTime);
