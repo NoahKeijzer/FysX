@@ -168,6 +168,37 @@
 
 
 
+
+.fab {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 75px;
+    height: 75px;
+    background: #357EF5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.fab-icon {
+    stroke: #EAEBFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: #357EF5;
+    transform: scale(1.5);
+}
+
+
+
+
+
+
+
 h4 {
     color: #1B84F4;
 }

@@ -183,8 +183,7 @@
                     @foreach (Domain.Treatment treatment in Model.Treatments)
                     {
                         <div class="treatments-list-item">
-                            @{ string treatmentDetailUrl = "/treatment/" + treatment.Id;}
-                            <a href="@treatmentDetailUrl">
+                            <a asp-action="Index" asp-controller="Treatment" asp-route-id="@treatment.Id">
                                 <div class="treatments-list-item-title">
                                     <h6>@treatment.TreatmentDateTime.ToShortDateString()</h6>
                                 </div>
@@ -210,8 +209,8 @@
                     }
             </div>
             <div class="treatments-btn">
-                @{ var treatmentUrl = "/Treatment/AddTreatment/" + Model.Patient.Email;}
-                    <a class="link-styled" href="@treatmentUrl">Behandeling maken</a>
+                
+                    <a class="link-styled" asp-action="AddTreatment" asp-controller="Treatment" asp-route-p="@Model.Patient.Email" asp-route-id="0">Behandeling maken</a>
                 </div>
         </div>
     </div>

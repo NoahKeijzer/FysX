@@ -77,7 +77,7 @@
                 <div class="next-appointment-buttons">
                     <a class="link-styled next-appointment-buttons-container" asp-action="PatientDetail" asp-controller="Patient" asp-route-id="@Model.Patient.Id">Naar Patiënt</a>
                     <a class="link-styled next-appointment-buttons-container" asp-action="Index" asp-controller="PatientFile" asp-route-id="@Model.Patient.Id">Naar Dossier</a>
-                    <a class="link-styled next-appointment-buttons-container" asp-action="AddTreatment" asp-controller="Treatment" asp-route-p="@Model.Patient.Email">Behandeling maken</a>
+                    <a class="link-styled next-appointment-buttons-container" asp-action="AddTreatment" asp-controller="Treatment" asp-route-p="@Model.Patient.Email" asp-route-id="0">Behandeling maken</a>
                     <a class="link-styled next-appointment-buttons-container" asp-action="AddAppointment" asp-controller="Appointment" asp-route-id="@Model.Patient.Id">Afspraak maken</a>
                 </div>
 

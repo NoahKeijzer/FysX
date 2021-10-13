@@ -1,6 +1,7 @@
 ﻿@model Domain.Treatment
 
 <link rel="stylesheet" href="~/css/Treatment/TreatmentDetailStyle.css" />
+<script src="https://unpkg.com/feather-icons"></script>
 <script src="~/js/MenuItems.js"></script>
 
 <body>
@@ -81,8 +82,19 @@
             </div>
         </div>
     </div>
+
+    @if(Model.TreatmentDateTime > DateTime.Now.AddDays(-1))
+    {
+
+        <div class="fab">
+            <a asp-action="AddTreatment" asp-controller="Treatment" asp-route-p="@Model.Patient.Email" asp-route-id="@Model.Id">
+                <i data-feather="edit" class="fab-icon"></i>
+            </a>
+        </div>
+    }
 </body>
 
 <script>
+    feather.replace();
     activeMenu2();
 </script>

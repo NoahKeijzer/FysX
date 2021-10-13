@@ -10,6 +10,7 @@
         </div>
         <form asp-action="AddTreatment" method="post" class="form">
             <input asp-for="PatientEmail" value="@Model.PatientEmail" class="hidden" />
+            <input asp-for="TreatmentId" value="@Model.TreatmentId" class="hidden" />
             <div class="form-personal">
                 <div class="form-input-group">
                     <label asp-for="Type">Type behandeling</label>
@@ -18,7 +19,7 @@
 
                 <div class="form-input-group">
                     <label asp-for="Description">Omschrijving</label>
-                    <textarea asp-for="Description" class="input-field-form" ></textarea>
+                    <textarea asp-for="Description" class="input-field-form"></textarea>
                 </div>
             </div>
             <div class="form-contact">
@@ -29,7 +30,7 @@
 
                 <div class="form-input-group">
                     <label asp-for="Particularities">Bijzonderheden</label>
-                    <textarea asp-for="Particularities" class="input-field-form" > </textarea>
+                    <textarea asp-for="Particularities" class="input-field-form"> </textarea>
                 </div>
             </div>
             <div class="form-submit">

@@ -53,8 +53,17 @@ namespace EFInfrastructure
         public void UpdateTreatment(int id, Treatment updatedTreatment)
         {
             Treatment old = _context.Treatments.Where(p => p.Id == id).FirstOrDefault();
-            old = updatedTreatment;
-            _context.SaveChanges();
+            if(old.TreatmentDateTime > DateTime.Now.AddDays(-1))
+            {
+                old.Type = updatedTreatment.Type;
+                old.Location = updatedTreatment.Location;
+                old.Particularities = updatedTreatment.Particularities;
+                old.Description = updatedTreatment.Description;
+                _context.SaveChanges();
+            } else
+            {
+                throw new Exception("InvalidTreatmentEdit");
+            }
         }
     }
 }

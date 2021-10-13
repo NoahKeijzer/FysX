@@ -30,7 +30,6 @@ namespace Fysio.Controllers
             this.userManager = userManager;
         }
 
-        [Route("/Treatment/{id}")]
         public IActionResult Index(int id)
         {
             Treatment t = treatmentRepository.GetTreatmentById(id);
@@ -38,10 +37,17 @@ namespace Fysio.Controllers
         }
         
         [HttpGet]
-        [Route("/Treatment/AddTreatment/{p}")]
-        public IActionResult AddTreatment(string p)
+        public IActionResult AddTreatment(string p, int id)
         {
-            return View(new TreatmentModel() { PatientEmail = p});
+            Treatment t = treatmentRepository.GetTreatmentById(id);
+            if(t != null)
+            {
+                TreatmentModel treatmentModel = new TreatmentModel(t.Type, t.Description, t.Location, t.Particularities) { PatientEmail = t.Patient.Email, TreatmentId = t.Id };
+                return View(treatmentModel);
+            } else
+            {
+                return View(new TreatmentModel() { PatientEmail = p});
+            }
         }
 
         [HttpPost]
@@ -50,19 +56,33 @@ namespace Fysio.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
-                string email = usr.Email;
-                Treator treator = treatorRepository.GetTreatorByEmail(email);
+                if(model.TreatmentId != 0)
+                {
+                    IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
+                    string email = usr.Email;
+                    Treator treator = treatorRepository.GetTreatorByEmail(email);
 
-                Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
+                    Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
 
-                Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
-                treatmentRepository.AddTreatment(t);
+                    Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
+                    treatmentRepository.UpdateTreatment(model.TreatmentId, t);
+                    return (ActionResult)ToPatientList();
+                } else
+                {
+                    IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
+                    string email = usr.Email;
+                    Treator treator = treatorRepository.GetTreatorByEmail(email);
 
-                PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
-                pf.Treatments.Add(t);
-                patientFileRepository.UpdatePatientFile(pf);
-                return (ActionResult)ToPatientList();
+                    Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
+
+                    Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
+                    treatmentRepository.AddTreatment(t);
+
+                    PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                    pf.Treatments.Add(t);
+                    patientFileRepository.UpdatePatientFile(pf);
+                    return (ActionResult)ToPatientList();
+                }
             } else
             {
                 return View();

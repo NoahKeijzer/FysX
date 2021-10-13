@@ -19,6 +19,8 @@ namespace Fysio.Models
 
         public string PatientEmail { get; set; }
 
+        public int TreatmentId { get; set; }
+
         public TreatmentModel(string type, string description, string location, string particularities)
         {
             Type = type;
