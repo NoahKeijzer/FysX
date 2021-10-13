@@ -10,33 +10,31 @@
 <link rel="stylesheet" href="~/css/Patient/PatientStyle.css" />
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="~/js/MenuItems.js"></script>
+<script src="~/js/PatientSearchScript.js"></script>
+
 <body>
     <div class="patient">
         <div class="search-bar">
-            <input class="" type="text" placeholder="Zoeken..." />
+            <input id="searchfield" class="" type="text" placeholder="Zoeken..." oninput="searchFunction()"/>
             <img src="~/icons/search.svg" alt="search icon" class="icon-search" />
         </div>
         <div class="patient-list">
             @foreach (PatientModel p in Model)
             {
                 
-                <div class="patient-item">
-                    @{
-                        var url = "/Patient/PatientDetail/" + p.Id;
-                    }
+                <div class="patient-item" id="@p.Name">
+
                     <div class="patient-item-icon">
                         <img src="~/icons/user.svg" alt="User icon" class="icon" />
                     </div>
                     <div class="patient-item-textbox">
-                        <a href="@url">
+                        <a asp-action="PatientDetail" asp-controller="Patient" asp-route-id="@p.Id">
                             <p class="patient-item-text"><strong>@p.Name</strong></p>
                             <p class="patient-item-text">@p.Birthdate.ToShortDateString()</p>
                         </a>
                     </div>
                     <div class="patient-item-icon">
-
-
-                        <a href="@url">
+                        <a asp-action="PatientDetail" asp-controller="Patient" asp-route-id="@p.Id">
                             <img src="~/icons/chevron-right.svg" alt="Chevron right icon" class="icon" />
                         </a>
                     </div>

@@ -42,7 +42,6 @@ namespace Fysio.Controllers
         [HttpGet]
         public IActionResult AddPatient()
         {
-            ClaimsPrincipal currentUser = this.User;
             return View();
         }
 

@@ -105,3 +105,8 @@ input:focus {
     stroke-linejoin: round;
     fill: #357EF5;
 }
+
+
+.hidden{
+    display: none !important;
+}
