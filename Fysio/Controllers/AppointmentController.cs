@@ -2,6 +2,7 @@
 using DomainServices.Interfaces;
 using DomainServices.Services;
 using Fysio.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Fysio.Controllers
 {
+    [Authorize(Policy = "RequireTreator")]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentRepository appointmentRepository;

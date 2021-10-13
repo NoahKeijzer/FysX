@@ -8,9 +8,11 @@ using DomainServices.Interfaces;
 using DomainServices.Services;
 using Fysio.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fysio.Controllers
 {
+    [Authorize(Policy = "RequireTreator")]
     public class PatientFileController : Controller
     {
         private readonly IPatientFileRepository patientFileRepository;

@@ -8,9 +8,11 @@ using Domain;
 using DomainServices.Interfaces;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fysio.Controllers
 {
+    [Authorize(Policy = "RequireTreator")]
     public class TreatmentController : Controller
     {
         private readonly ITreatmentRepository treatmentRepository;

@@ -42,6 +42,7 @@ namespace Fysio.Controllers
         [HttpGet]
         public IActionResult AddPatient()
         {
+            ClaimsPrincipal currentUser = this.User;
             return View();
         }
 
@@ -82,13 +83,17 @@ namespace Fysio.Controllers
             }
         }
 
+        [HttpGet]
+        [Authorize(Policy = "RequireFysio")]
         public IActionResult AddPatientfile()
         {
+            
             AddTreatorsToViewBag();
             return View();
         }
 
         [HttpPost]
+        [Authorize(Policy = "RequireFysio")]
         [ValidateAntiForgeryToken]
         public ViewResult AddPatientFile(PatientFileModel patientFileModel)
         {
