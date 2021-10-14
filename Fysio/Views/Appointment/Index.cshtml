@@ -12,7 +12,7 @@
             <div class="appointments-page-list-block">
                 @foreach (Domain.Appointment a in Model.OrderBy(p => p.AppointmentDateTime))
                 {
-                    <div class="appointments-page-list-item" >
+                    <div class="appointments-page-list-item">
                         <div class="appointments-page-list-item-info">
                             <span class="appointments-page-list-item-info-title">@a.Patient.Name</span>
                             <br />
@@ -31,6 +31,12 @@
         </div>
         <div class="appointments-page-detail" id="component">
         </div>
+    </div>
+
+    <div class="fab">
+        <a asp-action="AddAppointment" asp-controller="Appointment">
+            <i data-feather="plus" class="fab-icon"></i>
+        </a>
     </div>
 </body>
 

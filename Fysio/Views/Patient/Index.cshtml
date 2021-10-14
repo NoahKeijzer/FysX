@@ -9,13 +9,13 @@
 <body>
     <div class="patient">
         <div class="search-bar">
-            <input id="searchfield" class="" type="text" placeholder="Zoeken..." oninput="searchFunction()"/>
+            <input id="searchfield" class="" type="text" placeholder="Zoeken..." oninput="searchFunction()" />
             <img src="~/icons/search.svg" alt="search icon" class="icon-search" />
         </div>
         <div class="patient-list">
             @foreach (PatientModel p in Model)
             {
-                
+
                 <div class="patient-item" id="@p.Name">
 
                     <div class="patient-item-icon">
@@ -36,9 +36,10 @@
             }
         </div>
     </div>
+
     <div class="fab">
         <a asp-action="AddPatient" asp-controller="Patient">
-            <i data-feather="plus-circle" class="fab-icon"></i>
+            <i data-feather="plus" class="fab-icon"></i>
         </a>
     </div>
 </body>
