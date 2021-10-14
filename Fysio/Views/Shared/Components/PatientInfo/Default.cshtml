@@ -14,7 +14,13 @@
             <h4 class="detail-info-title-text">Algemene informatie</h4>
         </div>
         <div class="detail-info-icon">
-            <img src="~/icons/user.svg" alt="User icon" class="user-icon" />
+            @if(Model.ImageSrc != null && Model.ImageSrc != "")
+            {
+                <img src="@Model.ImageSrc" alt="User foto" class="user-foto" />
+            } else
+            {
+                <img src="~/icons/user.svg" alt="User icon" class="user-icon" />
+            }
         </div>
         <div class="detail-info-content">
             <div class="detail-info-content-item">

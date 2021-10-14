@@ -11,6 +11,8 @@ using EFInfrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Fysio.Controllers
 {
@@ -138,7 +140,12 @@ namespace Fysio.Controllers
         private PatientModel ConvertPatientToPatientModel(Patient patient)
         {
             bool gender = patient.Gender == Gender.Male ? true : false;
-            return new PatientModel() { Birthdate = patient.BirthDate, Email = patient.Email, Name = patient.Name, PhoneNumber = patient.PhoneNumber, RegistrationNumber = patient.RegistrationNumber, Teacher = !patient.Student, Gender = gender, Id = patient.Id };
+            PatientModel model = new PatientModel() { Birthdate = patient.BirthDate, Email = patient.Email, Name = patient.Name, PhoneNumber = patient.PhoneNumber, RegistrationNumber = patient.RegistrationNumber, Teacher = !patient.Student, Gender = gender, Id = patient.Id };
+            if (patient.Image != null)
+            {
+                model.ImageSrc = "data:image/gif;base64," + Convert.ToBase64String(patient.Image);
+            }
+            return model;
         }
 
         private List<PatientModel> ConvertPatientToPatientModelList()
@@ -170,6 +177,8 @@ namespace Fysio.Controllers
             int dob = int.Parse(patient.BirthDate.ToString("yyyyMMdd"));
             return (now - dob) / 10000;
         }
+
+
 
     }
 }

@@ -18,6 +18,7 @@ namespace Domain
         public int RegistrationNumber { get; set; }
         public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
+        public byte[] Image { get; set; }
 
         ICollection<Appointment> Appointments { get; set; }
         PatientFile PatientFile { get; set; }

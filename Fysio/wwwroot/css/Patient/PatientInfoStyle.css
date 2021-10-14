@@ -19,6 +19,11 @@
     height: 60px;
 }
 
+.user-foto {
+    padding: 10px;
+    width: 80px;
+}
+
 .detail-info-content{
     width: 93%;
     display: flex;

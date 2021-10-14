@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Domain;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Fysio.Models
 {
@@ -33,11 +35,23 @@ namespace Fysio.Models
         [Required (ErrorMessage = "Geslacht is verplicht")]
         public bool Gender { get; set; }
 
+        public IFormFile Image { get; set; }
+
+        public string ImageSrc { get; set; }
+
 
         public Patient ConvertPatientModelToPatient()
         {
             Gender gender = Gender ? Domain.Gender.Male : Domain.Gender.Female;
-            return new Patient { Id = Id, BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender };
+            return new Patient { Id = Id, BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender, Image =  GetByteArrayFromImage(this.Image)};
+        }
+
+
+        private byte[] GetByteArrayFromImage(IFormFile file)
+        {
+            using var target = new MemoryStream();
+            file.CopyTo(target);
+            return target.ToArray();
         }
     }
 }
