@@ -1,0 +1,102 @@
+﻿.appointment-detail {
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.appointment-detail-title{
+    width: 100%;
+    text-align: center;
+}
+
+.appointment-detail-title h6 {
+    color: #0B3E74;
+}
+
+
+
+
+
+.appointment-detail-last-treatment{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.appointment-detail-last-treatment-title {
+    width: 100%;
+}
+
+.appointment-detail-last-treatment-head{
+    width: 20ch;
+    max-width: 30%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.appointment-detail-last-treatment-content {
+    width: 100ch;
+    max-width: 70%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+
+
+
+
+.appointment-detail-appointment {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.appointment-detail-appointment-title{
+    width: 100%;
+}
+
+.appointment-detail-appointment-head {
+    width: 20ch;
+    max-width: 30%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.appointment-detail-appointment-content {
+    width: 100ch;
+    max-width: 70%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+.appointment-detail-buttons{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.appointment-detail-buttons-btn {
+    width: 40%;
+    margin: 10px;
+    color: #1B84F4 !important;
+}

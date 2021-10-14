@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Domain.Appointment>
+
+<link rel="stylesheet" href="~/css/Appointment/AppointmentStyle.css" />
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="~/js/MenuItems.js"></script>
+<script>activeMenu3()</script>
+
+<body>
+    <div class="appointments-page">
+        <div class="appointments-page-list">
+            <div class="appointments-page-list-block">
+                @foreach (Domain.Appointment a in Model.OrderByDescending(p => p.AppointmentDateTime))
+                {
+                    <div class="appointments-page-list-item">
+                        <div class="appointments-page-list-item-info">
+                            <span class="appointments-page-list-item-info-title">@a.Patient.Name</span>
+                            <br />
+                            <span>@a.AppointmentDateTime.ToShortDateString()</span>
+                            <br />
+                            <span>@a.AppointmentDateTime.ToShortTimeString() - @a.EndDateTime.ToShortTimeString()</span>
+                        </div>
+                        <div class="appointments-page-list-item-icon">
+                            <a onclick="updateAppointmentDetails()">
+                                <i data-feather="chevron-right" class=""></i>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="appointments-page-detail">
+            @await Component.InvokeAsync("AppointmentDetail", new { id = 17 })
+        </div>
+    </div>
+</body>
+
+<script>
+    feather.replace();
+</script>

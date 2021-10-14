@@ -35,7 +35,12 @@ namespace Fysio.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
+            string email = usr.Email;
+            Treator t = treatorRepository.GetTreatorByEmail(email);
+
+            IEnumerable<Appointment> appointments = appointmentRepository.GetUpcomingAppointmentsForTreator(t);
+            return View(appointments);
         }
 
         [HttpPost]

@@ -1,0 +1,66 @@
+﻿@model Domain.PatientFile
+
+<link rel="stylesheet" href="~/css/Appointment/AppointmentDetailStyle.css" />
+
+<body>
+    <div class="appointment-detail">
+        <div class="appointment-detail-title">
+            <h4>Geselecteerde afspraak:</h4>
+            <h6>@Model.Patient.Name</h6>
+        </div>
+        <div class="appointment-detail-last-treatment">
+            @{ Domain.Treatment t = Model.Treatments.OrderByDescending(p => p.TreatmentDateTime).First();}
+            <div class="appointment-detail-last-treatment-title">
+                <h4>Laatste behandeling:</h4>
+            </div>
+            <div class="appointment-detail-last-treatment-head">
+                <span>Type:</span>
+                <br />
+                <span>Omschrijving:</span>
+                <br />
+                <span>Bijzonderheden:</span>
+                <br />
+                <span>Datum:</span>
+                <br />
+                <span>Behandelaar:</span>
+            </div>
+            <div class="appointment-detail-last-treatment-content">
+                <span>@t.Type</span>
+                <br />
+                <span>@t.Description</span>
+                <br />
+                <span>@t.Particularities</span>
+                <br />
+                <span>@t.TreatmentDateTime.ToShortDateString()</span>
+                <br />
+                <span>@t.Treator.Name</span>
+            </div>
+        </div>
+        <div class="appointment-detail-appointment">
+            <div class="appointment-detail-appointment-title">
+                <h4>Afspraak:</h4>
+            </div>
+            <div class="appointment-detail-appointment-head">
+                <span>Datum:</span>
+                <br />
+                <span>Tijd:</span>
+                <br />
+                <span>Patient:</span>
+            </div>
+            <div class="appointment-detail-appointment-content">
+                @{ Domain.Appointment a = ViewBag.Appointment;}
+                <span>@a.AppointmentDateTime.ToShortDateString()</span>
+                <br />
+                <span>@a.AppointmentDateTime.ToShortTimeString() - @a.EndDateTime.ToShortTimeString()</span>
+                <br />
+                <span>@a.Patient.Name</span>
+            </div>
+        </div>
+        <div class="appointment-detail-buttons">
+            <a class="link-styled appointment-detail-buttons-btn" asp-action="PatientDetail" asp-controller="Patient" asp-route-id="@Model.Patient.Id">Naar patient</a>
+            <a class="link-styled appointment-detail-buttons-btn" asp-action="Index" asp-controller="PatientFile" asp-route-id="@Model.Patient.Id">Naar dossier</a>
+            <a class="link-styled appointment-detail-buttons-btn" asp-action="AddTreatment" asp-controller="Treatment" asp-route-p="@Model.Patient.Email">Behandeling maken</a>
+            <a class="link-styled appointment-detail-buttons-btn" asp-action="AddAppointment" asp-controller="Appointment" asp-route-patientId="@Model.Patient.Id">Afspraak maken</a>
+        </div>
+    </div>
+</body>

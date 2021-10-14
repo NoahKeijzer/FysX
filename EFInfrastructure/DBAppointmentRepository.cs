@@ -53,7 +53,7 @@ namespace EFInfrastructure
 
         public Appointment GetAppointmentById(int id)
         {
-            return _context.Appointments.Where(p => p.Id == id).FirstOrDefault();
+            return _context.Appointments.Where(p => p.Id == id).Include(p => p.Patient).Include(p => p.Treator).FirstOrDefault();
         }
 
         public List<Appointment> GetAppointmentsForDateForPatient(Patient patient, DateTime date)
