@@ -60,8 +60,6 @@ namespace Fysio.Controllers
         }
 
         [HttpGet]
-        [Route("Appointment/AddAppointment/{patientId}")]
-        [Route("Appointment/AddAppointment")]
         public IActionResult AddAppointment(int patientId)
         {
             List<Treator> allTreators = treatorRepository.GetAllTreators();

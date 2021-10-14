@@ -34,7 +34,15 @@
                 </div>
             </div>
             <div class="form-submit">
-                <button class="btn-active-menu" type="submit">Voeg behandeling toe</button>
+                @if (ViewBag.IsNew)
+                {
+                    <button class="btn-active-menu" type="submit">Voeg behandeling toe</button>
+
+                }
+                else
+                {
+                    <button class="btn-active-menu" type="submit">Werk behandeling bij</button>
+                }
                 <div asp-validation-summary="All"></div>
             </div>
         </form>

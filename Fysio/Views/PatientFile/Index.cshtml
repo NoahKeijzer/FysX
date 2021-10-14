@@ -169,8 +169,7 @@
                 }
             </div>
             <div class="comments-btn">
-                @{ string commentUrl = "/PatientFile/AddComment/" + Model.Id;}
-                <a href="@commentUrl" class="link-styled">Opmerking maken</a>
+                <a asp-action="AddComment" asp-controller="PatientFile" asp-route-id="@Model.Id" class="link-styled">Opmerking maken</a>
             </div>
         </div>
         <div class="treatments">

@@ -64,19 +64,17 @@ namespace Fysio.Controllers
             }
         }
 
-        [Route("/Patient/PatientDetail/{id}")]
-        public IActionResult PatientDetail(PatientModel patient, string id)
+        public IActionResult PatientDetail(int id, PatientModel patient)
         {
-            int Id = int.Parse(id);
             if (patient.Email != null)
             {
                 return View(patient);
             }
             else
             {
-                if (patientRepository.GetPatientById(Id) != null)
+                if (patientRepository.GetPatientById(id) != null)
                 {
-                    return View(ConvertPatientToPatientModel(patientRepository.GetPatientById(Id)));
+                    return View(ConvertPatientToPatientModel(patientRepository.GetPatientById(id)));
                 }
                 return Index();
             }

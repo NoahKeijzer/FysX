@@ -30,7 +30,6 @@ namespace Fysio.Controllers
             this.addAppointmentService = addAppointmentService;
         }
 
-        [Route("PatientFile/{id}")]
         public IActionResult Index(int id, PatientFile patientFile)
         {
             if(patientFile != null)
@@ -57,7 +56,6 @@ namespace Fysio.Controllers
         }
 
         [HttpGet]
-        [Route("/PatientFile/AddComment/{id}")]
         public IActionResult AddComment(int id)
         {
             return View(new CommentModel() { PatientFileId = id});

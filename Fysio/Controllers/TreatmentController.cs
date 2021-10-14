@@ -42,10 +42,12 @@ namespace Fysio.Controllers
             Treatment t = treatmentRepository.GetTreatmentById(id);
             if(t != null)
             {
+                ViewBag.IsNew = false;
                 TreatmentModel treatmentModel = new TreatmentModel(t.Type, t.Description, t.Location, t.Particularities) { PatientEmail = t.Patient.Email, TreatmentId = t.Id };
                 return View(treatmentModel);
             } else
             {
+                ViewBag.IsNew = true;
                 return View(new TreatmentModel() { PatientEmail = p});
             }
         }
@@ -66,7 +68,7 @@ namespace Fysio.Controllers
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
                     treatmentRepository.UpdateTreatment(model.TreatmentId, t);
-                    return (ActionResult)ToPatientList();
+                    return (ActionResult)RedirectToAction("Index", "PatientFile", p.Id);
                 } else
                 {
                     IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
@@ -81,7 +83,7 @@ namespace Fysio.Controllers
                     PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
                     pf.Treatments.Add(t);
                     patientFileRepository.UpdatePatientFile(pf);
-                    return (ActionResult)ToPatientList();
+                    return (ActionResult)RedirectToAction("Index", "PatientFile", pf);
                 }
             } else
             {
