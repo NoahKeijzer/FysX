@@ -89,7 +89,10 @@ namespace EFInfrastructure
         public void UpdateAppointment(int id, Appointment updatedAppointment)
         {
             Appointment old = _context.Appointments.Where(p => p.Id == id).FirstOrDefault();
-            old = updatedAppointment;
+            old.AppointmentDateTime = updatedAppointment.AppointmentDateTime;
+            old.EndDateTime = updatedAppointment.EndDateTime;
+            old.Treator = updatedAppointment.Treator;
+            old.Patient = updatedAppointment.Patient;
             _context.SaveChanges();
         }
     }

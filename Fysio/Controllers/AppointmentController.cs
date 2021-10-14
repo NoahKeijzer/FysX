@@ -53,30 +53,59 @@ namespace Fysio.Controllers
             PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
             int duration = pf.TreatmentPlan.MinutesPerSession;
             Appointment appointment = new Appointment(t, p, dateTime, dateTime.AddMinutes(duration));
-
-            if(addAppointmentService.AddAppointment(appointment, pf))
+            if (appointmentModel.Id != 0)
             {
-                return RedirectToAction("Index", "Patient");
+                if(addAppointmentService.UpdateAppointment(appointment, appointmentModel.Id))
+                {
+                    return RedirectToAction("Index", "Patient");
+                }
+                else
+                {
+                    return View();
+                }
+
             } else
             {
-                return View();
+                if (addAppointmentService.AddAppointment(appointment, pf))
+                {
+                    return RedirectToAction("Index", "Patient");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            
         }
 
         [HttpGet]
-        public IActionResult AddAppointment(int patientId)
+        public IActionResult AddAppointment(int patientId, int appointmentId)
         {
             List<Treator> allTreators = treatorRepository.GetAllTreators();
-            ViewBag.Treators = from Treator t in allTreators select new SelectListItem { Value = t.Email, Text = t.Name};
+            ViewBag.Treators = from Treator t in allTreators select new SelectListItem { Value = t.Email, Text = t.Name };
 
             List<Patient> allPatients = patientRepository.GetAllPatients();
             ViewBag.Patients = from Patient p in allPatients select new SelectListItem { Value = p.Id.ToString(), Text = p.Name };
 
             IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
             string email = usr.Email;
+            if(appointmentId != 0)
+            {
+                Appointment a = appointmentRepository.GetAppointmentById(appointmentId);
+                ViewBag.IsNew = false;
+                return View(new AppointmentModel() { Id = a.Id, TreatorEmail = email, PatientId = patientId, AppointmentDate = a.AppointmentDateTime.Date.ToString(), AppointmentTime = a.AppointmentDateTime.TimeOfDay.ToString() });
+            } else
+            {
+                ViewBag.IsNew = true;
+                return View(new AppointmentModel() { TreatorEmail = email, PatientId = patientId });
+            }
+            
+        }
 
-            return View(new AppointmentModel() { TreatorEmail = email, PatientId = patientId });
+        public IActionResult DeleteAppointment(int id)
+        {
+            Appointment a = appointmentRepository.GetAppointmentById(id);
+            addAppointmentService.DeleteAppointment(a);
+            return RedirectToAction("PatientDetail", "Patient", new { id = a.Patient.Id });
         }
 
         [HttpPost]
@@ -96,6 +125,12 @@ namespace Fysio.Controllers
             {
                 return Json("");
             }
+        }
+
+        [Route("/Appointment/ReloadAppointmentDetail/{id}")]
+        public IActionResult ReloadAppointmentDetail(int id)
+        {
+            return ViewComponent("AppointmentDetail", id);
         }
         
         private IEnumerable<string> ConvertTimeToString(IEnumerable<DateTime> times)

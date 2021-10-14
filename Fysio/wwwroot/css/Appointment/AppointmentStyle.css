@@ -57,6 +57,7 @@
 
 
 
+
 .appointments-page-detail{
     padding: 30px;
     width: 50%;
@@ -78,4 +79,8 @@ h5 {
 
 h6 {
     color: #1B84F4;
+}
+
+.hidden{
+    display: none;
 }

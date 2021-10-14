@@ -8,6 +8,8 @@ namespace Fysio.Models
 {
     public class AppointmentModel
     {
+        public int Id { get; set; }
+
         [Required]
         public string TreatorEmail { get; set; }
 

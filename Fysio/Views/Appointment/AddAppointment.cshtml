@@ -13,6 +13,15 @@
 
 <body>
     <div class="form-add-patient">
+        <div class="add-appointment-title">
+            @if (ViewBag.IsNew) { 
+                <h2>Voeg afspraak toe</h2>
+
+            } else
+            {
+                <h2>Werk afspraak bij</h2>
+            }
+        </div>
         <form method="post" asp-action="AddAppointment" class="form">
             <div class="form-input-group">
                 <label asp-for="TreatorEmail">Behandelaar:</label>
@@ -39,7 +48,15 @@
             </div>
 
             <div class="form-submit">
-                <button class="btn-active-menu" type="submit">Voeg afspraak toe</button>
+                @if (ViewBag.IsNew)
+                {
+                    <button class="btn-active-menu" type="submit">Voeg afspraak toe</button>
+                }
+                else
+                {
+                    <button class="btn-active-menu" type="submit">Werk afspraak bij</button>
+                    <a asp-action="DeleteAppointment" asp-controller="Appointment" asp-route-id="@Model.Id" class="link-styled delete-btn">Verwijder afspraak</a>
+                }
                 <div asp-validation-summary="All"></div>
             </div>
         </form>

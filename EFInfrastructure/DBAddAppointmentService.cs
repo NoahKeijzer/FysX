@@ -92,7 +92,7 @@ namespace EFInfrastructure
 
         public bool DeleteAppointment(Appointment appointment)
         {
-            if(appointment.AppointmentDateTime < DateTime.Now.AddDays(-1))
+            if(appointment.AppointmentDateTime > DateTime.Now.AddDays(1))
             {
                 appointmentRepository.DeleteAppointment(appointment);
                 return true;
@@ -213,10 +213,18 @@ namespace EFInfrastructure
 
         public bool UpdateAppointment(Appointment appointment, int id)
         {
-            if (appointment.AppointmentDateTime < DateTime.Now.AddDays(-1))
+            Appointment a = appointmentRepository.GetAppointmentById(id);
+            if (a.AppointmentDateTime < DateTime.Now.AddDays(-1))
             {
-                appointmentRepository.UpdateAppointment(id, appointment);
-                return true;
+                if(appointment.AppointmentDateTime > DateTime.Now.AddDays(1))
+                {
+                    int duration = appointment.AppointmentDateTime.Subtract(appointment.EndDateTime).Minutes;
+                    if(IsPossibleTime(appointment.Treator, appointment.AppointmentDateTime, duration))
+                    {
+                        appointmentRepository.UpdateAppointment(id, appointment);
+                        return true;
+                    }
+                }
             }
             return false;
         }
