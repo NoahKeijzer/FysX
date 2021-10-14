@@ -23,8 +23,7 @@
                 </div>
             </div>
             <div class="treatment-patient-link">
-                @{ string url = "/Patient/Patientdetail/" + Model.Patient.Id;}
-                <a href="@url">
+                <a asp-action="PatientDetail" asp-controller="Patient" asp-route-id="@Model.Patient.Id">
                     <img src="~/icons/chevron-right.svg" class="icon" />
                 </a>
             </div>

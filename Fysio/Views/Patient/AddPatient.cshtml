@@ -1,7 +1,4 @@
-﻿@{
-}
-
-@model Fysio.Models.PatientModel
+﻿@model Fysio.Models.PatientModel
 
 <script src="~/js/MenuItems.js"></script>
 <link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
@@ -10,10 +7,16 @@
 
     <div class="form-add-patient">
         <div class="title">
-            <h2>Patient toevoegen</h2>
+            @if (ViewBag.IsNew)
+            {
+                <h2>Patient toevoegen</h2>
+            } else
+            {
+                <h2>Patient bijwerken</h2>
+            }
         </div>
         <form asp-action="AddPatient" method="post" class="form">
-            
+            <input asp-for="Id" class="hidden" />
             <div class="form-personal">
                 <div class="form-input-group">
                     <label asp-for="Name">Naam</label>
@@ -35,10 +38,17 @@
                 </div>
             </div>
             <div class="form-contact">
-                <div class="form-input-group">
-                    <label asp-for="Email">Email</label>
-                    <input asp-for="Email" class="input-field-form" type="email" />
-                </div>
+                @if (ViewBag.IsNew)
+                {
+                    <div class="form-input-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="input-field-form" type="email" />
+                    </div>
+
+                } else
+                {
+                    <input asp-for="Email" class="hidden" type="email"/>
+                }
 
                 <div class="form-input-group">
                     <label asp-for="PhoneNumber">Telefoonnummer</label>
@@ -62,7 +72,14 @@
                 </div>
             </div>
             <div class="form-submit">
-                <button class="btn-active-menu" type="submit">Voeg patient toe</button>
+                @if (ViewBag.IsNew)
+                {
+                    <button class="btn-active-menu" type="submit">Voeg patient toe</button>
+                } else
+                {
+                    <button class="btn-active-menu" type="submit">Werk patient bij</button>
+                }
+                
                 <div asp-validation-summary="All"></div>
             </div>
         </form>

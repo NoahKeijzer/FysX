@@ -11,6 +11,7 @@ namespace DomainServices.Interfaces
     {
         public void AddTreatment(Treatment treatment);
         public void UpdateTreatment(int id, Treatment updatedTreatment);
+        public bool DeleteTreatment(Treatment treatment);
         public Treatment GetTreatmentById(int id);
         public List<Treatment> GetTreatmentsForPatient(Patient patient);
         public List<Treatment> GetTreatmentsForTreator(Treator treator);

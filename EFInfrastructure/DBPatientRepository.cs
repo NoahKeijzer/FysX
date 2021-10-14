@@ -50,7 +50,11 @@ namespace EFInfrastructure
         public Patient UpdatePatient(int Id, Patient UpdatedPatient)
         {
             Patient old = _context.Patients.Where(p => p.Id == Id).FirstOrDefault();
-            old = UpdatedPatient;
+            old.Name = UpdatedPatient.Name;
+            old.PhoneNumber = UpdatedPatient.PhoneNumber;
+            old.RegistrationNumber = UpdatedPatient.RegistrationNumber;
+            old.Student = UpdatedPatient.Student;
+            old.Gender = UpdatedPatient.Gender;
             _context.SaveChanges();
             return old;
         }

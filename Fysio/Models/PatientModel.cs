@@ -37,7 +37,7 @@ namespace Fysio.Models
         public Patient ConvertPatientModelToPatient()
         {
             Gender gender = Gender ? Domain.Gender.Male : Domain.Gender.Female;
-            return new Patient { BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender };
+            return new Patient { Id = Id, BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender };
         }
     }
 }

@@ -6,7 +6,13 @@
 <body>
     <div class="form-add-patient">
         <div class="title">
-            <h2>Behandeling aanmaken</h2>
+            @if (ViewBag.IsNew)
+            {
+                <h2>Behandeling aanmaken</h2>
+            } else
+            {
+                <h2>Behandeling bijwerken</h2>
+            }
         </div>
         <form asp-action="AddTreatment" method="post" class="form">
             <input asp-for="PatientEmail" value="@Model.PatientEmail" class="hidden" />
@@ -25,7 +31,10 @@
             <div class="form-contact">
                 <div class="form-input-group">
                     <label class="form-input-label" asp-for="Location">Locatie</label>
-                    <input asp-for="Location" class="input-field-form" type="text" />
+                    <select asp-for="Location" class="input-field-form">
+                        <option>Oefenzaal</option>
+                        <option>Behandelruimte</option>
+                    </select>
                 </div>
 
                 <div class="form-input-group">
@@ -42,6 +51,7 @@
                 else
                 {
                     <button class="btn-active-menu" type="submit">Werk behandeling bij</button>
+                    <a asp-action="DeleteTreatment" asp-controller="Treatment" asp-route-treatmentId="@Model.TreatmentId" class="link-styled">Verwijder behandeling</a>
                 }
                 <div asp-validation-summary="All"></div>
             </div>

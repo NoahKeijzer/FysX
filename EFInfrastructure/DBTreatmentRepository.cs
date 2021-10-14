@@ -25,6 +25,19 @@ namespace EFInfrastructure
             _context.SaveChanges();
         }
 
+        public bool DeleteTreatment(Treatment treatment)
+        {
+            try
+            {
+                _context.Treatments.Remove(treatment);
+                _context.SaveChanges();
+                return true;
+            } catch( Exception e)
+            {
+                return false;
+            }
+        }
+
         public Treatment GetTreatmentById(int id)
         {
             return _context.Treatments.Where(p => p.Id == id).Include(p => p.Patient).Include(p => p.Treator).FirstOrDefault();

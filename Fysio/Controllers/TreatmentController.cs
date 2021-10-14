@@ -91,6 +91,25 @@ namespace Fysio.Controllers
             }
         }
 
+        public ActionResult DeleteTreatment(int treatmentId)
+        {
+            if(treatmentId != 0)
+            {
+                Treatment t = treatmentRepository.GetTreatmentById(treatmentId);
+
+                Patient p = patientRepository.GetPatientByEmail(t.Patient.Email);
+                PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                
+                treatmentRepository.DeleteTreatment(t);
+
+                return RedirectToAction("Index", "PatientFile", pf);
+            } else
+            {
+                ViewBag.IsNew = false;
+                return View("Error");
+            }
+        }
+
         public IActionResult ToPatientList()
         {
             return RedirectToAction("Index", "Patient");

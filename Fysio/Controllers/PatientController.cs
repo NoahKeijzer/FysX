@@ -40,26 +40,45 @@ namespace Fysio.Controllers
 
         [Authorize(Policy = "RequireFysio")]
         [HttpGet]
-        public IActionResult AddPatient()
+        public IActionResult AddPatient(int id)
         {
-            return View();
+            ViewBag.IsNew = id != 0 ? false : true;
+            if(id != 0)
+            {
+                Patient p = patientRepository.GetPatientById(id);
+                PatientModel model = new PatientModel() { Id = id, PhoneNumber = p.PhoneNumber, Birthdate = p.BirthDate, Email = p.Email, Name = p.Name, RegistrationNumber = p.RegistrationNumber, Teacher = !p.Student, Gender = p.Gender == Gender.Male ? true : false };
+                return View(model);
+            } else
+            {
+                return View();
+            }
         }
 
 
         [Authorize(Policy = "RequireFysio")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ViewResult AddPatient(PatientModel patient)
+        public ActionResult AddPatient(PatientModel patient)
         {
             if (ModelState.IsValid)
             {
-                Patient p = patient.ConvertPatientModelToPatient();
-                patientRepository.AddPatient(p);
-                AddTreatorsToViewBag();
-                return View("AddPatientFile", new PatientFileModel() { PatientEmail = p.Email });
+                if(patient.Id != 0)
+                {
+                    Patient p = patient.ConvertPatientModelToPatient();
+                    patientRepository.UpdatePatient(patient.Id, p);
+                    return RedirectToAction("PatientDetail", ConvertPatientToPatientModel(patientRepository.GetPatientById(patient.Id)));
+
+                } else
+                {
+                    Patient p = patient.ConvertPatientModelToPatient();
+                    patientRepository.AddPatient(p);
+                    AddTreatorsToViewBag();
+                    return View("AddPatientFile", new PatientFileModel() { PatientEmail = p.Email });
+                }
             }
             else
             {
+                ViewBag.IsNew = patient.Id != 0 ? false : true;
                 return View();
             }
         }

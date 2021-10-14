@@ -23,8 +23,7 @@
                 </div>
             </div>
             <div class="patient-link-icon">
-                @{ string url = "/Patient/PatientDetail/" + Model.Patient.Id;}
-                <a href="@url">
+                <a asp-action="PatientDetail" asp-controller="Patient" asp-route-id="@Model.Patient.Id">
                     <img src="~/icons/chevron-right.svg" alt="arrow to the right" />
                 </a>
             </div>
@@ -179,7 +178,7 @@
             <div class="treatments-list">
                 @if (Model.Treatments.Count > 0)
                 {
-                    @foreach (Domain.Treatment treatment in Model.Treatments)
+                    @foreach (Domain.Treatment treatment in Model.Treatments.OrderByDescending(p => p.TreatmentDateTime))
                     {
                         <div class="treatments-list-item">
                             <a asp-action="Index" asp-controller="Treatment" asp-route-id="@treatment.Id">
