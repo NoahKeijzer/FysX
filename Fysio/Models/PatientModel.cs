@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Fysio.Models
 {
-    public class PatientModel
+    public class PatientModel : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -46,12 +46,27 @@ namespace Fysio.Models
             return new Patient { Id = Id, BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender, Image =  GetByteArrayFromImage(this.Image)};
         }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (CalculateAge(Birthdate) < 16)
+            {
+                yield return new ValidationResult("Patient moet minimaal 16 jaar zijn");
+            }
+        }
 
         private byte[] GetByteArrayFromImage(IFormFile file)
         {
             using var target = new MemoryStream();
             file.CopyTo(target);
             return target.ToArray();
+        }
+
+
+        private int CalculateAge(DateTime date)
+        {
+            int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+            int dob = int.Parse(date.ToString("yyyyMMdd"));
+            return (now - dob) / 10000;
         }
     }
 }

@@ -14,5 +14,6 @@ namespace DomainServices.Services
         public bool DeleteAppointment(Appointment appointment);
 
         public IEnumerable<DateTime> GetPossibleTimesOnDate(Treator treator, PatientFile patientFile, DateTime dateTime);
+        public bool IsPossibleTime(Treator treator, DateTime date, int duration);
     }
 }

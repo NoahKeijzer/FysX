@@ -98,7 +98,7 @@ namespace EFInfrastructure
         }
 
 
-        private bool IsPossibleTime(Treator treator, DateTime date, int duration)
+        public virtual bool IsPossibleTime(Treator treator, DateTime date, int duration)
         {
             Availability availabilityTreator = availabilityRepository.GetAvailabilityForTreator(treator);
             List<Appointment> appointmentsOnDay = appointmentRepository.GetAppointmentsForDateForTreator(treator, date);
@@ -156,7 +156,7 @@ namespace EFInfrastructure
         public bool UpdateAppointment(Appointment appointment, int id)
         {
             Appointment a = appointmentRepository.GetAppointmentById(id);
-            if (a.AppointmentDateTime < DateTime.Now.AddDays(-1))
+            if (a.AppointmentDateTime > DateTime.Now.AddDays(1))
             {
                 if(appointment.AppointmentDateTime > DateTime.Now.AddDays(1))
                 {
