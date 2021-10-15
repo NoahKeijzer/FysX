@@ -34,7 +34,7 @@ namespace EFInfrastructure
             return _context.PatientFiles.Include(p => p.Treatments).Include(p => p.Intaker).Include(p => p.Patient).Include(p => p.MainTreator).Include(p => p.Comments).Include(p => p.TreatmentPlan).Where(p => p.Patient == patient && p.EndDate == DateTime.MinValue).FirstOrDefault();
         }
 
-        public async void UpdatePatientFile(PatientFile updatePatientFile)
+        public void UpdatePatientFile(PatientFile updatePatientFile)
         {
             _context.SaveChanges();
         }

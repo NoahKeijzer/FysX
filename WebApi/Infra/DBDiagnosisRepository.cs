@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Models;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Infra

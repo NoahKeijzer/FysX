@@ -34,6 +34,7 @@ namespace EFInfrastructure
                 return true;
             } catch( Exception e)
             {
+                Console.WriteLine(e);
                 return false;
             }
         }

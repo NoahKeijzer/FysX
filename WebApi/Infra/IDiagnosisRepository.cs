@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WebApi.Models;
+using Domain;
 
 namespace WebApi.Infra
 {

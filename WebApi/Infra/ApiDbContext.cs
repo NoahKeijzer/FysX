@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApi.Models;
+using Domain;
 
 namespace WebApi.Infra
 {
