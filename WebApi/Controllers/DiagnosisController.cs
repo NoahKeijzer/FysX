@@ -14,10 +14,12 @@ namespace WebApi.Controllers
     public class DiagnosisController : ControllerBase
     {
         private readonly IDiagnosisRepository diagnosisRepository;
+
         public DiagnosisController(IDiagnosisRepository diagnosisRepository)
         {
             this.diagnosisRepository = diagnosisRepository;
         }
+
         // GET: api/<DiagnosisController>
         [HttpGet]
         public IEnumerable<Diagnosis> Get()
@@ -25,17 +27,20 @@ namespace WebApi.Controllers
             //AddAllDiagnosis();
             return diagnosisRepository.GetAllDiagnoses();
         }
+
         // GET api/<DiagnosisController>/5
         [HttpGet("{id}")]
         public Diagnosis Get(int id)
         {
             return diagnosisRepository.GetDiagnosisById(id);
         }
+
         [HttpGet("{category}")]
         public IEnumerable<Diagnosis> Get(string category)
         {
             return diagnosisRepository.GetDiagnosesByCategory(category);
         }
+
         public void AddAllDiagnosis()
         {
             using (var reader = new StreamReader("Vektis lijst diagnoses 3.csv"))
@@ -64,10 +69,6 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("categories")]
-        public IEnumerable<string> GetCategories()
-        {
-            return diagnosisRepository.GetCategories();
-        }
+
     }
 }

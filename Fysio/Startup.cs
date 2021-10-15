@@ -62,6 +62,8 @@ namespace Fysio
             services.AddScoped<IAvailabilityRepository, DBAvailabilityRepository>();
 
             services.AddScoped<AddAppointmentService, DBAddAppointmentService>();
+
+            services.AddScoped<IDiagnosisRepository, ApiDiagnosisRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

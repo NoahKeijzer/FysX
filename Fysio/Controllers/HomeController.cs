@@ -22,9 +22,10 @@ namespace Fysio.Controllers
         private readonly UserManager<IdentityUser> userManager;
         private readonly AddAppointmentService addAppointmentService;
         private readonly IAvailabilityRepository availabilityRepository;
+        private readonly IDiagnosisRepository diagnosisRepository;
 
 
-        public HomeController(ILogger<HomeController> logger, IPatientRepository patientRepository, ITreatorRepository treatorRepository, UserManager<IdentityUser> userManager, AddAppointmentService addAppointmentService, IAvailabilityRepository availabilityRepository)
+        public HomeController(ILogger<HomeController> logger, IPatientRepository patientRepository, ITreatorRepository treatorRepository, UserManager<IdentityUser> userManager, AddAppointmentService addAppointmentService, IAvailabilityRepository availabilityRepository, IDiagnosisRepository diagnosisRepository)
         {
             _logger = logger;
             this.patientRepository = patientRepository;
@@ -32,6 +33,7 @@ namespace Fysio.Controllers
             this.userManager = userManager;
             this.addAppointmentService = addAppointmentService;
             this.availabilityRepository = availabilityRepository;
+            this.diagnosisRepository = diagnosisRepository;
         }
 
         [Authorize(Policy = "RequireTreator")]
@@ -40,6 +42,8 @@ namespace Fysio.Controllers
             IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
             string email = usr.Email;
             Treator t = treatorRepository.GetTreatorByEmail(email);
+
+            diagnosisRepository.GetAllDiagnoses();
 
             ViewBag.Name = t.Name;
             return View(t);

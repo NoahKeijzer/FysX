@@ -2,15 +2,13 @@
 using System.Linq;
 using Domain;
 
-namespace WebApi.Infra
+namespace DomainServices.Interfaces
 {
     public interface IDiagnosisRepository
     {
         public IEnumerable<Diagnosis> GetAllDiagnoses();
         public IEnumerable<Diagnosis> GetDiagnosesByCategory(string category);
         public Diagnosis GetDiagnosisById(int id);
-        public void AddDiagnosis(Diagnosis diagnosis);
         public IEnumerable<string> GetCategories();
-        public IQueryable<Diagnosis> GetAll();
     }
 }
