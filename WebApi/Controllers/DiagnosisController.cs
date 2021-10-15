@@ -63,5 +63,11 @@ namespace WebApi.Controllers
                 }
             }
         }
+
+        [HttpGet("categories")]
+        public IEnumerable<string> GetCategories()
+        {
+            return diagnosisRepository.GetCategories();
+        }
     }
 }

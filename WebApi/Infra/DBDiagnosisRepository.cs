@@ -37,5 +37,11 @@ namespace WebApi.Infra
             context.SaveChanges();
 
         }
+
+        public IEnumerable<string> GetCategories()
+        {
+            List<string> categories = context.Diagnoses.GroupBy(p => p.BodyPart).Select(p => p.Key).ToList();
+            return categories;
+        }
     }
 }

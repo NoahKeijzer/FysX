@@ -8,7 +8,7 @@ namespace WebApi.Infra
         public IEnumerable<Diagnosis> GetAllDiagnoses();
         public IEnumerable<Diagnosis> GetDiagnosesByCategory(string category);
         public Diagnosis GetDiagnosisById(int id);
-
         public void AddDiagnosis(Diagnosis diagnosis);
+        public IEnumerable<string> GetCategories();
     }
 }
