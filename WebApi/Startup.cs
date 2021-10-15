@@ -65,11 +65,7 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UsePlayground(new PlaygroundOptions
-            {
-                QueryPath = "/api",
-                Path = "/playground"
-            });
+            app.UsePlayground();
 
 
             app.UseAuthorization();

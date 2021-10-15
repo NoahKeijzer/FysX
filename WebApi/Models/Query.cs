@@ -31,5 +31,15 @@ namespace WebApi.Models
         {
             return diagnosisRepository.GetDiagnosesByCategory(category);
         }
+
+        public IQueryable<TreatmentType> Treatments()
+        {
+            return treatmentRepository.GetAll();
+        }
+
+        public TreatmentType GetTreatmentById(string id) 
+        {
+            return treatmentRepository.GetTreatmentById(id);
+        }
     }
 }

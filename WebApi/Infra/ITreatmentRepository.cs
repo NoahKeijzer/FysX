@@ -11,5 +11,6 @@ namespace WebApi.Infra
         public TreatmentType GetTreatmentById(string value);
         public IEnumerable<TreatmentType> GetAllTreatments();
         public void AddTreatment(TreatmentType t);
+        public IQueryable<TreatmentType> GetAll();
     }
 }

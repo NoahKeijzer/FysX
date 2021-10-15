@@ -49,5 +49,10 @@ namespace WebApi.Infra
         {
             return context.Diagnoses.AsQueryable();
         }
+
+        public Diagnosis GetById(int id)
+        {
+            return context.Diagnoses.Where(p => p.Id == id).First();
+        }
     }
 }

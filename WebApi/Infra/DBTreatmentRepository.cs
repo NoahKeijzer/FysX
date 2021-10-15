@@ -21,6 +21,11 @@ namespace WebApi.Infra
             context.SaveChanges();
         }
 
+        public IQueryable<TreatmentType> GetAll()
+        {
+            return context.TreatmentTypes.AsQueryable();
+        }
+
         public IEnumerable<TreatmentType> GetAllTreatments()
         {
             return context.TreatmentTypes.ToList();
