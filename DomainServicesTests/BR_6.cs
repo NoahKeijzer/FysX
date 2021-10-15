@@ -34,29 +34,17 @@ namespace DomainServicesTests
 
             Treator t = new FysioTherapist();
             DateTime appointmentDateTime = DateTime.Now.AddHours(hours);
-            TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60 };
-            PatientFile pf = new PatientFile() { TreatmentPlan = tp };
-            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(tp.MinutesPerSession) };
-            Appointment originalAppointment = new Appointment() { AppointmentDateTime = DateTime.Now.AddHours(hours), EndDateTime = DateTime.Now.AddHours(hours).AddMinutes(tp.MinutesPerSession) };
+            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(60) };
+            Appointment originalAppointment = new Appointment() { AppointmentDateTime = DateTime.Now.AddHours(hours) };
 
-            DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
-            DateTime endTime = DateTime.Parse("10-10-2021 5:00PM");
-
-            Availability availability = new Availability(t, startTime, endTime, startTime, endTime, startTime, endTime, startTime, endTime, startTime, endTime);
-
-            AvailabilityRepo.Setup(p => p.GetAvailabilityForTreator(t)).Returns(availability);
-            AppointmentRepo.Setup(p => p.GetAppointmentsForDateForTreator(t, appointmentDateTime)).Returns(new List<Appointment>());
             AppointmentRepo.Setup(p => p.GetAppointmentById(1)).Returns(originalAppointment);
 
             var sutMock = new Mock<DBAddAppointmentService>(AppointmentRepo.Object, PatientFileRepo.Object, AvailabilityRepo.Object);
             sutMock.CallBase = true;
             sutMock.Setup(p => p.IsPossibleTime(t, appointmentDateTime, 0)).Returns(true);
 
-            //AddAppointmentService sut = new DBAddAppointmentService(AppointmentRepo.Object, PatientFileRepo.Object, AvailabilityRepo.Object);
-
-            bool succes = sutMock.Object.UpdateAppointment(a, 1);
             //Act
-            //bool succes = sut.UpdateAppointment(a, 1);
+            bool succes = sutMock.Object.UpdateAppointment(a, 1);
 
             //Assert
             Assert.Equal(succes, shouldWork);
