@@ -4,15 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Infra;
 using Domain;
+using DomainServices;
 
 namespace WebApi.Models
 {
     public class Query
     {
-        private readonly IDiagnosisRepository diagnosisRepository;
+        private readonly DomainServices.IDiagnosisRepository diagnosisRepository;
         private readonly ITreatmentRepository treatmentRepository;
 
-        public Query(IDiagnosisRepository diagnosisRepository, ITreatmentRepository treatmentRepository)
+        public Query(DomainServices.IDiagnosisRepository diagnosisRepository, ITreatmentRepository treatmentRepository)
         {
             this.diagnosisRepository = diagnosisRepository;
             this.treatmentRepository = treatmentRepository;

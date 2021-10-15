@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Infra;
+using DomainServices;
 using WebApi.Models;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
@@ -42,7 +43,7 @@ namespace WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
 
-            services.AddScoped<IDiagnosisRepository, DBDiagnosisRepository>();
+            services.AddScoped<DomainServices.IDiagnosisRepository, DBDiagnosisRepository>();
 
             services.AddScoped<ITreatmentRepository, DBTreatmentRepository>();
 

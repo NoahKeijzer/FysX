@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 
-namespace WebApi.Infra
+namespace DomainServices
 {
     public interface ITreatmentRepository
     {

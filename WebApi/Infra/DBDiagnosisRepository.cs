@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.EntityFrameworkCore;
+using DomainServices;
 
 namespace WebApi.Infra
 {
-    public class DBDiagnosisRepository : IDiagnosisRepository
+    public class DBDiagnosisRepository : DomainServices.IDiagnosisRepository
     {
         private readonly ApiDbContext context;
 
