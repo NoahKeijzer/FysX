@@ -37,6 +37,7 @@ namespace WebApi.Controllers
             return treatmentRepository.GetTreatmentById(id);
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public void AddAllTreatments()
         {
             using (var reader = new StreamReader("Vektis lijst verrichtingen.csv"))

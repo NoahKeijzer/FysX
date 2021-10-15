@@ -40,6 +40,7 @@ namespace WebApi.Controllers
             return diagnosisRepository.GetDiagnosisById(id);
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public void AddAllDiagnosis()
         {
             using (var reader = new StreamReader("Vektis lijst diagnoses 3.csv"))

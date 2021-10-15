@@ -19,6 +19,19 @@ namespace WebApi.Controllers
             this.diagnosisRepository = diagnosisRepository;
         }
 
+        /// <summary>
+        /// gets all categories.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /categories
+        ///     {
+        ///     }
+        ///
+        /// </remarks>
+        /// <returns>All categories in list</returns>
+
         [HttpGet]
         public IEnumerable<string> GetCategories()
         {
