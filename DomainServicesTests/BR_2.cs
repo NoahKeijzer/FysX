@@ -22,9 +22,9 @@ namespace DomainServicesTests
         //beschikbaarheid en de reeds gemaakte afspraken.
 
         [Theory]
-        [InlineData("10-10-2022 8:00", false)]
-        [InlineData("10-10-2022 8:59", false)]
-        [InlineData("10-10-2022 9:00", true)]
+        [InlineData("10-10-2022 08:00", false)]
+        [InlineData("10-10-2022 08:59", false)]
+        [InlineData("10-10-2022 09:00", true)]
         [InlineData("10-10-2022 10:00", true)]
         [InlineData("10-10-2022 16:00", true)]
         [InlineData("10-10-2022 16:01", false)]
