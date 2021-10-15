@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="~/css/Patient/AddPatientFileStyle.css" />
 <script src="~/js/MenuItems.js"></script>
 <link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+<script src="~/js/AddPatientFileScript.js"></script>
 
 <body>
     <div class="add-patientfile">
@@ -17,16 +18,14 @@
                     <textarea asp-for="Complaints" class="input-field-form"></textarea>
                 </div>
                 <div class="form-input-group">
-                    <label asp-for="DiagnosisCode">Diagnose code:</label>
-                    <select asp-for="DiagnosisCode" class="input-field-form">
-                        <option value="Dood">Dood</option>
-                        <option value="Dbts">Diabetes</option>
-                        <option value="psgs">Pees gescheurd</option>
+                    <label>Diagnose categorie:</label>
+                    <select id="category" class="input-field-form" asp-items="@ViewBag.Categories" onchange="inputChanged()">
+                    <option value=""></option>
                     </select>
                 </div>
                 <div class="form-input-group">
-                    <label asp-for="DiagnosisDescription">Diagnose omschrijving:</label>
-                    <textarea asp-for="DiagnosisDescription" class="input-field-form"></textarea>
+                    <label asp-for="DiagnosisCode">Diagnose omschrijving:</label>
+                    <select id="diagnosis" asp-for="DiagnosisCode" class="input-field-form"></select>
                 </div>
             </div>
             <div class="form-contact">

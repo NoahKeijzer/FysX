@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
 <script src="~/js/MenuItems.js"></script>
+<script src="~/js/AddPatientFileScript.js"></script>
 
 <body>
     <div class="form-add-patient">
@@ -20,13 +21,16 @@
             <div class="form-personal">
                 <div class="form-input-group">
                     <label asp-for="Type">Type behandeling</label>
-                    <input asp-for="Type" class="input-field-form" type="text" />
+                    <select id="type" onchange="isNecessary()" asp-for="Type" class="input-field-form" asp-items="@ViewBag.TreatmentTypes">
+                    </select>
                 </div>
 
                 <div class="form-input-group">
                     <label asp-for="Description">Omschrijving</label>
                     <textarea asp-for="Description" class="input-field-form"></textarea>
                 </div>
+
+                <input id="necessary" asp-for="DescriptionNecessary" class="hidden" checked />
             </div>
             <div class="form-contact">
                 <div class="form-input-group">

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Fysio.Models
 {
-    public class TreatmentModel
+    public class TreatmentModel : IValidatableObject
     {
         [Required]
         public string Type { get; set; }
-        [Required]
         public string Description { get; set; }
+        [Required]
+        public bool DescriptionNecessary { get; set; }
         [Required]
         public string Location { get; set; }
         [Required]
@@ -32,6 +33,14 @@ namespace Fysio.Models
         public TreatmentModel()
         {
 
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if(DescriptionNecessary && Description == null)
+            {
+                yield return new ValidationResult("Beschrijving is verplicht bij deze behandeling");
+            }
         }
     }
 }

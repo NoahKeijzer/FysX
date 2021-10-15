@@ -22,21 +22,23 @@ namespace EFInfrastructure
 
         public IEnumerable<string> GetCategories()
         {
-            HttpResponseMessage response = client.GetAsync("https://fysxapi.azurewebsites.net/api/diagnosis/categories").Result;
+            HttpResponseMessage response = client.GetAsync("https://fysxapi.azurewebsites.net/api/categories").Result;
             IEnumerable<string> data = JsonConvert.DeserializeObject<IEnumerable<string>>(response.Content.ReadAsStringAsync().Result);
             return data;
         }
 
         public IEnumerable<Diagnosis> GetDiagnosesByCategory(string category)
         {
-            HttpResponseMessage response = client.GetAsync("https://fysxapi.azurewebsites.net/api/diagnosis/" + category).Result;
+            HttpResponseMessage response = client.GetAsync("https://fysxapi.azurewebsites.net/api/diagnosis/?category=" + category).Result;
             IEnumerable<Diagnosis> data = JsonConvert.DeserializeObject<IEnumerable<Diagnosis>>(response.Content.ReadAsStringAsync().Result);
             return data;
         }
 
         public Diagnosis GetDiagnosisById(int id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = client.GetAsync("https://fysxapi.azurewebsites.net/api/diagnosis/" + id).Result;
+            Diagnosis data = JsonConvert.DeserializeObject<Diagnosis>(response.Content.ReadAsStringAsync().Result);
+            return data;
         }
     }
 }

@@ -24,14 +24,16 @@ namespace Fysio.Controllers
         private readonly ITreatorRepository treatorRepository;
         private readonly IPatientFileRepository patientFileRepository;
         private readonly ITreatmentPlanRepository treatmentPlanRepository;
+        private readonly IDiagnosisRepository diagnosisRepository;
         private readonly UserManager<IdentityUser> userManager;
 
-        public PatientController(IPatientRepository patientRepository, ITreatorRepository treatorRepository, IPatientFileRepository patientFileRepository, ITreatmentPlanRepository treatmentPlanRepository, UserManager<IdentityUser> userManager)
+        public PatientController(IPatientRepository patientRepository, ITreatorRepository treatorRepository, IPatientFileRepository patientFileRepository, ITreatmentPlanRepository treatmentPlanRepository, UserManager<IdentityUser> userManager, IDiagnosisRepository diagnosisRepository)
         {
             this.patientRepository = patientRepository;
             this.treatorRepository = treatorRepository;
             this.patientFileRepository = patientFileRepository;
             this.treatmentPlanRepository = treatmentPlanRepository;
+            this.diagnosisRepository = diagnosisRepository;
             this.userManager = userManager;
         }
 
@@ -68,6 +70,7 @@ namespace Fysio.Controllers
                 {
                     Patient p = patient.ConvertPatientModelToPatient();
                     patientRepository.UpdatePatient(patient.Id, p);
+                    ViewBag.Categories = GetAllDiagnoseCategories();
                     return RedirectToAction("PatientDetail", ConvertPatientToPatientModel(patientRepository.GetPatientById(patient.Id)));
 
                 } else
@@ -75,6 +78,7 @@ namespace Fysio.Controllers
                     Patient p = patient.ConvertPatientModelToPatient();
                     patientRepository.AddPatient(p);
                     AddTreatorsToViewBag();
+                    ViewBag.Categories = GetAllDiagnoseCategories();
                     return View("AddPatientFile", new PatientFileModel() { PatientEmail = p.Email });
                 }
             }
@@ -105,7 +109,7 @@ namespace Fysio.Controllers
         [Authorize(Policy = "RequireFysio")]
         public IActionResult AddPatientfile()
         {
-            
+            ViewBag.Categories = GetAllDiagnoseCategories();
             AddTreatorsToViewBag();
             return View();
         }
@@ -117,7 +121,6 @@ namespace Fysio.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: Patientfile aanmaken in de db en koppelen aan patient etc
                 TreatmentPlan treatmentPlan = new TreatmentPlan(patientFileModel.TreatmentsPerWeek, patientFileModel.MinutesPerSession);
                 treatmentPlanRepository.AddTreatmentPlan(treatmentPlan);
 
@@ -127,7 +130,9 @@ namespace Fysio.Controllers
 
                 Patient p = patientRepository.GetPatientByEmail(patientFileModel.PatientEmail);
 
-                PatientFile patientFile = new PatientFile(patientFileModel.Complaints, patientFileModel.DiagnosisCode, patientFileModel.DiagnosisDescription, intaker, null, treatorRepository.GetTreatorByEmail(patientFileModel.TreatorEmail), DateTime.Now, DateTime.MinValue, treatmentPlan, new List<Treatment>(), new List<Comment>(), CalculateAge(p), p);
+                Diagnosis d = diagnosisRepository.GetDiagnosisById(int.Parse(patientFileModel.DiagnosisCode));
+
+                PatientFile patientFile = new PatientFile(patientFileModel.Complaints, d.Value.ToString(), d.DiagnosisDescription, intaker, null, treatorRepository.GetTreatorByEmail(patientFileModel.TreatorEmail), DateTime.Now, DateTime.MinValue, treatmentPlan, new List<Treatment>(), new List<Comment>(), CalculateAge(p), p);
                 patientFileRepository.AddPatientFile(patientFile);
                 return View("Index", ConvertPatientToPatientModelList());
             } else
@@ -169,6 +174,16 @@ namespace Fysio.Controllers
             }
 
             ViewBag.Treators = treators;
+        }
+
+        private IEnumerable<SelectListItem> GetAllDiagnoseCategories()
+        {
+            return diagnosisRepository.GetCategories().Select(c => new SelectListItem() { Text = c, Value = c });
+        }
+
+        public JsonResult GetDiagnosisForCategory(string category)
+        {
+            return Json(diagnosisRepository.GetDiagnosesByCategory(category));
         }
 
         private int CalculateAge(Patient patient)

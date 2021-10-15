@@ -12,8 +12,6 @@ namespace Fysio.Models
         [Required]
         public string Complaints { get; set; }
         [Required]
-        public string DiagnosisDescription { get; set; }
-        [Required]
         public string DiagnosisCode { get; set; }
         [Required]
         public string TreatorEmail { get; set; }

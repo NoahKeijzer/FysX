@@ -9,6 +9,7 @@ using DomainServices.Interfaces;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Fysio.Controllers
 {
@@ -19,14 +20,16 @@ namespace Fysio.Controllers
         private readonly ITreatorRepository treatorRepository;
         private readonly IPatientRepository patientRepository;
         private readonly IPatientFileRepository patientFileRepository;
+        private readonly ITreatmentTypeRepository treatmentTypeRepository;
         private readonly UserManager<IdentityUser> userManager;
 
-        public TreatmentController(ITreatmentRepository treatmentRepository, ITreatorRepository treatorRepository, IPatientRepository patientRepository, IPatientFileRepository patientFileRepository, UserManager<IdentityUser> userManager)
+        public TreatmentController(ITreatmentRepository treatmentRepository, ITreatorRepository treatorRepository, IPatientRepository patientRepository, IPatientFileRepository patientFileRepository, UserManager<IdentityUser> userManager, ITreatmentTypeRepository treatmentTypeRepository)
         {
             this.treatmentRepository = treatmentRepository;
             this.treatorRepository = treatorRepository;
             this.patientRepository = patientRepository;
             this.patientFileRepository = patientFileRepository;
+            this.treatmentTypeRepository = treatmentTypeRepository;
             this.userManager = userManager;
         }
 
@@ -40,6 +43,7 @@ namespace Fysio.Controllers
         public IActionResult AddTreatment(string p, int id)
         {
             Treatment t = treatmentRepository.GetTreatmentById(id);
+            ViewBag.TreatmentTypes = GetTreatmentTypes();
             if(t != null)
             {
                 ViewBag.IsNew = false;
@@ -87,7 +91,9 @@ namespace Fysio.Controllers
                 }
             } else
             {
-                return View();
+                ViewBag.IsNew = true;
+                ViewBag.TreatmentTypes = GetTreatmentTypes();
+                return View(model);
             }
         }
 
@@ -108,6 +114,17 @@ namespace Fysio.Controllers
                 ViewBag.IsNew = false;
                 return View("Error");
             }
+        }
+
+        public IEnumerable<SelectListItem> GetTreatmentTypes()
+        {
+            
+            return treatmentTypeRepository.GetAllTreatments().Select(t => new SelectListItem() { Text = t.Description, Value = t.Value});
+        }
+
+        public JsonResult IsDescriptionNecessaryForTreatment(string id)
+        {
+            return Json(treatmentTypeRepository.GetTreatmentById(id).RequireExplanation);
         }
 
         public IActionResult ToPatientList()
