@@ -13,6 +13,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Infra;
+using WebApi.Models;
+using HotChocolate.AspNetCore;
+using HotChocolate.AspNetCore.Playground;
+using HotChocolate;
 
 namespace WebApi
 {
@@ -41,6 +45,11 @@ namespace WebApi
             services.AddScoped<IDiagnosisRepository, DBDiagnosisRepository>();
 
             services.AddScoped<ITreatmentRepository, DBTreatmentRepository>();
+
+            services.AddScoped<Query>();
+            services.AddGraphQL(c => SchemaBuilder.New().AddServices(c).AddType<GraphQLTypes>()
+                                                                        .AddQueryType<Query>()
+                                                                         .Create());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,12 +65,19 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UsePlayground(new PlaygroundOptions
+            {
+                QueryPath = "/api",
+                Path = "/playground"
+            });
+
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGraphQL("/api/graphql");
             });
         }
     }

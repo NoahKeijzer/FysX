@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WebApi.Models;
 
 namespace WebApi.Infra
@@ -10,5 +11,6 @@ namespace WebApi.Infra
         public Diagnosis GetDiagnosisById(int id);
         public void AddDiagnosis(Diagnosis diagnosis);
         public IEnumerable<string> GetCategories();
+        public IQueryable<Diagnosis> GetAll();
     }
 }

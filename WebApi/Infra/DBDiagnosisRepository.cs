@@ -43,5 +43,11 @@ namespace WebApi.Infra
             List<string> categories = context.Diagnoses.GroupBy(p => p.BodyPart).Select(p => p.Key).ToList();
             return categories;
         }
+
+
+        public IQueryable<Diagnosis> GetAll()
+        {
+            return context.Diagnoses.AsQueryable();
+        }
     }
 }
