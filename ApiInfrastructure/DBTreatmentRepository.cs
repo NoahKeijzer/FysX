@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Domain;
 using DomainServices;
 
-namespace WebApi.Infra
+namespace ApiInfrastructure
 {
     public class DBTreatmentRepository : ITreatmentRepository
     {

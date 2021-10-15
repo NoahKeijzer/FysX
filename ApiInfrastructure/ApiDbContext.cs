@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain;
 
-namespace WebApi.Infra
+namespace ApiInfrastructure
 {
     public class ApiDbContext : DbContext
     {

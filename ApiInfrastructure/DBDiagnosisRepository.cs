@@ -6,7 +6,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using DomainServices;
 
-namespace WebApi.Infra
+namespace ApiInfrastructure
 {
     public class DBDiagnosisRepository : DomainServices.IDiagnosisRepository
     {

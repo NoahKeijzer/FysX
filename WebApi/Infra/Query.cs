@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Infra;
 using Domain;
 using DomainServices;
 
-namespace WebApi.Models
+namespace WebApi.Infra
 {
     public class Query
     {

@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Infra;
 using DomainServices;
-using WebApi.Models;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
 using HotChocolate;
+using ApiInfrastructure;
 
 namespace WebApi
 {
