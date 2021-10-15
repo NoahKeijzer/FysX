@@ -22,10 +22,15 @@ namespace WebApi.Controllers
 
         // GET: api/<DiagnosisController>
         [HttpGet]
-        public IEnumerable<Diagnosis> Get()
+        public IEnumerable<Diagnosis> Get([FromQuery(Name = "category")] string category)
         {
-            //AddAllDiagnosis();
-            return diagnosisRepository.GetAllDiagnoses();
+            if(category != null)
+            {
+                return diagnosisRepository.GetDiagnosesByCategory(category);
+            } else
+            {
+                return diagnosisRepository.GetAllDiagnoses();
+            }
         }
 
         // GET api/<DiagnosisController>/5
@@ -33,12 +38,6 @@ namespace WebApi.Controllers
         public Diagnosis Get(int id)
         {
             return diagnosisRepository.GetDiagnosisById(id);
-        }
-
-        [HttpGet("{category}")]
-        public IEnumerable<Diagnosis> Get(string category)
-        {
-            return diagnosisRepository.GetDiagnosesByCategory(category);
         }
 
         public void AddAllDiagnosis()
