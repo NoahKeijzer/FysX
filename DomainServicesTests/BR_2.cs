@@ -42,8 +42,8 @@ namespace DomainServicesTests
             PatientFile pf = new PatientFile() { TreatmentPlan = tp };
             Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime};
 
-            DateTime startTime = DateTime.Parse("10-15-2021 09:00AM");
-            DateTime endTime = DateTime.Parse("10-15-2021 5:00PM");
+            DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
+            DateTime endTime = DateTime.Parse("10-10-2021 5:00PM");
 
             Availability availability = new Availability(t, startTime, endTime, startTime, endTime, startTime, endTime, startTime, endTime, startTime, endTime);
 
@@ -78,8 +78,8 @@ namespace DomainServicesTests
             PatientFile pf = new PatientFile() { TreatmentPlan = tp };
             Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(tp.MinutesPerSession)};
 
-            DateTime startTime = DateTime.Parse("15-10-2021 09:00");
-            DateTime endTime = DateTime.Parse("15-10-2021 17:00");
+            DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
+            DateTime endTime = DateTime.Parse("10-10-2021 5:00PM");
 
             Availability availability = new Availability(t, startTime, endTime, startTime, endTime, startTime, endTime, startTime, endTime, startTime, endTime);
 
