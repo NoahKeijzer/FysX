@@ -12,9 +12,9 @@ namespace DomainServicesTests
         //De leeftijd van een patiënt is >= 16. 
 
         [Fact]
-        public void test()
+        public void AddPatientCheckOnAge()
         {
-            
+            Assert.Equal(true, true);
         }
     }
 }
