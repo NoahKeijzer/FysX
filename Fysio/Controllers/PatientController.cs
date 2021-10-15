@@ -193,7 +193,5 @@ namespace Fysio.Controllers
             return (now - dob) / 10000;
         }
 
-
-
     }
 }
