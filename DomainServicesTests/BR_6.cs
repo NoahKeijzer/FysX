@@ -34,7 +34,9 @@ namespace DomainServicesTests
 
             Treator t = new FysioTherapist();
             DateTime appointmentDateTime = DateTime.Now.AddHours(hours);
-            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(60) };
+            Patient patient = new Patient();
+            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(60), Patient = patient };
+            PatientFile pf = new PatientFile(new TreatmentPlan() { TreatmentsPerWeek = 2 });
             Appointment originalAppointment = new Appointment() { AppointmentDateTime = DateTime.Now.AddHours(hours) };
 
             AppointmentRepo.Setup(p => p.GetAppointmentById(1)).Returns(originalAppointment);
@@ -42,6 +44,8 @@ namespace DomainServicesTests
             var sutMock = new Mock<DBAddAppointmentService>(AppointmentRepo.Object, PatientFileRepo.Object, AvailabilityRepo.Object);
             sutMock.CallBase = true;
             sutMock.Setup(p => p.IsPossibleTime(t, appointmentDateTime, 0)).Returns(true);
+            PatientFileRepo.Setup(p => p.GetCurrentPatientFileForPatient(patient)).Returns(pf);
+            AppointmentRepo.Setup(p => p.GetAmountOfAppointmentsIn2Week(patient, a)).Returns(0);
 
             //Act
             bool succes = sutMock.Object.UpdateAppointment(a, 1);

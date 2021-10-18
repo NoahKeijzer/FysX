@@ -42,6 +42,11 @@ namespace Domain
             Patient = patient;
         }
 
+        public PatientFile(TreatmentPlan tp)
+        {
+            this.TreatmentPlan = tp;
+        }
+
         public PatientFile()
         {
 

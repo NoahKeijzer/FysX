@@ -38,8 +38,9 @@ namespace DomainServicesTests
 
             Treator t = new FysioTherapist();
             DateTime appointmentDateTime = DateTime.Parse(date);
-            TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60 };
-            PatientFile pf = new PatientFile() { TreatmentPlan = tp };
+            TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60, TreatmentsPerWeek = 2 };
+            Patient patient = new Patient();
+            PatientFile pf = new PatientFile() { TreatmentPlan = tp, Patient = patient };
             Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime};
 
             DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
@@ -49,6 +50,7 @@ namespace DomainServicesTests
 
             AvailabilityRepo.Setup(p => p.GetAvailabilityForTreator(t)).Returns(availability);
             AppointmentRepo.Setup(p => p.GetAppointmentsForDateForTreator(t, appointmentDateTime)).Returns(new List<Appointment>());
+            AppointmentRepo.Setup(p => p.GetAmountOfAppointmentsIn2Week(patient, a)).Returns(1);
 
             AddAppointmentService sut = new DBAddAppointmentService(AppointmentRepo.Object, PatientFileRepo.Object, AvailabilityRepo.Object);
 
@@ -74,8 +76,9 @@ namespace DomainServicesTests
 
             Treator t = new FysioTherapist();
             DateTime appointmentDateTime = DateTime.Parse(date);
-            TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60 };
-            PatientFile pf = new PatientFile() { TreatmentPlan = tp };
+            TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60, TreatmentsPerWeek = 2 };
+            Patient patient = new Patient();
+            PatientFile pf = new PatientFile() { TreatmentPlan = tp, Patient = patient};
             Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(tp.MinutesPerSession)};
 
             DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
@@ -85,6 +88,7 @@ namespace DomainServicesTests
 
             AvailabilityRepo.Setup(p => p.GetAvailabilityForTreator(t)).Returns(availability);
             AppointmentRepo.Setup(p => p.GetAppointmentsForDateForTreator(t, appointmentDateTime)).Returns(new List<Appointment>() { a });
+            AppointmentRepo.Setup(p => p.GetAmountOfAppointmentsIn2Week(patient, a)).Returns(1);
 
             AddAppointmentService sut = new DBAddAppointmentService(AppointmentRepo.Object, PatientFileRepo.Object, AvailabilityRepo.Object);
 

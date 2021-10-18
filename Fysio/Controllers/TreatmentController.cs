@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using DomainServices.Services;
 
 namespace Fysio.Controllers
 {
@@ -22,8 +23,9 @@ namespace Fysio.Controllers
         private readonly IPatientFileRepository patientFileRepository;
         private readonly ITreatmentTypeRepository treatmentTypeRepository;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly AddTreatmentService addTreatmentService;
 
-        public TreatmentController(ITreatmentRepository treatmentRepository, ITreatorRepository treatorRepository, IPatientRepository patientRepository, IPatientFileRepository patientFileRepository, UserManager<IdentityUser> userManager, ITreatmentTypeRepository treatmentTypeRepository)
+        public TreatmentController(ITreatmentRepository treatmentRepository, ITreatorRepository treatorRepository, IPatientRepository patientRepository, IPatientFileRepository patientFileRepository, UserManager<IdentityUser> userManager, ITreatmentTypeRepository treatmentTypeRepository, AddTreatmentService addTreatmentService)
         {
             this.treatmentRepository = treatmentRepository;
             this.treatorRepository = treatorRepository;
@@ -31,6 +33,7 @@ namespace Fysio.Controllers
             this.patientFileRepository = patientFileRepository;
             this.treatmentTypeRepository = treatmentTypeRepository;
             this.userManager = userManager;
+            this.addTreatmentService = addTreatmentService;
         }
 
         public IActionResult Index(int id)
@@ -82,12 +85,18 @@ namespace Fysio.Controllers
                     Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
-                    treatmentRepository.AddTreatment(t);
 
-                    PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
-                    pf.Treatments.Add(t);
-                    patientFileRepository.UpdatePatientFile(pf);
-                    return (ActionResult)RedirectToAction("Index", "PatientFile", pf);
+                    if (addTreatmentService.AddTreatment(t))
+                    {
+                        PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                        pf.Treatments.Add(t);
+                        patientFileRepository.UpdatePatientFile(pf);
+                        return RedirectToAction("Index", "PatientFile", pf);
+                    } else
+                    {
+                        return View("Error");
+                    }
+
                 }
             } else
             {

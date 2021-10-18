@@ -24,10 +24,19 @@ namespace EFInfrastructure
 
         public bool AddAppointment(Appointment appointment, PatientFile patientFile)
         {
+            Console.WriteLine(IsPossibleTime(appointment.Treator, appointment.AppointmentDateTime, patientFile.TreatmentPlan.MinutesPerSession));
+            Console.WriteLine(appointment.Treator);
+            Console.WriteLine(appointment.AppointmentDateTime);
+            Console.WriteLine(patientFile.TreatmentPlan.MinutesPerSession);
             if(IsPossibleTime(appointment.Treator, appointment.AppointmentDateTime, patientFile.TreatmentPlan.MinutesPerSession))
             {
-                appointmentRepository.AddAppointment(appointment);
-                return true;
+                Console.WriteLine("is possible");
+                if (IsPossibleWithinLimimit(patientFile, appointment))
+                {
+                    Console.WriteLine("is possible");
+                    appointmentRepository.AddAppointment(appointment);
+                    return true;
+                }
             }  
             return false;
         }
@@ -156,6 +165,7 @@ namespace EFInfrastructure
         public bool UpdateAppointment(Appointment appointment, int id)
         {
             Appointment a = appointmentRepository.GetAppointmentById(id);
+            PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(appointment.Patient);
             if (a.AppointmentDateTime > DateTime.Now.AddDays(1))
             {
                 if(appointment.AppointmentDateTime > DateTime.Now.AddDays(1))
@@ -163,10 +173,23 @@ namespace EFInfrastructure
                     int duration = appointment.AppointmentDateTime.Subtract(appointment.EndDateTime).Minutes;
                     if(IsPossibleTime(appointment.Treator, appointment.AppointmentDateTime, duration))
                     {
-                        appointmentRepository.UpdateAppointment(id, appointment);
-                        return true;
+                        if (IsPossibleWithinLimimit(pf, appointment))
+                        {
+                            appointmentRepository.UpdateAppointment(id, appointment);
+                            return true;
+                        }
                     }
                 }
+            }
+            return false;
+        }
+
+        public bool IsPossibleWithinLimimit(PatientFile pf, Appointment appointment)
+        {
+            int amountOfAppointments = appointmentRepository.GetAmountOfAppointmentsIn2Week(pf.Patient, appointment);
+            if(amountOfAppointments + 1 <= pf.TreatmentPlan.TreatmentsPerWeek * 2)
+            {
+                return true;
             }
             return false;
         }

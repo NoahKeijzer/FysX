@@ -46,6 +46,11 @@ namespace EFInfrastructure
             return _context.Appointments.Where(p => p.Treator == treator).ToList();
         }
 
+        public int GetAmountOfAppointmentsIn2Week(Patient patient, Appointment appointment)
+        {
+            return _context.Appointments.Where(p => p.Patient == patient && p.AppointmentDateTime > appointment.AppointmentDateTime.AddDays(-7) && p.AppointmentDateTime < appointment.AppointmentDateTime.AddDays(7)).Count();
+        }
+
         public List<Appointment> GetAppoinmentsTodayForPatient(Patient patient)
         {
             return _context.Appointments.Where(p => p.Patient == patient && p.AppointmentDateTime.Date == DateTime.Now.Date).ToList();

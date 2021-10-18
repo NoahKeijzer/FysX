@@ -20,9 +20,14 @@ namespace EFInfrastructure
 
         public void AddTreatment(Treatment treatment)
         {
-            //_context.Add(treatment);
-            _context.Treatments.Add(treatment);
-            _context.SaveChanges();
+            if(treatment.Patient != null)
+            {
+                _context.Treatments.Add(treatment);
+                _context.SaveChanges();
+            } else
+            {
+                throw new ArgumentNullException("patient is not defined in the system");
+            }
         }
 
         public bool DeleteTreatment(Treatment treatment)
@@ -32,7 +37,8 @@ namespace EFInfrastructure
                 _context.Treatments.Remove(treatment);
                 _context.SaveChanges();
                 return true;
-            } catch( Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 return false;
