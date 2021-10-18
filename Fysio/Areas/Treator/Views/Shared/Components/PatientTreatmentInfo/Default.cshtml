@@ -1,0 +1,92 @@
+﻿
+@model Domain.PatientFile
+@using Domain; 
+<link rel="stylesheet" href="~/css/Patient/PatientLastTreatmentStyle.css"/>
+
+<body>
+    <div class="treatment-info">
+        <div class="treatment-info-title">
+            <h4>Behandelingsinformatie</h4>
+        </div>
+        <div class="treatment-info-last">
+            @{
+                int id;
+                Treatment lastTreatment = null;
+                if (ViewBag.HasTreatments)
+                {
+                    id = Model.Treatments.Max(p => p.Id);
+                    lastTreatment = Model.Treatments.Where(p => p.Id == id).FirstOrDefault();
+                }
+                }
+            <div class="treatment-info-last-title">
+                <h6>Laatste behandeling</h6>
+            </div>
+            <div class="treatment-info-last-head">
+                <span>Type:</span>
+                <br />  
+                <span>Omschrijving:</span>
+                <br />
+                <span>Bijzonderheden:</span>
+                <br />
+                <span>Datum:</span>
+                <br />
+                <span>Behandelaar:</span>
+                <br />
+            </div>
+            <div class="treatment-info-last-content">
+                @if (lastTreatment == null)
+                {
+                    @for(int i = 0; i < 5; i++)
+                    {
+                        <span>Nog geen behandelingen</span>
+                        <br />
+                    }
+                }
+                else
+                {
+                    <span>@lastTreatment.Type</span>
+                    <br />
+                    <span>@lastTreatment.Description</span>
+                    <br />
+                    <span>@lastTreatment.Particularities</span>
+                    <br />
+                    <span>@lastTreatment.TreatmentDateTime.ToShortDateString()</span>
+                    <br />
+                    <span>@lastTreatment.Treator.Name</span>
+                    <br />
+                }
+
+            </div>
+        </div>
+        <div class="treatment-info-path">
+            <div class="treatment-info-path-title">
+                <h6>Traject</h6>
+            </div>
+            <div class="treatment-info-path-head">
+                <span>Begindatum:</span>
+                <br />
+                <span>Hoofdbehandelaar:</span>
+                <br />
+                <span>Ontslagdatum:</span>
+            </div>
+            <div class="treatment-info-path-content">
+                <span>@Model.StartDate.ToShortDateString()</span>
+                <br />
+                <span>@Model.MainTreator.Name</span>
+                <br />
+                @if (Model.EndDate == DateTime.MinValue)
+                {
+                    <span>Nog in traject</span>
+                }
+                else
+                {
+                    <span>@Model.EndDate.ToShortDateString()</span>
+                }
+            </div>
+        </div>
+        <div class="treatment-info-buttons">
+            <a asp-action="AddTreatment" asp-area="Treator" asp-controller="Treatment" asp-route-p="@Model.Patient.Email" asp-route-id="0" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
+            <a asp-action="Index" asp-area="Treator" asp-controller="PatientFile" asp-route-id="@Model.Patient.Id" asp-route-patientFile="@Model" class="link-styled treatment-info-buttons-tofile">Naar dossier</a>
+        </div>
+    </div>
+</body>

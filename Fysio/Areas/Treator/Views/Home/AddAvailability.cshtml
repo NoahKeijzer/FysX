@@ -1,0 +1,72 @@
+﻿@model Fysio.Areas.Treator.Models.AvailabilityModel
+
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+<link rel="stylesheet" href="~/css/Home/AddAvailabilityStyle.css">
+
+<body>
+    <div class="overflow-scroll-class">
+        <div class="form-add-patient">
+            <div class="title">
+                <h2>Beschikbaarheid toevoegen</h2>
+            </div>
+            <form asp-action="AddAvailability" method="post" class="form">
+                <div class="form-availability-group">
+                    <div class="form-input-group">
+                        <label>Maandag starttijd:</label>
+                        <input asp-for="MOStartTime" type="time" class="input-field-form" />
+                    </div>
+                    <div class="form-input-group">
+                        <label>Maandag eindtijd:</label>
+                        <input asp-for="MOEndTime" type="time" class="input-field-form" />
+                    </div>
+                </div>
+                <div class="form-availability-group">
+                    <div class="form-input-group">
+                        <label>Dinsdag starttijd:</label>
+                        <input asp-for="TUStartTime" type="time" class="input-field-form" />
+                    </div>
+                    <div class="form-input-group">
+                        <label>Dinsdag eindtijd:</label>
+                        <input asp-for="TUEndTime" type="time" class="input-field-form" />
+                    </div>
+                </div>
+                <div class="form-availability-group">
+                    <div class="form-input-group">
+                        <label>Woensdag starttijd:</label>
+                        <input asp-for="WEStartTime" type="time" class="input-field-form" />
+                    </div>
+                    <div class="form-input-group">
+                        <label>Woensdag eindtijd:</label>
+                        <input asp-for="WEEndTime" type="time" class="input-field-form" />
+                    </div>
+                </div>
+                <div class="form-availability-group">
+                    <div class="form-input-group">
+                        <label>Donderdag starttijd:</label>
+                        <input asp-for="THStartTime" type="time" class="input-field-form" />
+                    </div>
+                    <div class="form-input-group">
+                        <label>Donderdag eindtijd:</label>
+                        <input asp-for="THEndTime" type="time" class="input-field-form" />
+                    </div>
+                </div>
+                <div class="form-availability-group">
+                    <div class="form-input-group">
+                        <label>Vrijdag starttijd:</label>
+                        <input asp-for="FRStartTime" type="time" class="input-field-form" />
+                    </div>
+                    <div class="form-input-group">
+                        <label>Vrijdag eindtijd:</label>
+                        <input asp-for="FREndTime" type="time" class="input-field-form" />
+                    </div>
+                </div>
+
+
+                <div class="form-submit">
+                    <button class="btn-active-menu" type="submit">Voeg beschikbaarheid toe</button>
+                    <div asp-validation-summary="All"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

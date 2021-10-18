@@ -1,0 +1,40 @@
+﻿@model Fysio.Areas.Treator.Models.AccountModel
+
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+<link href="~/css/Appointment/AddAppointmentStyle.css" rel="stylesheet" />
+
+<body>
+    <div class="form-add-patient">
+        <div class="title">
+            <h2>Update account</h2>
+        </div>
+        <form asp-action="UpdateAccount" method="post" class="form">
+            <div class="form-input-group">
+                <label>Naam:</label>
+                <input asp-for="Name" class="input-field-form" />
+            </div>
+            @if (ViewBag.IsTreator)
+            {
+                <div class="form-input-group">
+                    <label>Telefoonnummer:</label>
+                    <input asp-for="PhoneNumber" class="input-field-form" />
+                </div>
+
+                <div class="form-input-group">
+                    <label>Bignummer:</label>
+                    <input asp-for="BigNumber" class="input-field-form" />
+                </div>
+            }
+
+            <div class="form-input-group">
+                <label>Schoolnummer:</label>
+                <input asp-for="SchoolNumber" class="input-field-form" />
+            </div>
+
+            <div class="form-submit">
+                <button class="btn-active-menu" type="submit">Update account</button>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+    </div>
+</body>

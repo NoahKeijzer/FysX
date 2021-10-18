@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Domain.Appointment>
+
+<link rel="stylesheet" href="~/css/Patient/PatientAppointmentStyle.css" />
+
+<body>
+    <div class="appointments">
+        <div class="appointments-title">
+            <h4>Geplande afspraken</h4>
+        </div>
+        @if (ViewBag.HasAppointments) { 
+            <div class="appointments-list">
+                @foreach(Domain.Appointment a in Model)
+                {
+                    <div class="appointments-list-item">
+                        <strong>
+                            @a.Treator.Name
+                        </strong>
+                        <br />
+                        @a.AppointmentDateTime.ToLongDateString()
+                        <br />
+                        @a.AppointmentDateTime.ToShortTimeString() - @a.EndDateTime.ToShortTimeString()
+                    </div>
+                }
+            </div>
+        } else
+            {
+                <h6>Nog geen afspraken ingepland</h6>
+            }
+        <div class="appointments-btn">
+
+            <a asp-action="AddAppointment" asp-area="Treator" asp-controller="Appointment" asp-route-patientId="@ViewBag.patientId" class="link-styled create-appointment">Maak een afspraak</a>
+        </div>
+    </div>
+</body>

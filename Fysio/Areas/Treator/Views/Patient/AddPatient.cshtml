@@ -1,0 +1,99 @@
+﻿@model Fysio.Areas.Treator.Models.PatientModel
+
+<script src="~/js/MenuItems.js"></script>
+<link rel="stylesheet" href="~/css/Patient/AddPatientStyle.css" />
+
+<body>
+
+    <div class="form-add-patient">
+        <div class="title">
+            @if (ViewBag.IsNew)
+            {
+                <h2>Patient toevoegen</h2>
+            } else
+            {
+                <h2>Patient bijwerken</h2>
+            }
+        </div>
+        <form asp-action="AddPatient" method="post" class="form" enctype="multipart/form-data">
+            @if(Model != null)
+            {
+                <input asp-for="Id" class="hidden" />
+            }
+            <div class="form-personal">
+                <div class="form-input-group">
+                    <label asp-for="Name">Naam</label>
+                    <input asp-for="Name" class="input-field-form" type="text" />
+                </div>
+
+                <div class="form-input-group">
+                    <label asp-for="Birthdate">Geboortedatum</label>
+                    <input asp-for="Birthdate" class="input-field-form" type="date" />
+                </div>
+
+                <div class="form-input-group">
+                    <label class="form-input-label" asp-for="Gender">Geslacht</label>
+                    <select asp-for="Gender" class="input-field-form">
+                        <option value="">Kies er een...</option>
+                        <option value="true">Man</option>
+                        <option value="false">Vrouw</option>
+                    </select>
+                </div>
+
+                <div class="form-input-group">
+                    <label asp-for="Image">Foto</label>
+                    <input asp-for="Image" type="file" class="input-field-form" />
+                </div>
+            </div>
+            <div class="form-contact">
+                @if (ViewBag.IsNew)
+                {
+                    <div class="form-input-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="input-field-form" type="email" />
+                    </div>
+
+                } else
+                {
+                    <input asp-for="Email" class="hidden" type="email"/>
+                }
+
+                <div class="form-input-group">
+                    <label asp-for="PhoneNumber">Telefoonnummer</label>
+                    <input asp-for="PhoneNumber" class="input-field-form" type="tel" />
+                </div>
+
+                <div class="form-student-teacher">
+                    <div class="form-input-group">
+                        <label class="form-input-label" asp-for="Teacher">Leraar</label>
+                        <select asp-for="Teacher" class="input-field-form">
+                            <option value="">Kies er een...</option>
+                            <option value="true">Leraar</option>
+                            <option value="false">Student</option>
+                        </select>
+                    </div>
+
+                    <div class="form-input-group">
+                        <label asp-for="RegistrationNumber">Studentnummer/Leraarnummer</label>
+                        <input asp-for="RegistrationNumber" class="input-field-form" type="number" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-submit">
+                @if (ViewBag.IsNew)
+                {
+                    <button class="btn-active-menu" type="submit">Voeg patient toe</button>
+                } else
+                {
+                    <button class="btn-active-menu" type="submit">Werk patient bij</button>
+                }
+                
+                <div asp-validation-summary="All"></div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    activeMenu2();
+</script>

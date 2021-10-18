@@ -10,6 +10,8 @@ using EFInfrastructure;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Threading.Tasks;
 
 namespace Fysio
 {
@@ -27,7 +29,6 @@ namespace Fysio
         {
             string fysioDbString = Configuration.GetConnectionString("Default");
             string identityDbString = Configuration.GetConnectionString("Security");
-
 
             services.AddDbContext<FysioDbContext>(options => options.UseSqlServer(fysioDbString, b => b.MigrationsAssembly("Fysio")));
 
@@ -68,6 +69,19 @@ namespace Fysio
             services.AddScoped<ITreatmentTypeRepository, ApiTreatmentTypeRepository>();
 
             services.AddScoped<AddTreatmentService, DBAddTreatmentService>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = x =>
+                    {
+                        x.Response.Redirect("Treator/Account/Login");
+                        return Task.CompletedTask;
+                    }
+                };
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +93,7 @@ namespace Fysio
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Treator/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -92,22 +106,20 @@ namespace Fysio
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapFallbackToAreaController("Index", "Home", "Treator");
 
-                endpoints.MapControllerRoute(
-                    name: "patient",
-                    pattern: "patient/{Id:int}",
-                    defaults: new { controller = "Home", action = "Patient" });
-
-                endpoints.MapControllerRoute(
-                    name: "patiensList",
-                    pattern: "patient",
-                    defaults: new { controller = "Patient", action = "Index" });
+                endpoints.MapAreaControllerRoute(
+                    name: "TreatorArea",
+                    areaName: "Treator",
+                    pattern: "Treator/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 
             });
 
