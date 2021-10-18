@@ -1,6 +1,5 @@
 ﻿using DomainServices.Interfaces;
 using DomainServices.Services;
-using Fysio.Areas.Treator.Controllers;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,8 @@ using System.Threading.Tasks;
 using Xunit;
 using Domain;
 using EFInfrastructure;
+using Fysio.Areas.Treator.Models;
+using Fysio.Areas.Treator.Controllers;
 
 namespace DomainServicesTests
 {
