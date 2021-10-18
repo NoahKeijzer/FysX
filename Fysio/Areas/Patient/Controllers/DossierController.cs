@@ -9,7 +9,7 @@ namespace Fysio.Areas.Patient.Controllers
 {
     [Area("Patient")]
     [Authorize(Policy = "RequirePatient")]
-    public class AppointmentController : Controller
+    public class DossierController : Controller
     {
         public IActionResult Index()
         {

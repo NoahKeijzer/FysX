@@ -85,7 +85,10 @@
             </div>
         </div>
         <div class="treatment-info-buttons">
-            <a asp-action="AddTreatment" asp-area="Treator" asp-controller="Treatment" asp-route-p="@Model.Patient.Email" asp-route-id="0" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
+            @if (ViewBag.IsTreator)
+            {
+                <a asp-action="AddTreatment" asp-area="Treator" asp-controller="Treatment" asp-route-p="@Model.Patient.Email" asp-route-id="0" class="link-styled treatment-info-buttons-create">Maak behandeling</a>
+            }
             <a asp-action="Index" asp-area="Treator" asp-controller="PatientFile" asp-route-id="@Model.Patient.Id" asp-route-patientFile="@Model" class="link-styled treatment-info-buttons-tofile">Naar dossier</a>
         </div>
     </div>

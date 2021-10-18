@@ -8,7 +8,7 @@ using EFInfrastructure;
 
 namespace Fysio.Areas.Treator.ViewComponents
 {
-    [Area("ViewComponents")]
+    [Area("Treator")]
     public class PatientCountViewComponent : ViewComponent
     {
         private readonly IPatientRepository PatientRepository;

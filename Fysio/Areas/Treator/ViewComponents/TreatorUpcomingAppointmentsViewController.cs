@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Fysio.Areas.Treator.ViewComponents
 {
-    [Area("ViewComponents")]
+    [Area("Treator")]
     public class TreatorUpcomingAppointmentsViewComponent : ViewComponent
     {
         private readonly ITreatorRepository treatorRepository;

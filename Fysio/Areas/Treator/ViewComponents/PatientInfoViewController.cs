@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fysio.Areas.Treator.ViewComponents
 {
-    [Area("ViewComponents")]
+    [Area("Treator")]
     public class PatientInfoViewComponent : ViewComponent
     {
 

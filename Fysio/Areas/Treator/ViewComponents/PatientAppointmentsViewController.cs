@@ -9,7 +9,7 @@ using DomainServices.Interfaces;
 
 namespace Fysio.Areas.Treator.ViewComponents
 {
-    [Area("ViewComponents")]
+    [Area("Treator")]
     public class PatientAppointmentsViewComponent : ViewComponent
     {
         private readonly IAppointmentRepository appointmentRepository;

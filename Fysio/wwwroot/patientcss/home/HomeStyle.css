@@ -1,0 +1,38 @@
+﻿.patient-dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.patient-dashboard-info{
+    width: 92%;
+    margin: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+}
+
+.patient-dashboard-treatment {
+    width: 55%;
+    margin: 30px;
+    margin-top: 0;
+
+}
+
+.patient-dashboard-treatment-info {
+    background: white;
+    border-radius: 15px;
+    width: 100%;
+    padding: 20px;
+}
+
+.patient-dashboard-appointments {
+    width: 35%;
+    margin: 30px;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+}
