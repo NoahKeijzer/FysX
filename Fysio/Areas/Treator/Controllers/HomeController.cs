@@ -149,7 +149,7 @@ namespace Fysio.Areas.Treator.Controllers
 
 
 
-        private PatientModel ConvertPatientToPatientModel(Patient patient)
+        private PatientModel ConvertPatientToPatientModel(Domain.Patient patient)
         {
             bool gender = patient.Gender == Gender.Male ? true : false;
             return new PatientModel() { Birthdate = patient.BirthDate, Email = patient.Email, Name = patient.Name, PhoneNumber = patient.PhoneNumber, RegistrationNumber = patient.RegistrationNumber, Teacher = !patient.Student, Gender = gender, Id = patient.Id };
@@ -157,9 +157,9 @@ namespace Fysio.Areas.Treator.Controllers
 
         private List<PatientModel> ConvertPatientToPatientModelList()
         {
-            List<Patient> patients = patientRepository.GetAllPatients();
+            List<Domain.Patient> patients = patientRepository.GetAllPatients();
             List<PatientModel> patientModels = new List<PatientModel>();
-            foreach (Patient p in patients)
+            foreach (Domain.Patient p in patients)
             {
                 patientModels.Add(ConvertPatientToPatientModel(p));
             }

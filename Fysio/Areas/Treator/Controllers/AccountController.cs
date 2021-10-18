@@ -50,7 +50,7 @@ namespace Fysio.Areas.Treator.Controllers
 
                 if (result)
                 {
-                    return isTreator ? RedirectToAction("Index", "Home") : View("Register");
+                    return isTreator ? RedirectToAction("Index", "Home") : RedirectToAction("Index", "Home", new { area = "Patient" });
                 }
                 else
                 {
@@ -66,7 +66,7 @@ namespace Fysio.Areas.Treator.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return RedirectToAction("Index", "Account", "Treator");
+            return RedirectToAction("Index", "Account");
         }
 
         [HttpPost]
@@ -90,15 +90,14 @@ namespace Fysio.Areas.Treator.Controllers
             {
                 IdentityUser user = new IdentityUser() { UserName = registerModel.Email.Split("@")[0], Email = registerModel.Email };
                 var result = await userManager.CreateAsync(user, registerModel.Password);
-                await userManager.AddClaimAsync(user, new Claim("Claim.Treator", "Treator"));
-                await userManager.AddClaimAsync(user, new Claim("Claim.Fysio", "Fysio"));
+                await userManager.AddClaimAsync(user, new Claim("Claim.Patient", "Patient"));
                 if (result.Succeeded)
                 {
                     return await LoginAsync(new LoginModel(registerModel.Email, registerModel.Password));
                 }
                 else
                 {
-                    return View();
+                    return RedirectToAction("Index", "Home", new { area = "Patient" });
                 }
             } else
             {

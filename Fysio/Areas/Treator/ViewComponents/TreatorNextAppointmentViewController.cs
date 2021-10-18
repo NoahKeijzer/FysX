@@ -26,7 +26,7 @@ namespace Fysio.Areas.Treator.ViewComponents
         {
             IEnumerable<Appointment> appointments = appointmentRepository.GetUpcomingAppointmentsForTreator(treator);
             Appointment a = appointments.FirstOrDefault();
-            Patient p = null;
+            Domain.Patient p = null;
             PatientFile pf = null;
             Treatment lastTreatment = null;
             if (a != null)

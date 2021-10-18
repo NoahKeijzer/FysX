@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Patient\" />
+    <Folder Include="Areas\Patient\ViewComponents\" />
+    <Folder Include="Areas\Patient\Views\PatientFile\" />
+    <Folder Include="Areas\Patient\Views\Shared\Components\" />
   </ItemGroup>
 
 </Project>

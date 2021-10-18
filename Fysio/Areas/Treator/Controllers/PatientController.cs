@@ -50,7 +50,7 @@ namespace Fysio.Areas.Treator.Controllers
             ViewBag.IsNew = id != 0 ? false : true;
             if(id != 0)
             {
-                Patient p = patientRepository.GetPatientById(id);
+                Domain.Patient p = patientRepository.GetPatientById(id);
                 PatientModel model = new PatientModel() { Id = id, PhoneNumber = p.PhoneNumber, Birthdate = p.BirthDate, Email = p.Email, Name = p.Name, RegistrationNumber = p.RegistrationNumber, Teacher = !p.Student, Gender = p.Gender == Gender.Male ? true : false };
                 return View(model);
             } else
@@ -69,14 +69,14 @@ namespace Fysio.Areas.Treator.Controllers
             {
                 if(patient.Id != 0)
                 {
-                    Patient p = patient.ConvertPatientModelToPatient();
+                    Domain.Patient p = patient.ConvertPatientModelToPatient();
                     patientRepository.UpdatePatient(patient.Id, p);
                     ViewBag.Categories = GetAllDiagnoseCategories();
                     return RedirectToAction("PatientDetail", ConvertPatientToPatientModel(patientRepository.GetPatientById(patient.Id)));
 
                 } else
                 {
-                    Patient p = patient.ConvertPatientModelToPatient();
+                    Domain.Patient p = patient.ConvertPatientModelToPatient();
                     patientRepository.AddPatient(p);
                     AddTreatorsToViewBag();
                     ViewBag.Categories = GetAllDiagnoseCategories();
@@ -129,7 +129,7 @@ namespace Fysio.Areas.Treator.Controllers
                 string email = currentUser.FindFirst(ClaimTypes.Email).Value;
                 Domain.Treator intaker = treatorRepository.GetTreatorByEmail(email);
 
-                Patient p = patientRepository.GetPatientByEmail(patientFileModel.PatientEmail);
+                Domain.Patient p = patientRepository.GetPatientByEmail(patientFileModel.PatientEmail);
 
                 Diagnosis d = diagnosisRepository.GetDiagnosisById(int.Parse(patientFileModel.DiagnosisCode));
 
@@ -143,7 +143,7 @@ namespace Fysio.Areas.Treator.Controllers
         }
 
 
-        private PatientModel ConvertPatientToPatientModel(Patient patient)
+        private PatientModel ConvertPatientToPatientModel(Domain.Patient patient)
         {
             bool gender = patient.Gender == Gender.Male ? true : false;
             PatientModel model = new PatientModel() { Birthdate = patient.BirthDate, Email = patient.Email, Name = patient.Name, PhoneNumber = patient.PhoneNumber, RegistrationNumber = patient.RegistrationNumber, Teacher = !patient.Student, Gender = gender, Id = patient.Id };
@@ -156,9 +156,9 @@ namespace Fysio.Areas.Treator.Controllers
 
         private List<PatientModel> ConvertPatientToPatientModelList()
         {
-            List<Patient> patients = patientRepository.GetAllPatients();
+            List<Domain.Patient> patients = patientRepository.GetAllPatients();
             List<PatientModel> patientModels = new List<PatientModel>();
-            foreach (Patient p in patients)
+            foreach (Domain.Patient p in patients)
             {
                 patientModels.Add(ConvertPatientToPatientModel(p));
             }
@@ -187,7 +187,7 @@ namespace Fysio.Areas.Treator.Controllers
             return Json(diagnosisRepository.GetDiagnosesByCategory(category));
         }
 
-        private int CalculateAge(Patient patient)
+        private int CalculateAge(Domain.Patient patient)
         {
             int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
             int dob = int.Parse(patient.BirthDate.ToString("yyyyMMdd"));

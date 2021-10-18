@@ -40,10 +40,10 @@ namespace Fysio.Areas.Treator.Models
         public string ImageSrc { get; set; }
 
 
-        public Patient ConvertPatientModelToPatient()
+        public Domain.Patient ConvertPatientModelToPatient()
         {
             Gender gender = Gender ? Domain.Gender.Male : Domain.Gender.Female;
-            return new Patient { Id = Id, BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender, Image =  GetByteArrayFromImage(this.Image)};
+            return new Domain.Patient { Id = Id, BirthDate = Birthdate, Email = Email, Name = Name, PhoneNumber = PhoneNumber, RegistrationNumber = RegistrationNumber, Student = !Teacher, Gender = gender, Image =  GetByteArrayFromImage(this.Image)};
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

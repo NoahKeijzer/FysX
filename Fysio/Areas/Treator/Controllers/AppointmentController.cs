@@ -49,7 +49,7 @@ namespace Fysio.Areas.Treator.Controllers
         public IActionResult AddAppointment(AppointmentModel appointmentModel)
         {
             Domain.Treator t = treatorRepository.GetTreatorByEmail(appointmentModel.TreatorEmail);
-            Patient p = patientRepository.GetPatientById(appointmentModel.PatientId);
+            Domain.Patient p = patientRepository.GetPatientById(appointmentModel.PatientId);
             DateTime dateTime = DateTime.Parse(appointmentModel.AppointmentDate + " " + appointmentModel.AppointmentTime);
             PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
             int duration = pf.TreatmentPlan.MinutesPerSession;
@@ -84,8 +84,8 @@ namespace Fysio.Areas.Treator.Controllers
             List<Domain.Treator> allTreators = treatorRepository.GetAllTreators();
             ViewBag.Treators = from Domain.Treator t in allTreators select new SelectListItem { Value = t.Email, Text = t.Name };
 
-            List<Patient> allPatients = patientRepository.GetAllPatients();
-            ViewBag.Patients = from Patient p in allPatients select new SelectListItem { Value = p.Id.ToString(), Text = p.Name };
+            List<Domain.Patient> allPatients = patientRepository.GetAllPatients();
+            ViewBag.Patients = from Domain.Patient p in allPatients select new SelectListItem { Value = p.Id.ToString(), Text = p.Name };
 
             IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
             string email = usr.Email;
@@ -116,7 +116,7 @@ namespace Fysio.Areas.Treator.Controllers
             if(!(treatorEmail.Equals("undefined") && patientId.Equals("undefined") && date.Equals("undefined")))
             {
                 Domain.Treator treator = treatorRepository.GetTreatorByEmail(treatorEmail);
-                Patient patient = patientRepository.GetPatientById(patientId);
+                Domain.Patient patient = patientRepository.GetPatientById(patientId);
                 PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patient);
                 DateTime dateObject = DateTime.Parse(date);
 

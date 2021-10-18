@@ -72,7 +72,7 @@ namespace Fysio.Areas.Treator.Controllers
                     string email = usr.Email;
                     Domain.Treator treator = treatorRepository.GetTreatorByEmail(email);
 
-                    Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
+                    Domain.Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
                     treatmentRepository.UpdateTreatment(model.TreatmentId, t);
@@ -83,7 +83,7 @@ namespace Fysio.Areas.Treator.Controllers
                     string email = usr.Email;
                     Domain.Treator treator = treatorRepository.GetTreatorByEmail(email);
 
-                    Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
+                    Domain.Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
 
@@ -113,7 +113,7 @@ namespace Fysio.Areas.Treator.Controllers
             {
                 Treatment t = treatmentRepository.GetTreatmentById(treatmentId);
 
-                Patient p = patientRepository.GetPatientByEmail(t.Patient.Email);
+                Domain.Patient p = patientRepository.GetPatientByEmail(t.Patient.Email);
                 PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
                 
                 treatmentRepository.DeleteTreatment(t);
