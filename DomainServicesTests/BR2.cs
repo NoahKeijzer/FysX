@@ -14,7 +14,7 @@ using Fysio.Areas.Treator.Controllers;
 
 namespace DomainServicesTests
 {
-    public class BR_2
+    public class BR2
     {
         //Afspraken kunnen alleen worden gemaakt op beschikbare momenten van de
         //hoofdbehandelaar.Hierbij moet rekening gehouden worden met de algemene
