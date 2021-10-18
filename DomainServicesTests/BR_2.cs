@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.AspNetCore.Identity;
-using Fysio.Areas.Treator.Models;
 using Domain;
 using EFInfrastructure;
 
