@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using Xunit;
 using Domain;
 using EFInfrastructure;
-using Fysio.Areas.Treator.Models;
-using Fysio.Areas.Treator.Controllers;
 
 namespace DomainServicesTests
 {
