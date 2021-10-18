@@ -40,7 +40,7 @@ namespace DomainServicesTests
             TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60, TreatmentsPerWeek = 2 };
             Patient patient = new Patient();
             PatientFile pf = new PatientFile() { TreatmentPlan = tp, Patient = patient };
-            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime};
+            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime };
 
             DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
             DateTime endTime = DateTime.Parse("10-10-2021 5:00PM");
@@ -77,8 +77,8 @@ namespace DomainServicesTests
             DateTime appointmentDateTime = DateTime.Parse(date);
             TreatmentPlan tp = new TreatmentPlan() { MinutesPerSession = 60, TreatmentsPerWeek = 2 };
             Patient patient = new Patient();
-            PatientFile pf = new PatientFile() { TreatmentPlan = tp, Patient = patient};
-            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(tp.MinutesPerSession)};
+            PatientFile pf = new PatientFile() { TreatmentPlan = tp, Patient = patient };
+            Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime, EndDateTime = appointmentDateTime.AddMinutes(tp.MinutesPerSession) };
 
             DateTime startTime = DateTime.Parse("10-10-2021 09:00AM");
             DateTime endTime = DateTime.Parse("10-10-2021 5:00PM");
