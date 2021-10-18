@@ -1,5 +1,5 @@
 ﻿using Domain;
-using Fysio.Models;
+using Fysio.Areas.Treator.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

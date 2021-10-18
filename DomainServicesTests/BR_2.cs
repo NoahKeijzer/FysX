@@ -1,6 +1,6 @@
 ﻿using DomainServices.Interfaces;
 using DomainServices.Services;
-using Fysio.Controllers;
+using Fysio.Areas.Treator.Controllers;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Microsoft.AspNetCore.Identity;
-using Fysio.Models;
+using Fysio.Areas.Treator.Models;
 using Domain;
 using EFInfrastructure;
 
