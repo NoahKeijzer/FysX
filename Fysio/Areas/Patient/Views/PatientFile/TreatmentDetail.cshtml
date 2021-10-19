@@ -1,0 +1,89 @@
+﻿@model Domain.Treatment
+
+<link rel="stylesheet" href="~/css/Treatment/TreatmentDetailStyle.css" />
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="~/js/MenuItems.js"></script>
+
+<body>
+    <div class="treatment">
+        <div class="treatment-patient">
+            <div class="treatment-patient-title">
+                <h4>Patient</h4>
+            </div>
+            <div class="treatment-patient-info">
+                <div class="treatment-patient-info-head">
+                    <span>Naam:</span>
+                    <br />
+                    <span>Geboortedatum:</span>
+                </div>
+                <div class="treatment-patient-info-content">
+                    <span>@Model.Patient.Name</span>
+                    <br />
+                    <span>@Model.Patient.BirthDate.ToShortDateString()</span>
+                </div>
+            </div>
+            <div class="treatment-patient-link">
+                <a asp-action="Index" asp-area="Patient" asp-controller="Home">
+                    <img src="~/icons/chevron-right.svg" class="icon" />
+                </a>
+            </div>
+        </div>
+        <div class="treatment-treator">
+            <div class="treatment-treator-title">
+                <h4>Behandelaar</h4>
+            </div>
+            <div class="treatment-treator-info">
+                <div class="treatment-treator-info-head">
+                    <span>Naam:</span>
+                    <br />
+                    <span>Email:</span>
+                </div>
+                <div class="treatment-treator-info-content">
+                    <span>@Model.Treator.Name</span>
+                    <br />
+                    <span>@Model.Treator.Email</span>
+                </div>
+            </div>
+        </div>
+        <div class="treatment-details">
+            <div class="treatment-details-title">
+                <h4>
+                    Behandeling
+                </h4>
+            </div>
+            <div class="treatment-details-info">
+                <div class="treatment-details-info-head">
+                    <span>Datum:</span>
+                    <br />
+                    <span>Locatie:</span>
+                    <br />
+                    <span>Type:</span>
+                    <br />
+                    <span>Omschrijving:</span>
+                </div>
+                <div class="treatment-details-info-content">
+                    <span>@Model.TreatmentDateTime.ToString()</span>
+                    <br />
+                    <span>@Model.Location</span>
+                    <br />
+                    <span>@Model.Type (@Model.TypeDescription)</span>
+                    <br />
+                    <span>@Model.Description</span>
+                </div>
+            </div>
+        </div>
+        <div class="treatment-particularities">
+            <div class="treatment-particularities-title">
+                <h4>Bijzonderheden</h4>
+            </div>
+            <div class="treatment-particularities-content">
+                <span>@Model.Particularities</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    feather.replace();
+    activeMenu2();
+</script>

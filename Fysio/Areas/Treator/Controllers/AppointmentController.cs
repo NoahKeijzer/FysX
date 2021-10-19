@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 namespace Fysio.Areas.Treator.Controllers
 {
     [Area("Treator")]
-    [Authorize(Policy = "RequireTreator")]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentRepository appointmentRepository;
@@ -34,6 +33,7 @@ namespace Fysio.Areas.Treator.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize(Policy = "RequireTreator")]
         public IActionResult Index()
         {
             IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
@@ -44,18 +44,27 @@ namespace Fysio.Areas.Treator.Controllers
             return View(appointments);
         }
 
+        [Authorize(Policy = "RequireTreator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddAppointment(AppointmentModel appointmentModel)
         {
-            Domain.Treator t = treatorRepository.GetTreatorByEmail(appointmentModel.TreatorEmail);
-            Domain.Patient p = patientRepository.GetPatientById(appointmentModel.PatientId);
+            List<Domain.Treator> allTreators = treatorRepository.GetAllTreators();
+            ViewBag.Treators = from Domain.Treator t in allTreators select new SelectListItem { Value = t.Email, Text = t.Name };
+
+            List<Domain.Patient> allPatients = patientRepository.GetAllPatients();
+            ViewBag.Patients = from Domain.Patient p in allPatients select new SelectListItem { Value = p.Id.ToString(), Text = p.Name };
+
+
+            Domain.Treator treator = treatorRepository.GetTreatorByEmail(appointmentModel.TreatorEmail);
+            Domain.Patient patient = patientRepository.GetPatientById(appointmentModel.PatientId);
             DateTime dateTime = DateTime.Parse(appointmentModel.AppointmentDate + " " + appointmentModel.AppointmentTime);
-            PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+            PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patient);
             int duration = pf.TreatmentPlan.MinutesPerSession;
-            Appointment appointment = new Appointment(t, p, dateTime, dateTime.AddMinutes(duration));
+            Appointment appointment = new Appointment(treator, patient, dateTime, dateTime.AddMinutes(duration));
             if (appointmentModel.Id != 0)
             {
+                ViewBag.IsNew = false;
                 if(addAppointmentService.UpdateAppointment(appointment, appointmentModel.Id))
                 {
                     return RedirectToAction("Index", "Patient");
@@ -67,6 +76,7 @@ namespace Fysio.Areas.Treator.Controllers
 
             } else
             {
+                ViewBag.IsNew = true;
                 if (addAppointmentService.AddAppointment(appointment, pf))
                 {
                     return RedirectToAction("Index", "Patient");
@@ -78,6 +88,7 @@ namespace Fysio.Areas.Treator.Controllers
             }
         }
 
+        [Authorize(Policy = "RequireTreator")]
         [HttpGet]
         public IActionResult AddAppointment(int patientId, int appointmentId)
         {
@@ -102,6 +113,7 @@ namespace Fysio.Areas.Treator.Controllers
             
         }
 
+        [Authorize(Policy = "RequireTreator")]
         public IActionResult DeleteAppointment(int id)
         {
             Appointment a = appointmentRepository.GetAppointmentById(id);
@@ -109,6 +121,7 @@ namespace Fysio.Areas.Treator.Controllers
             return RedirectToAction("PatientDetail", "Patient", new { id = a.Patient.Id });
         }
 
+        [Authorize]
         [HttpPost]
         [Route("/Appointment/GetPossibleAppointmentTimes/{treatorEmail}/{patientId}/{date}")]
         public JsonResult GetPossibleAppointmentTimes(string treatorEmail, int patientId, string date)
@@ -128,6 +141,7 @@ namespace Fysio.Areas.Treator.Controllers
             }
         }
 
+        [Authorize(Policy = "RequireTreator")]
         [Route("/Appointment/ReloadAppointmentDetail/{id}")]
         public IActionResult ReloadAppointmentDetail(int id)
         {

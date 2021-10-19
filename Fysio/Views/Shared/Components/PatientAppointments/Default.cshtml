@@ -27,8 +27,13 @@
                 <h6>Nog geen afspraken ingepland</h6>
             }
         <div class="appointments-btn">
-
-            <a asp-action="AddAppointment" asp-area="Treator" asp-controller="Appointment" asp-route-patientId="@ViewBag.patientId" class="link-styled create-appointment">Maak een afspraak</a>
+            @if (ViewBag.IsTreator)
+            {
+                <a asp-action="AddAppointment" asp-area="Treator" asp-controller="Appointment" asp-route-patientId="@ViewBag.patientId" class="link-styled create-appointment">Maak een afspraak</a>
+            } else
+            {
+                <a asp-action="AddAppointment" asp-area="Patient" asp-controller="Home" class="link-styled create-appointment">Maak een afspraak</a>
+            }
         </div>
     </div>
 </body>
