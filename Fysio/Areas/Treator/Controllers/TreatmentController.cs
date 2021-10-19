@@ -75,8 +75,9 @@ namespace Fysio.Areas.Treator.Controllers
                     Domain.Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
-                    treatmentRepository.UpdateTreatment(model.TreatmentId, t);
-                    return (ActionResult)RedirectToAction("Index", "PatientFile", p.Id);
+                    addTreatmentService.UpdateTreatment(t, model.TreatmentId);
+                    PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                    return RedirectToAction("Index", "PatientFile", pf);
                 } else
                 {
                     IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;

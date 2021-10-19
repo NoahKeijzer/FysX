@@ -25,6 +25,7 @@ namespace EFInfrastructure
             if(t.Patient != null)
             {
                 TreatmentType treatmentType = treatmentTypeRepository.GetTreatmentById(t.Type);
+                t.TypeDescription = treatmentType.Description;
                 if (treatmentType.RequireExplanation)
                 {
                     if(t.Description == null)
@@ -41,6 +42,36 @@ namespace EFInfrastructure
                     return true;
                 }
             } else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateTreatment(Treatment t, int id)
+        {
+            if (t.Patient != null)
+            {
+                TreatmentType treatmentType = treatmentTypeRepository.GetTreatmentById(t.Type);
+                t.TypeDescription = treatmentType.Description;
+                if (treatmentType.RequireExplanation)
+                {
+                    if (t.Description == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        treatmentRepository.UpdateTreatment(id, t);
+                        return true;
+                    }
+                }
+                else
+                {
+                    treatmentRepository.UpdateTreatment(id, t);
+                    return true;
+                }
+            }
+            else
             {
                 return false;
             }

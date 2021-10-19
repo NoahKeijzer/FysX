@@ -10,5 +10,6 @@ namespace DomainServices.Services
     public interface AddTreatmentService
     {
         public bool AddTreatment(Treatment t);
+        public bool UpdateTreatment(Treatment t, int id);
     }
 }

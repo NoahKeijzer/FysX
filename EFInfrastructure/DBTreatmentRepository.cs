@@ -79,6 +79,7 @@ namespace EFInfrastructure
                 old.Location = updatedTreatment.Location;
                 old.Particularities = updatedTreatment.Particularities;
                 old.Description = updatedTreatment.Description;
+                old.TypeDescription = updatedTreatment.TypeDescription;
                 _context.SaveChanges();
             } else
             {

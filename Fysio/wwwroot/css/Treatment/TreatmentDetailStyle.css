@@ -125,7 +125,11 @@
 }
 
 .treatment-details-info-content{
-    width: 70%;
+    width: 50ch;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: bolder;
 }
 
