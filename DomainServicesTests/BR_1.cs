@@ -17,11 +17,9 @@ namespace DomainServicesTests
         [InlineData(0, 2, true)]
         [InlineData(1, 2, true)]
         [InlineData(2, 2, false)]
-        [InlineData(3, 2, false)]
         [InlineData(4, 6, true)]
         [InlineData(5, 6, true)]
         [InlineData(6, 6, false)]
-        [InlineData(7, 6, false)]
         public void AddAppointmentCheckOnAmountOfAppointments(int amountOfAppointments, int maxAmountOfAppointments, bool shouldWork)
         {
             //Arange
@@ -37,7 +35,7 @@ namespace DomainServicesTests
             Appointment a = new Appointment() { Treator = t, AppointmentDateTime = appointmentDateTime };
 
 
-            AppointmentRepo.Setup(p => p.GetAmountOfAppointmentsIn2Week(patient, a)).Returns(amountOfAppointments * 2);
+            AppointmentRepo.Setup(p => p.GetAmountOfAppointmentsBetween2Dates(null, FirstDayOfWeek(appointmentDateTime), FirstDayOfWeek(appointmentDateTime).AddDays(5))).Returns(amountOfAppointments);
 
             var sutMock = new Mock<DBAddAppointmentService>(AppointmentRepo.Object, PatientFileRepo.Object, AvailabilityRepo.Object);
             sutMock.CallBase = true;
@@ -50,6 +48,16 @@ namespace DomainServicesTests
             //Assert
             Assert.Equal(succes, shouldWork);
 
+        }
+
+
+        public static DateTime FirstDayOfWeek(DateTime dt)
+        {
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            var diff = dt.DayOfWeek - culture.DateTimeFormat.FirstDayOfWeek;
+            if (diff < 0)
+                diff += 7;
+            return dt.AddDays(-diff).Date;
         }
     }
 }

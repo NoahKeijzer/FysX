@@ -20,6 +20,7 @@ namespace DomainServices.Interfaces
         public List<Appointment> GetAppoinmentsTodayForPatient(Patient patient);
         public List<Appointment> GetAppointmentsForDateForPatient(Patient patient, DateTime date);
         public int GetAmountOfAppointmentsIn2Week(Patient patient, Appointment appointment);
+        public int GetAmountOfAppointmentsBetween2Dates(Patient patient, DateTime start, DateTime end);
         public void DeleteAppointment(int id);
         public void DeleteAppointment(Appointment appointment);
         public void UpdateAppointment(int id, Appointment updatedAppointment);

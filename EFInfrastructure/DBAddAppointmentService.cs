@@ -186,12 +186,24 @@ namespace EFInfrastructure
 
         public bool IsPossibleWithinLimimit(PatientFile pf, Appointment appointment)
         {
-            int amountOfAppointments = appointmentRepository.GetAmountOfAppointmentsIn2Week(pf.Patient, appointment);
-            if(amountOfAppointments + 1 <= pf.TreatmentPlan.TreatmentsPerWeek * 2)
+            DateTime start = FirstDayOfWeek(appointment.AppointmentDateTime);
+            DateTime end = start.AddDays(5);
+
+            int amountOfAppointments = appointmentRepository.GetAmountOfAppointmentsBetween2Dates(appointment.Patient, start, end);
+            if(amountOfAppointments + 1 <= pf.TreatmentPlan.TreatmentsPerWeek)
             {
                 return true;
             }
             return false;
+        }
+
+        public static DateTime FirstDayOfWeek(DateTime dt)
+        {
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            var diff = dt.DayOfWeek - culture.DateTimeFormat.FirstDayOfWeek;
+            if (diff < 0)
+                diff += 7;
+            return dt.AddDays(-diff).Date;
         }
     }
 }
