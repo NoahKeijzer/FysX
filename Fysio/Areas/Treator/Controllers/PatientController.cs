@@ -92,6 +92,7 @@ namespace Fysio.Areas.Treator.Controllers
 
         public IActionResult PatientDetail(int id, PatientModel patient)
         {
+            ViewBag.IsTreator = true;
             if (patient.Email != null)
             {
                 return View(patient);
