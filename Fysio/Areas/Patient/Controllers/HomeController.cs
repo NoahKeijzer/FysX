@@ -105,12 +105,12 @@ namespace Fysio.Areas.Patient.Controllers
                     }
                     else
                     {
-                        return View();
+                        return RedirectToAction("Error", new { errorMessage = "Kan de afspraak niet inplannen op dit moment. Probeer een ander moment." });
                     }
                 }
                 else
                 {
-                    return View();
+                    return RedirectToAction("Error", new { errorMessage = "Kan de afspraak niet inplannen omdat er foute informatie is ingevuld of er informatie ontbreekt. Probeer het opnieuw." });
                 }
             } else
             {
@@ -128,15 +128,22 @@ namespace Fysio.Areas.Patient.Controllers
                         return RedirectToAction("Index");
                     } else
                     {
-                        return View();
+                        return RedirectToAction("Error", new { errorMessage = "Kan de afspraak niet inplannen op dit moment. Probeer een ander moment." });
                     }
                 } else
                 {
-                    return View();
+                    return RedirectToAction("Error", new { errorMessage = "Kan de afspraak niet inplannen omdat er foute informatie is ingevuld of er informatie ontbreekt. Probeer het opnieuw." });
                 }
             }
 
         }
+
+        public IActionResult Error(string errorMessage)
+        {
+            ViewBag.Message = errorMessage;
+            return View();
+        }
+
 
         private PatientModel ConvertPatientToPatientModel(Domain.Patient patient)
         {

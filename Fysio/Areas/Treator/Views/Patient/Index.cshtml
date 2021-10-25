@@ -10,7 +10,9 @@
     <div class="patient">
         <div class="search-bar">
             <input id="searchfield" class="" type="text" placeholder="Zoeken..." oninput="searchFunction()" />
-            <img src="~/icons/search.svg" alt="search icon" class="icon-search" />
+            <div class="search-icon-container">
+                <img src="~/icons/search.svg" alt="search icon" class="icon-search" />
+            </div>
         </div>
         <div class="patient-list">
             @foreach (Fysio.Areas.Treator.Models.PatientModel p in Model)

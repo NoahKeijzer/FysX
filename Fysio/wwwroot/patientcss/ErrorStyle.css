@@ -1,0 +1,15 @@
+﻿.error{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-body{
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: white;
+
+}
