@@ -21,14 +21,16 @@ namespace Fysio.Areas.Patient.Controllers
         private readonly IPatientFileRepository patientFileRepository;
         private readonly ITreatorRepository treatorRepository;
         private readonly AddAppointmentService addAppointmentService;
+        private readonly IAppointmentRepository appointmentRepository;
         private readonly UserManager<IdentityUser> userManager;
 
-        public HomeController(IPatientRepository patientRepository, IPatientFileRepository patientFileRepository, ITreatorRepository treatorRepository, AddAppointmentService addAppointmentService, UserManager<IdentityUser> userManager)
+        public HomeController(IPatientRepository patientRepository, IPatientFileRepository patientFileRepository, ITreatorRepository treatorRepository, AddAppointmentService addAppointmentService, IAppointmentRepository appointmentRepository,UserManager<IdentityUser> userManager)
         {
             this.patientRepository = patientRepository;
             this.patientFileRepository = patientFileRepository;
             this.treatorRepository = treatorRepository;
             this.addAppointmentService = addAppointmentService;
+            this.appointmentRepository = appointmentRepository;
             this.userManager = userManager;
         }
 
@@ -43,58 +45,97 @@ namespace Fysio.Areas.Patient.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddAppointment()
+        public IActionResult AddAppointment(int id)
         {
-            ViewBag.IsNew = true;
-
             List<Domain.Treator> allTreators = treatorRepository.GetAllTreators();
             ViewBag.Treators = from Domain.Treator t in allTreators select new SelectListItem { Value = t.Email, Text = t.Name };
 
             List<Domain.Patient> allPatients = patientRepository.GetAllPatients();
             ViewBag.Patients = from Domain.Patient p in allPatients select new SelectListItem { Value = p.Id.ToString(), Text = p.Name };
 
+            if( id != 0)
+            {
+                ViewBag.IsNew = false;
 
-            IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
-            string email = usr.Email;
-            Domain.Patient patient = patientRepository.GetPatientByEmail(email);
+                Appointment a = appointmentRepository.GetAppointmentById(id);
 
-            PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patient);
+                AppointmentModel model = new AppointmentModel() { PatientId = a.Patient.Id, TreatorEmail = a.Treator.Email, Id = a.Id, AppointmentDate = a.AppointmentDateTime.Date.ToString(), AppointmentTime = a.AppointmentDateTime.TimeOfDay.ToString() };
+                return View(model);
 
-            AppointmentModel model = new AppointmentModel() { PatientId = patient.Id, TreatorEmail = pf.MainTreator.Email};
-            return View(model);
+            } else
+            {
+                ViewBag.IsNew = true;
+
+                IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
+                string email = usr.Email;
+                Domain.Patient patient = patientRepository.GetPatientByEmail(email);
+
+                PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(patient);
+
+                AppointmentModel model = new AppointmentModel() { PatientId = patient.Id, TreatorEmail = pf.MainTreator.Email};
+                return View(model);
+            }
+
         }
 
         [HttpPost]
         public ActionResult AddAppointment(AppointmentModel model)
         {
-            ViewBag.IsNew = true;
+            ViewBag.IsNew = model.Id != 0;
 
             List<Domain.Treator> allTreators = treatorRepository.GetAllTreators();
             ViewBag.Treators = from Domain.Treator t in allTreators select new SelectListItem { Value = t.Email, Text = t.Name };
 
             List<Domain.Patient> allPatients = patientRepository.GetAllPatients();
             ViewBag.Patients = from Domain.Patient p in allPatients select new SelectListItem { Value = p.Id.ToString(), Text = p.Name };
-
-            if (ModelState.IsValid)
+            if(model.Id != 0)
             {
-                Domain.Treator t = treatorRepository.GetTreatorByEmail(model.TreatorEmail);
-                Domain.Patient p = patientRepository.GetPatientById(model.PatientId);
-                DateTime dateTime = DateTime.Parse(model.AppointmentDate + " " + model.AppointmentTime);
-                PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
-                int duration = pf.TreatmentPlan.MinutesPerSession;
-                Appointment appointment = new Appointment(t, p, dateTime, dateTime.AddMinutes(duration));
-
-                if(addAppointmentService.AddAppointment(appointment, pf))
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
-                } else
+                    Domain.Treator t = treatorRepository.GetTreatorByEmail(model.TreatorEmail);
+                    Domain.Patient p = patientRepository.GetPatientById(model.PatientId);
+                    DateTime dateTime = DateTime.Parse(model.AppointmentDate + " " + model.AppointmentTime);
+                    PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                    int duration = pf.TreatmentPlan.MinutesPerSession;
+                    Appointment appointment = new Appointment(t, p, dateTime, dateTime.AddMinutes(duration));
+
+                    if (addAppointmentService.UpdateAppointment(appointment, model.Id))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View();
+                    }
+                }
+                else
                 {
                     return View();
                 }
             } else
             {
-                return View();
+                if (ModelState.IsValid)
+                {
+                    Domain.Treator t = treatorRepository.GetTreatorByEmail(model.TreatorEmail);
+                    Domain.Patient p = patientRepository.GetPatientById(model.PatientId);
+                    DateTime dateTime = DateTime.Parse(model.AppointmentDate + " " + model.AppointmentTime);
+                    PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
+                    int duration = pf.TreatmentPlan.MinutesPerSession;
+                    Appointment appointment = new Appointment(t, p, dateTime, dateTime.AddMinutes(duration));
+
+                    if(addAppointmentService.AddAppointment(appointment, pf))
+                    {
+                        return RedirectToAction("Index");
+                    } else
+                    {
+                        return View();
+                    }
+                } else
+                {
+                    return View();
+                }
             }
+
         }
 
         private PatientModel ConvertPatientToPatientModel(Domain.Patient patient)

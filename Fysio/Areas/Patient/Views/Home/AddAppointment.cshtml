@@ -10,7 +10,13 @@
 <body>
     <div class="form-add-patient">
         <div class="add-appointment-title">
-            <h2>Voeg afspraak toe</h2>
+            @if (!ViewBag.IsNew)
+            {
+                <h2>Werk afspraak bij</h2>
+            } else
+            {
+                <h2>Voeg afspraak toe</h2>
+            }
         </div>
         <form method="post" asp-action="AddAppointment" class="form">
             <select id="treator" asp-for="TreatorEmail" asp-items="@ViewBag.Treators" onchange="dateChangedScript()" class="input-field-form hidden">

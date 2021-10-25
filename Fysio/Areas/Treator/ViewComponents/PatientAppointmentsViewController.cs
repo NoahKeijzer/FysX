@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using DomainServices.Interfaces;
+using System.Security.Claims;
 
 namespace Fysio.Areas.Treator.ViewComponents
 {
@@ -23,6 +24,7 @@ namespace Fysio.Areas.Treator.ViewComponents
 
         public IViewComponentResult Invoke(PatientModel patient)
         {
+            ViewBag.IsTreator = !HttpContext.User.HasClaim("Claim.Patient", "Patient");
             ViewBag.PatientId = patient.Id;
             List<Appointment> appointments = appointmentRepository.GetUpcomingAppointmentsForPatient(patientRepository.GetPatientById(patient.Id));
             if(appointments.Count > 0)
