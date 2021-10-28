@@ -66,6 +66,11 @@ namespace EFInfrastructure
             return _context.Appointments.Where(p => p.Id == id).Include(p => p.Patient).Include(p => p.Treator).FirstOrDefault();
         }
 
+        public int GetAppointmentCountForToday()
+        {
+            return _context.Appointments.Where(p => p.AppointmentDateTime.Date == DateTime.Now.Date).Count();
+        }
+
         public List<Appointment> GetAppointmentsForDateForPatient(Patient patient, DateTime date)
         {
             return _context.Appointments.Where(p => p.Patient == patient && p.AppointmentDateTime.Date == date.Date).ToList();

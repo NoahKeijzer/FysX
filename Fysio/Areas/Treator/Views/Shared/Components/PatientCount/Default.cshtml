@@ -1,5 +1,5 @@
 ﻿@model int
 
 <body>
-    <span>@Model patienten</span>
+    <span>@Model @if (Model == 1) { <span>afspraak</span> } else { <span>afspraken</span>} vandaag</span>
 </body>

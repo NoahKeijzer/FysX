@@ -12,15 +12,17 @@ namespace Fysio.Areas.Treator.ViewComponents
     public class PatientCountViewComponent : ViewComponent
     {
         private readonly IPatientRepository PatientRepository;
+        private readonly IAppointmentRepository appointmentRepository;
 
-        public PatientCountViewComponent(IPatientRepository PatientRepository)
+        public PatientCountViewComponent(IPatientRepository PatientRepository, IAppointmentRepository appointmentRepository)
         {
             this.PatientRepository = PatientRepository;
+            this.appointmentRepository = appointmentRepository;
         }
 
         public IViewComponentResult Invoke()
         {
-            var result = PatientRepository.AmountOfPatients();
+            var result = appointmentRepository.GetAppointmentCountForToday();
             return View(result);
         }
     }

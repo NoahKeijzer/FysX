@@ -25,6 +25,7 @@ namespace DomainServices.Interfaces
         public void DeleteAppointment(Appointment appointment);
         public void UpdateAppointment(int id, Appointment updatedAppointment);
         public void AddAppointment(Appointment appointment);
+        public int GetAppointmentCountForToday();
 
     }
 }
