@@ -56,9 +56,15 @@ namespace Fysio.Areas.Treator.Models
 
         private byte[] GetByteArrayFromImage(IFormFile file)
         {
-            using var target = new MemoryStream();
-            file.CopyTo(target);
-            return target.ToArray();
+            if(file != null)
+            {
+                using var target = new MemoryStream();
+                file.CopyTo(target);
+                return target.ToArray();
+            } else
+            {
+                return null;
+            }
         }
 
 

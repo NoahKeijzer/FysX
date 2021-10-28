@@ -71,8 +71,7 @@ namespace Fysio.Areas.Treator.Controllers
                 {
                     Domain.Patient p = patient.ConvertPatientModelToPatient();
                     patientRepository.UpdatePatient(patient.Id, p);
-                    ViewBag.Categories = GetAllDiagnoseCategories();
-                    return RedirectToAction("PatientDetail", ConvertPatientToPatientModel(patientRepository.GetPatientById(patient.Id)));
+                    return RedirectToAction("PatientDetail", new { id = patient.Id, patient = ConvertPatientToPatientModel(patientRepository.GetPatientById(patient.Id)) });
 
                 } else
                 {
