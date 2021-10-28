@@ -25,13 +25,14 @@ namespace DomainServicesTests
             TreatmentType treatmentType = new TreatmentType() { RequireExplanation = true };
             Patient p = new Patient();
             Treatment t = new Treatment() { Type = "1", Patient = p, Description = "blabla" };
+            string token = "token";
 
-            TreatmentTypeRepo.Setup(p => p.GetTreatmentById("1")).Returns(treatmentType);
+            TreatmentTypeRepo.Setup(p => p.GetTreatmentById("1", token)).Returns(treatmentType);
 
             var sut = new DBAddTreatmentService(TreatmentTypeRepo.Object, TreatmentRepo.Object);
 
             //Act
-            var result = sut.AddTreatment(t);
+            var result = sut.AddTreatment(t, token);
 
             //Assert
             Assert.True(result);
@@ -47,13 +48,14 @@ namespace DomainServicesTests
             TreatmentType treatmentType = new TreatmentType() { RequireExplanation = true };
             Patient p = new Patient();
             Treatment t = new Treatment() { Type = "1", Patient = p, Description = null };
+            string token = "token";
 
-            TreatmentTypeRepo.Setup(p => p.GetTreatmentById("1")).Returns(treatmentType);
+            TreatmentTypeRepo.Setup(p => p.GetTreatmentById("1", token)).Returns(treatmentType);
 
             var sut = new DBAddTreatmentService(TreatmentTypeRepo.Object, TreatmentRepo.Object);
 
             //Act
-            var result = sut.AddTreatment(t);
+            var result = sut.AddTreatment(t, token);
 
             //Assert
             Assert.False(result);
