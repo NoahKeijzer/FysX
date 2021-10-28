@@ -18,6 +18,11 @@ using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
 using HotChocolate;
 using ApiInfrastructure;
+using EFInfrastructure;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace WebApi
 {
@@ -34,8 +39,32 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             string fysioDbString = Configuration.GetConnectionString("Default");
+            string identityDbString = Configuration.GetConnectionString("Security");
 
             services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(fysioDbString, b => b.MigrationsAssembly("WebApi")));
+
+            services.AddDbContext<SecurityDbContext>(options => options.UseSqlServer(identityDbString));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<SecurityDbContext>().AddDefaultTokenProviders();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["JWT:ValidAudience"],
+                    ValidIssuer = Configuration["JWT:ValidIssuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+                };
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -45,7 +74,7 @@ namespace WebApi
 
             services.AddScoped<DomainServices.IDiagnosisRepository, DBDiagnosisRepository>();
 
-            services.AddScoped<ITreatmentRepository, DBTreatmentRepository>();
+            services.AddScoped<ITreatmentRepository, ApiInfrastructure.DBTreatmentRepository>();
 
             services.AddScoped<Query>();
             services.AddGraphQL(c => SchemaBuilder.New().AddServices(c).AddType<GraphQLTypes>()
@@ -70,6 +99,7 @@ namespace WebApi
             app.UsePlayground();
 
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
