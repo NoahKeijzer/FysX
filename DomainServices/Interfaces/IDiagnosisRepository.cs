@@ -6,9 +6,9 @@ namespace DomainServices.Interfaces
 {
     public interface IDiagnosisRepository
     {
-        public IEnumerable<Diagnosis> GetAllDiagnoses();
-        public IEnumerable<Diagnosis> GetDiagnosesByCategory(string category);
-        public Diagnosis GetDiagnosisById(int id);
-        public IEnumerable<string> GetCategories();
+        public IEnumerable<Diagnosis> GetAllDiagnoses(string token);
+        public IEnumerable<Diagnosis> GetDiagnosesByCategory(string category, string token);
+        public Diagnosis GetDiagnosisById(int id, string token);
+        public IEnumerable<string> GetCategories(string token);
     }
 }

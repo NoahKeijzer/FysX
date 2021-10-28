@@ -132,7 +132,7 @@ namespace Fysio.Areas.Treator.Controllers
 
                 Domain.Patient p = patientRepository.GetPatientByEmail(patientFileModel.PatientEmail);
 
-                Diagnosis d = diagnosisRepository.GetDiagnosisById(int.Parse(patientFileModel.DiagnosisCode));
+                Diagnosis d = diagnosisRepository.GetDiagnosisById(int.Parse(patientFileModel.DiagnosisCode), Response.HttpContext.Request.Cookies["apiToken"]);
 
                 PatientFile patientFile = new PatientFile(patientFileModel.Complaints, d.Value.ToString(), d.DiagnosisDescription, intaker, null, treatorRepository.GetTreatorByEmail(patientFileModel.TreatorEmail), DateTime.Now, DateTime.MinValue, treatmentPlan, new List<Treatment>(), new List<Comment>(), CalculateAge(p), p);
                 patientFileRepository.AddPatientFile(patientFile);
@@ -180,12 +180,12 @@ namespace Fysio.Areas.Treator.Controllers
 
         private IEnumerable<SelectListItem> GetAllDiagnoseCategories()
         {
-            return diagnosisRepository.GetCategories().Select(c => new SelectListItem() { Text = c, Value = c });
+            return diagnosisRepository.GetCategories(Response.HttpContext.Request.Cookies["apiToken"]).Select(c => new SelectListItem() { Text = c, Value = c });
         }
 
         public JsonResult GetDiagnosisForCategory(string category)
         {
-            return Json(diagnosisRepository.GetDiagnosesByCategory(category));
+            return Json(diagnosisRepository.GetDiagnosesByCategory(category, Response.HttpContext.Request.Cookies["apiToken"]));
         }
 
         private int CalculateAge(Domain.Patient patient)

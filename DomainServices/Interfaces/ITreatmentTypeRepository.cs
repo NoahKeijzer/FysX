@@ -9,7 +9,7 @@ namespace DomainServices.Interfaces
 {
     public interface ITreatmentTypeRepository
     {
-        public IEnumerable<TreatmentType> GetAllTreatments();
-        public TreatmentType GetTreatmentById(string id);
+        public IEnumerable<TreatmentType> GetAllTreatments(string token);
+        public TreatmentType GetTreatmentById(string id, string token);
     }
 }

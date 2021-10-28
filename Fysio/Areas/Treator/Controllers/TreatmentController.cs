@@ -75,7 +75,7 @@ namespace Fysio.Areas.Treator.Controllers
                     Domain.Patient p = patientRepository.GetPatientByEmail(model.PatientEmail);
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
-                    addTreatmentService.UpdateTreatment(t, model.TreatmentId);
+                    addTreatmentService.UpdateTreatment(t, model.TreatmentId, Response.HttpContext.Request.Cookies["apiToken"]);
                     PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
                     return RedirectToAction("Index", "PatientFile", pf);
                 } else
@@ -88,7 +88,7 @@ namespace Fysio.Areas.Treator.Controllers
 
                     Treatment t = new Treatment(model.Type, model.Description, model.Location, model.Particularities, treator, p, DateTime.Now);
 
-                    if (addTreatmentService.AddTreatment(t))
+                    if (addTreatmentService.AddTreatment(t, Response.HttpContext.Request.Cookies["apiToken"]))
                     {
                         PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
                         pf.Treatments.Add(t);
@@ -130,12 +130,12 @@ namespace Fysio.Areas.Treator.Controllers
         public IEnumerable<SelectListItem> GetTreatmentTypes()
         {
             
-            return treatmentTypeRepository.GetAllTreatments().Select(t => new SelectListItem() { Text = t.Description, Value = t.Value});
+            return treatmentTypeRepository.GetAllTreatments(Response.HttpContext.Request.Cookies["apiToken"]).Select(t => new SelectListItem() { Text = t.Description, Value = t.Value});
         }
 
         public JsonResult IsDescriptionNecessaryForTreatment(string id)
         {
-            return Json(treatmentTypeRepository.GetTreatmentById(id).RequireExplanation);
+            return Json(treatmentTypeRepository.GetTreatmentById(id, Response.HttpContext.Request.Cookies["apiToken"]).RequireExplanation);
         }
 
         public IActionResult ToPatientList()

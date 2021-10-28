@@ -31,7 +31,6 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("/login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
             var user = await userManager.FindByEmailAsync(model.Email);

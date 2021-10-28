@@ -20,11 +20,11 @@ namespace EFInfrastructure
             this.treatmentRepository = treatmentRepository;
         }
 
-        public bool AddTreatment(Treatment t)
+        public bool AddTreatment(Treatment t, string token)
         {
             if(t.Patient != null)
             {
-                TreatmentType treatmentType = treatmentTypeRepository.GetTreatmentById(t.Type);
+                TreatmentType treatmentType = treatmentTypeRepository.GetTreatmentById(t.Type, token);
                 t.TypeDescription = treatmentType.Description;
                 if (treatmentType.RequireExplanation)
                 {
@@ -47,11 +47,11 @@ namespace EFInfrastructure
             }
         }
 
-        public bool UpdateTreatment(Treatment t, int id)
+        public bool UpdateTreatment(Treatment t, int id, string token)
         {
             if (t.Patient != null)
             {
-                TreatmentType treatmentType = treatmentTypeRepository.GetTreatmentById(t.Type);
+                TreatmentType treatmentType = treatmentTypeRepository.GetTreatmentById(t.Type, token);
                 t.TypeDescription = treatmentType.Description;
                 if (treatmentType.RequireExplanation)
                 {

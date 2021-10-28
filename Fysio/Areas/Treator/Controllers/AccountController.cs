@@ -1,11 +1,16 @@
 ﻿using Fysio.Areas.Treator.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Fysio.Areas.Treator.Controllers
@@ -15,6 +20,7 @@ namespace Fysio.Areas.Treator.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
+        private static HttpClient client = new HttpClient();
 
         public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
@@ -46,6 +52,22 @@ namespace Fysio.Areas.Treator.Controllers
                     {
                         if (claim.Value.Equals("Treator")) isTreator = true;
                     }
+
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://fysxapi.azurewebsites.net/login");
+                    var json = JsonConvert.SerializeObject(loginModel);
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = client.SendAsync(request).Result;
+
+                    TokenModel tokenModel = JsonConvert.DeserializeObject<TokenModel>(response.Content.ReadAsStringAsync().Result);
+
+                    CookieOptions option = new CookieOptions();
+
+                    option.Expires = DateTime.Parse(tokenModel.expiration);
+                    option.Secure = true;
+
+                    Response.Cookies.Append("apiToken", tokenModel.token, option);
                 }
 
                 if (result)
@@ -109,6 +131,7 @@ namespace Fysio.Areas.Treator.Controllers
         [Authorize]
         public async Task<IActionResult> LogOutAsync()
         {
+            Response.Cookies.Delete("apiToken");
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Account", "Treator");
         }
