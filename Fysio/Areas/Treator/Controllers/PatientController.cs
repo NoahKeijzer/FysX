@@ -43,7 +43,7 @@ namespace Fysio.Areas.Treator.Controllers
             return View(ConvertPatientToPatientModelList());
         }
 
-        [Authorize(Policy = "RequireFysio")]
+        [Authorize(Policy = "RequireTreator")]
         [HttpGet]
         public IActionResult AddPatient(int id)
         {
@@ -60,7 +60,7 @@ namespace Fysio.Areas.Treator.Controllers
         }
 
 
-        [Authorize(Policy = "RequireFysio")]
+        [Authorize(Policy = "RequireTreator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddPatient(PatientModel patient)
@@ -78,8 +78,17 @@ namespace Fysio.Areas.Treator.Controllers
                 {
                     Domain.Patient p = patient.ConvertPatientModelToPatient();
                     patientRepository.AddPatient(p);
-                    AddTreatorsToViewBag();
+
+
                     ViewBag.Categories = GetAllDiagnoseCategories();
+
+                    ClaimsPrincipal currentUser = this.User;
+                    string email = currentUser.FindFirst(ClaimTypes.Email).Value;
+                    Domain.Treator intaker = treatorRepository.GetTreatorByEmail(email);
+
+                    ViewBag.IsStudent = intaker is Student ? true : false;
+                    AddTreatorsToViewBag();
+
                     return View("AddPatientFile", new PatientFileModel() { PatientEmail = p.Email });
                 }
             }
@@ -108,16 +117,22 @@ namespace Fysio.Areas.Treator.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "RequireFysio")]
+        [Authorize(Policy = "RequireTreator")]
         public IActionResult AddPatientfile()
         {
             ViewBag.Categories = GetAllDiagnoseCategories();
+
+            ClaimsPrincipal currentUser = this.User;
+            string email = currentUser.FindFirst(ClaimTypes.Email).Value;
+            Domain.Treator intaker = treatorRepository.GetTreatorByEmail(email);
+
+            ViewBag.IsStudent = intaker is Student ? true : false;
             AddTreatorsToViewBag();
             return View();
         }
 
         [HttpPost]
-        [Authorize(Policy = "RequireFysio")]
+        [Authorize(Policy = "RequireTreator")]
         [ValidateAntiForgeryToken]
         public ViewResult AddPatientFile(PatientFileModel patientFileModel)
         {

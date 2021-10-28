@@ -54,7 +54,7 @@ namespace Fysio.Areas.Treator.Controllers
                     }
 
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://fysxapi.azurewebsites.net/login");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://fysxapi.azurewebsites.net/api/authorization");
                     var json = JsonConvert.SerializeObject(loginModel);
                     request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 

@@ -35,6 +35,14 @@
                     </select>
                 </div>
                 <div class="form-input-group">
+                    @if (ViewBag.IsStudent)
+                    {
+                        <label asp-for="SupervisorEmail">Supervisor:</label>
+                        <select asp-for="SupervisorEmail" class="input-field-form" asp-items="@ViewBag.Treators">
+                        </select>
+                    }
+                </div>
+                <div class="form-input-group">
                     <label asp-for="TreatmentsPerWeek">Behandelingen per week:</label>
                     <input type="number" class="input-field-form" asp-for="TreatmentsPerWeek" />
                 </div>

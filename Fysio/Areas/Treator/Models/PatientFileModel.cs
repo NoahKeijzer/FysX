@@ -21,5 +21,6 @@ namespace Fysio.Areas.Treator.Models
         public int MinutesPerSession { get; set; }
 
         public string PatientEmail { get; set; }
+        public string SupervisorEmail { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Fysio.Areas.Treator.Controllers
@@ -100,6 +101,10 @@ namespace Fysio.Areas.Treator.Controllers
 
             IdentityUser usr = userManager.GetUserAsync(HttpContext.User).Result;
             string email = usr.Email;
+
+            Domain.Treator intaker = treatorRepository.GetTreatorByEmail(email);
+            ViewBag.IsStudent = intaker is Student ? true : false;
+
             if(appointmentId != 0)
             {
                 Appointment a = appointmentRepository.GetAppointmentById(appointmentId);

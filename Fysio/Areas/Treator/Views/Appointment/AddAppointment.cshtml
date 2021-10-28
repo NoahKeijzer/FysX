@@ -23,11 +23,22 @@
             }
         </div>
         <form method="post" asp-action="AddAppointment" class="form">
-            <div class="form-input-group">
-                <label asp-for="TreatorEmail">Behandelaar:</label>
-                <select id="treator" asp-for="TreatorEmail" asp-items="@ViewBag.Treators" onchange="dateChangedScript()" class="input-field-form">
-                </select>
-            </div>
+            @if (!ViewBag.IsStudent)
+            {
+                <div class="form-input-group">
+                    <label asp-for="TreatorEmail">Behandelaar:</label>
+                    <select id="treator" asp-for="TreatorEmail" asp-items="@ViewBag.Treators" onchange="dateChangedScript()" class="input-field-form">
+                    </select>
+                </div>
+            }
+            else
+            {
+                <div class="form-input-group hidden">
+                    <label asp-for="TreatorEmail">Behandelaar:</label>
+                    <select id="treator" asp-for="TreatorEmail" asp-items="@ViewBag.Treators" onchange="dateChangedScript()" class="input-field-form">
+                    </select>
+                </div>
+            }
 
             <div class="form-input-group">
                 <label asp-for="PatientId">Patient:</label>
