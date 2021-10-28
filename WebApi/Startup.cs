@@ -77,9 +77,7 @@ namespace WebApi
             services.AddScoped<ITreatmentRepository, ApiInfrastructure.DBTreatmentRepository>();
 
             services.AddScoped<Query>();
-            services.AddGraphQL(c => SchemaBuilder.New().AddServices(c).AddType<GraphQLTypes>()
-                                                                        .AddQueryType<Query>()
-                                                                         .Create());
+            services.AddGraphQLServer().AddQueryType<Query>().AddType<GraphQLTypes>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
