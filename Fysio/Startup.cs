@@ -78,6 +78,7 @@ namespace Fysio
                     {
                         x.Response.Redirect("Treator/Account/Login");
                         return Task.CompletedTask;
+
                     }
                 };
 
