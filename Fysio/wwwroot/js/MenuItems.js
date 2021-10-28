@@ -30,3 +30,8 @@ function activeMenu3() {
     var menu3 = document.getElementById("menuButton3");
     menu3.classList.add("link-styled-active");
 }
+
+function disableMenu() {
+    document.getElementById("menuButton1").style.pointerEvents = "none";
+    document.getElementById("menuButton2").style.cursor = "default";
+}

@@ -1,19 +1,31 @@
 ﻿@model PatientModel
 
 <link rel="stylesheet" href="~/patientcss/home/HomeStyle.css" />
+<script src="~/js/MenuItems.js"></script>
 <body>
     <div class="patient-dashboard">
-        <div class="patient-dashboard-info">
-            @await Component.InvokeAsync(typeof(Fysio.Areas.Treator.ViewComponents.PatientInfoViewComponent), new { patient = Model })
-        </div>
-        <div class="patient-dashboard-treatment">
-            <div class="patient-dashboard-treatment-info">
-                @await Component.InvokeAsync(typeof(Fysio.Areas.Treator.ViewComponents.PatientTreatmentInfoViewComponent), new { patient = Model })
+        @if (Model.Name != "" && Model.Name != null)
+        {
+            <div class="patient-dashboard-info">
+                @await Component.InvokeAsync(typeof(Fysio.Areas.Treator.ViewComponents.PatientInfoViewComponent), new { patient = Model })
             </div>
-        </div>
-        <div class="patient-dashboard-appointments">
-            @await Component.InvokeAsync(typeof(Fysio.Areas.Treator.ViewComponents.PatientAppointmentsViewComponent), new { patient = Model}) 
-        </div>
+            <div class="patient-dashboard-treatment">
+                <div class="patient-dashboard-treatment-info">
+                    @await Component.InvokeAsync(typeof(Fysio.Areas.Treator.ViewComponents.PatientTreatmentInfoViewComponent), new { patient = Model })
+                </div>
+            </div>
+            <div class="patient-dashboard-appointments">
+                @await Component.InvokeAsync(typeof(Fysio.Areas.Treator.ViewComponents.PatientAppointmentsViewComponent), new { patient = Model })
+            </div>
+
+        }
+        else
+        {
+            <script>disableMenu()</script>
+            <div class="patient-dashboard-info">
+                <h1>Bij deze praktijk is geen patient ingeschreven op dit email addres. Controleer uw email of bel naar de praktijk.</h1>
+            </div>
+        }
     </div>
 </body>
 

@@ -34,7 +34,13 @@ namespace Fysio.Areas.Patient.Controllers
             Domain.Patient p = patientRepository.GetPatientByEmail(email);
 
             PatientFile pf = patientFileRepository.GetCurrentPatientFileForPatient(p);
-            return View(pf);
+            if(pf != null)
+            {
+                return View(pf);
+            } else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult TreatmentDetail(int id)

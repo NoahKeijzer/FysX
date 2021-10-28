@@ -147,13 +147,19 @@ namespace Fysio.Areas.Patient.Controllers
 
         private PatientModel ConvertPatientToPatientModel(Domain.Patient patient)
         {
-            bool gender = patient.Gender == Gender.Male ? true : false;
-            PatientModel model = new PatientModel() { Birthdate = patient.BirthDate, Email = patient.Email, Name = patient.Name, PhoneNumber = patient.PhoneNumber, RegistrationNumber = patient.RegistrationNumber, Teacher = !patient.Student, Gender = gender, Id = patient.Id };
-            if (patient.Image != null)
+            if(patient != null)
             {
-                model.ImageSrc = "data:image/gif;base64," + Convert.ToBase64String(patient.Image);
+                bool gender = patient.Gender == Gender.Male ? true : false;
+                PatientModel model = new PatientModel() { Birthdate = patient.BirthDate, Email = patient.Email, Name = patient.Name, PhoneNumber = patient.PhoneNumber, RegistrationNumber = patient.RegistrationNumber, Teacher = !patient.Student, Gender = gender, Id = patient.Id };
+                if (patient.Image != null)
+                {
+                    model.ImageSrc = "data:image/gif;base64," + Convert.ToBase64String(patient.Image);
+                }
+                return model;
+            } else
+            {
+                return new PatientModel();
             }
-            return model;
         }
     }
 }
