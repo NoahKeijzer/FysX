@@ -19,6 +19,7 @@
                     <a runat="server" id="menuButton3" asp-action="Index" asp-area="Treator" asp-controller="Appointment" class="link-styled">Afspraken</a>
                 </div>
                 <div class="sidebar-item mt-auto flex-column">
+                    @await Component.InvokeAsync("PatientCount") 
                     <a asp-action="LogOut" asp-area="Treator" asp-controller="Account" class="link-styled link-styled-dark">
                         Uitloggen
                     </a>
